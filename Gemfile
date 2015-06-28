@@ -1,0 +1,34 @@
+source 'https://rubygems.org'
+
+gem 'rails'
+gem 'pg'
+
+gem 'sass-rails', '~> 4.0.3'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'jquery-rails'
+
+gem 'pry-rails'
+gem 'figaro'
+gem 'slim-rails'
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'guard-bundler', require: false
+  gem 'guard-pow', require: false
+  gem 'guard-rails'
+  gem 'guard-rspec'
+  gem 'guard-rubocop'
+  gem 'quiet_assets'
+  gem 'bullet'
+  gem 'rack-mini-profiler'
+end
+
+group :development, :test do
+  gem 'pry-rescue'
+  gem 'pry-remote'
+  gem 'pry-byebug'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
