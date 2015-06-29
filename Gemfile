@@ -10,13 +10,14 @@ gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.3.4'
 gem 'bootswatch-rails'
 gem 'simple_form'
+gem 'slim-rails'
+gem 'draper'
 
 gem 'sidekiq'
 gem 'sinatra', require: nil
 gem 'whenever', require: false
 gem 'pry-rails'
 gem 'figaro'
-gem 'slim-rails'
 
 group :development do
   gem 'better_errors'

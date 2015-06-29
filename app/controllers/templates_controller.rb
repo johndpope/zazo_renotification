@@ -1,11 +1,8 @@
 class TemplatesController < ApplicationController
-  before_action :set_template, only: [:show, :edit, :update, :destroy]
+  before_action :set_template, only: [:edit, :update, :destroy]
 
   def index
-    @templates = Template.all
-  end
-
-  def show
+    @templates = Template.all.decorate
   end
 
   def new

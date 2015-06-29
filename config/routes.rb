@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/monitoring'
 
   root to: 'renotification#index'
-  resources :templates
+  resources :templates, except: :show
 end

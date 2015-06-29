@@ -1,27 +1,6 @@
-h1 Listing templates
+.templates-page
+  h2
+    | Listing templates
+    = link_to 'New Template', new_template_path, class: 'btn btn-sm btn-primary pull-right'
 
-table
-  thead
-    tr
-      th Type
-      th Name
-      th Title
-      th Body
-      th
-      th
-      th
-
-  tbody
-    - @templates.each do |template|
-      tr
-        td = template.type
-        td = template.name
-        td = template.title
-        td = template.body
-        td = link_to 'Show', template
-        td = link_to 'Edit', edit_template_path(template)
-        td = link_to 'Destroy', template, data: {:confirm => 'Are you sure?'}, :method => :delete
-
-br
-
-= link_to 'New Template', new_template_path
+  = render @templates
