@@ -1,9 +1,8 @@
 FactoryGirl.define do
   factory :template do
-    type ""
-name "MyString"
-title "MyText"
-body "MyText"
+    kind  'sms'
+    name  'sms_invite_v1'
+    title 'Hello!'
+    body  '<%= inviter %> sent you a message.'
   end
-
 end
