@@ -8,6 +8,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 
+gem 'sidekiq'
+gem 'sinatra', require: nil
+gem 'whenever', require: false
 gem 'pry-rails'
 gem 'figaro'
 gem 'slim-rails'
@@ -15,11 +18,13 @@ gem 'slim-rails'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'guard'
   gem 'guard-bundler', require: false
   gem 'guard-pow', require: false
-  gem 'guard-rails'
+  gem 'guard-sidekiq'
   gem 'guard-rspec'
   gem 'guard-rubocop'
+  gem 'terminal-notifier-guard'
   gem 'quiet_assets'
   gem 'bullet'
   gem 'rack-mini-profiler'
