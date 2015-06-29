@@ -9,13 +9,12 @@
         | actions
         span.caret
       ul.dropdown-menu
-        li = link_to 'show', template
         li = link_to 'edit', edit_template_path(template)
         li = link_to 'destroy', template, data: { confirm: 'Are you sure?' }, method: :delete
 
   .tab-content
     .tab-pane.active id='overview-#{template.id}'
-      p = template.title
-      p = template.body
+      p == template.title
+      p == template.body
     .tab-pane id='preview-#{template.id}'
-      p = template.preview
+      p == template.preview

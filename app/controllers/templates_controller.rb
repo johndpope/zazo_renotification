@@ -16,7 +16,7 @@ class TemplatesController < ApplicationController
     @template = Template.new(template_params)
 
     if @template.save
-      redirect_to @template
+      redirect_to templates_url
     else
       render :new
     end
@@ -24,7 +24,7 @@ class TemplatesController < ApplicationController
 
   def update
     if @template.update(template_params)
-      redirect_to @template
+      redirect_to templates_url
     else
       render :edit
     end
