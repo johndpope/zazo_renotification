@@ -3,11 +3,24 @@ class Template::Compiler
     @template = template
   end
 
+  def title(data)
+    ERB.new(@template.title).result data
+  end
+
+  def body(data)
+    ERB.new(@template.body).result data
+  end
+
   def preview
-    data  = preview_data
-    title = ERB.new(@template.title).result data
-    body  = ERB.new(@template.body).result  data
-    "#{title} #{body}"
+    data = preview_data
+    "#{title data} #{body data}"
+  end
+
+  def validate(key)
+    send key, preview_data
+    return true
+  rescue => e
+    return false, e.message
   end
 
   def compile
@@ -17,9 +30,9 @@ class Template::Compiler
   private
 
   def preview_data
-    inviter_name = 'Sani'
-    days_ago     = 6
-    app_link     = 'http://zazoapp.com/'
+    inviter  = 'Sani'
+    days_ago = 6
+    app_link = 'http://zazoapp.com/'
     binding
   end
 end

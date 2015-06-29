@@ -24,7 +24,7 @@ class TemplatesController < ApplicationController
 
   def update
     if @template.update(template_params)
-      redirect_to templates_url
+      redirect_to edit_template_path
     else
       render :edit
     end
