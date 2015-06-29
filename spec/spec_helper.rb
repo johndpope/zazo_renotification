@@ -16,6 +16,11 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
+require 'simplecov'
+SimpleCov.coverage_dir File.join(File.expand_path('../../tmp', __FILE__), 'coverage')
+SimpleCov.start :rails
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest

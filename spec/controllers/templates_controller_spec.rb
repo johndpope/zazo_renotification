@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe TemplatesController, type: :controller do
-  let(:template) { FactoryGirl.create :template }
+  let!(:template) { FactoryGirl.create :template }
 
   render_views
 
@@ -16,7 +16,7 @@ RSpec.describe TemplatesController, type: :controller do
   end
 
   describe 'GET #edit' do
-    before { get :edit, {id: template.to_param} }
+    before { get :edit, { id: template.to_param } }
     it_behaves_like 'response status'
   end
 end

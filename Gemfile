@@ -39,6 +39,10 @@ group :development, :test do
   gem 'pry-rescue'
   gem 'pry-remote'
   gem 'pry-byebug'
+end
+
+group :test do
+  gem 'simplecov', require: false
   gem 'rspec-rails'
   gem 'factory_girl_rails'
 end
