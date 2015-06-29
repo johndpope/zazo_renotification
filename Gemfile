@@ -7,6 +7,9 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
+gem 'bootstrap-sass', '~> 3.3.4'
+gem 'bootswatch-rails'
+gem 'simple_form'
 
 gem 'sidekiq'
 gem 'sinatra', require: nil
@@ -21,6 +24,7 @@ group :development do
   gem 'guard'
   gem 'guard-bundler', require: false
   gem 'guard-pow', require: false
+  gem 'guard-migrate'
   gem 'guard-sidekiq'
   gem 'guard-rspec'
   gem 'guard-rubocop'

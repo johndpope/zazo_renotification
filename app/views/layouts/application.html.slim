@@ -4,11 +4,13 @@ html
     meta charset='utf-8'
     meta name='viewport' content='width=device-width, initial-scale=1.0'
     title
-      = content_for?(:title) ? yield(:title) : 'Zazo Renotification Service'
-    meta name='description' content='#{content_for?(:description) ? yield(:description) : 'Zazo Renotification Service'}'
-    == stylesheet_link_tag 'application', :media => 'all', 'data-turbolinks-track' => true
-    == javascript_include_tag 'application', 'data-turbolinks-track' => true
+      = content_for?(:title) ? "#{yield(:title)} - #{t 'title'}": "#{t 'title'}"
+    meta name='description' content='#{content_for?(:description) ? yield(:description) : t('title')}'
+    == stylesheet_link_tag 'application', media: 'all'
+
     == csrf_meta_tags
   body
-    main role='main'
+    .container
+      == render 'layouts/menu'
       == yield
+    == javascript_include_tag 'application'

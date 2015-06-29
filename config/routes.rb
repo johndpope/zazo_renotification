@@ -1,7 +1,8 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  mount Sidekiq::Web => '/sidekiq'
+  mount Sidekiq::Web => '/monitoring'
 
-  resources :admin, only: :index
+  root to: 'renotification#index'
+  resources :templates
 end
