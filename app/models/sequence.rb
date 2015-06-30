@@ -3,7 +3,7 @@ class Sequence < ActiveRecord::Base
 
   belongs_to :template
 
-  scope :by_template_type, -> (type) { joins(:templates).where 'templates.kind' => type }
+  scope :by_template_type, -> (type) { joins(:template).where 'templates.kind' => type }
 
   validates :delay_hours, presence: true
   validates :template, presence: true

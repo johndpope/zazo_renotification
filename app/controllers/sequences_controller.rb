@@ -5,6 +5,17 @@ class SequencesController < ApplicationController
   end
 
   def create
+    @sequence = Sequence.new sequence_params
+
+    if @sequence.save
+      redirect_to sequences_path + "/#{@sequence.type}"
+    else
+      edit_by_type @sequence.type
+    end
+  end
+
+  def destroy
+    
   end
 
   def sms
@@ -34,5 +45,9 @@ class SequencesController < ApplicationController
     @sequences = Sequence.by_template_type type
     @sequence.type = type
     render 'edit'
+  end
+
+  def sequence_params
+    params.require(:sequence).permit(:type, :template_id, :delay_hours)
   end
 end

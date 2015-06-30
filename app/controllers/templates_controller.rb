@@ -13,7 +13,7 @@ class TemplatesController < ApplicationController
   end
 
   def create
-    @template = Template.new(template_params)
+    @template = Template.new template_params
 
     if @template.save
       redirect_to templates_url
@@ -23,7 +23,7 @@ class TemplatesController < ApplicationController
   end
 
   def update
-    if @template.update(template_params)
+    if @template.update template_params
       redirect_to edit_template_path
     else
       render :edit
@@ -38,7 +38,7 @@ class TemplatesController < ApplicationController
   private
 
   def set_template
-    @template = Template.find(params[:id])
+    @template = Template.find params[:id]
   end
 
   def template_params
