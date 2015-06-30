@@ -60,6 +60,12 @@ GEM
       uniform_notifier (~> 1.9.0)
     byebug (4.0.5)
       columnize (= 0.9.0)
+    cells (4.0.2)
+      tilt (>= 1.4, < 3)
+      uber (~> 0.0.9)
+    cells-slim (0.0.3)
+      cells (~> 4.0.0.beta6)
+      slim (~> 3.0)
     celluloid (0.16.0)
       timers (~> 4.0.0)
     chronic (0.10.2)
@@ -296,6 +302,7 @@ GEM
       hitimes
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    uber (0.0.13)
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
@@ -312,6 +319,8 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.4)
   bootswatch-rails
   bullet
+  cells
+  cells-slim
   coffee-rails (~> 4.0.0)
   draper
   factory_girl_rails

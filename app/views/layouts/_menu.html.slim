@@ -2,3 +2,6 @@ nav.navbar.navbar-default
   .container-fluid
     .navbar-header
       a.navbar-brand href='/' == t 'title'
+    ul.nav.navbar-nav
+      li = link_to 'Sequences', sequences_path
+      li = link_to 'Templates', templates_path

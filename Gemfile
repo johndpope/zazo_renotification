@@ -12,6 +12,8 @@ gem 'bootswatch-rails'
 gem 'simple_form'
 gem 'slim-rails'
 gem 'draper'
+gem 'cells'
+gem 'cells-slim'
 
 gem 'sidekiq'
 gem 'sinatra', require: nil
@@ -39,11 +41,11 @@ group :development, :test do
   gem 'pry-rescue'
   gem 'pry-remote'
   gem 'pry-byebug'
+  gem 'rspec-rails'
 end
 
 group :test do
   gem 'shoulda-matchers'
-  gem 'simplecov', require: false
-  gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'simplecov', require: false
 end

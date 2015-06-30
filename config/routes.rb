@@ -3,6 +3,10 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   mount Sidekiq::Web => '/monitoring'
 
-  root to: 'renotification#index'
   resources :templates, except: :show
+  resources :sequences, only: [:index, :create] do
+    get :sms, :email, :ios, :andriod, on: :collection
+  end
+
+  root to: 'sequences#index'
 end

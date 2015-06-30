@@ -1,0 +1,2 @@
+module Invite
+end

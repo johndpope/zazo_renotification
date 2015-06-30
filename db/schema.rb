@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150629115339) do
+ActiveRecord::Schema.define(version: 20150630103419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "sequences", force: :cascade do |t|
+    t.integer  "template_id"
+    t.float    "delay_hours"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "sequences", ["template_id"], name: "index_sequences_on_template_id", using: :btree
 
   create_table "templates", force: :cascade do |t|
     t.string   "kind"
@@ -27,4 +36,5 @@ ActiveRecord::Schema.define(version: 20150629115339) do
 
   add_index "templates", ["name"], name: "index_templates_on_name", unique: true, using: :btree
 
+  add_foreign_key "sequences", "templates"
 end
