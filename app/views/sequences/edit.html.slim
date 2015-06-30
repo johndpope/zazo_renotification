@@ -1,7 +1,14 @@
-.row
+h2.page-title = "#{@sequence.type.capitalize} sequences"
 
+.row
   .col-sm-6
     '
 
   .col-sm-6
     == concept('sequence/cell', @sequence).new
+
+    h3 Available templates
+    - if @templates.empty?
+      .alert.alert-warning There are no suitable templates.
+    - else
+      .templates == concept('template/cell', collection: @templates)

@@ -8,28 +8,31 @@ class SequencesController < ApplicationController
   end
 
   def sms
-    @sequence.type = :sms
-    render 'edit'
+    edit_by_type :sms
   end
 
   def email
-    @sequence.type = :email
-    render 'edit'
+    edit_by_type :email
   end
 
   def ios
-    @sequence.type = :ios
-    render 'edit'
+    edit_by_type :ios
   end
 
   def android
-    @sequence.type = :android
-    render 'edit'
+    edit_by_type :android
   end
 
   private
 
   def set_sequence
     @sequence = Sequence.new
+  end
+
+  def edit_by_type(type)
+    @templates = Template.by_type type
+    @sequences = Sequence.by_template_type type
+    @sequence.type = type
+    render 'edit'
   end
 end
