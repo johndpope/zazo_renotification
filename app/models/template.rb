@@ -4,8 +4,7 @@ class Template < ActiveRecord::Base
   validates :kind, presence: true, inclusion: { in: ALLOW_TYPES, message: "%{value} is not a valid type" }
   validates :name, presence: true, uniqueness: true, length: { minimum: 3 }
   validates :body, presence: true
-
-  validate :template_syntax
+  validate  :template_syntax
 
   def template_syntax
     [:title, :body].each do |key|

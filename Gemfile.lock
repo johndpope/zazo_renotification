@@ -248,6 +248,8 @@ GEM
       sprockets (~> 2.8, < 3.0)
       sprockets-rails (~> 2.0)
     shellany (0.0.1)
+    shoulda-matchers (2.8.0)
+      activesupport (>= 3.0.0)
     sidekiq (3.4.1)
       celluloid (~> 0.16.0)
       connection_pool (>= 2.1.1)
@@ -332,6 +334,7 @@ DEPENDENCIES
   rails
   rspec-rails
   sass-rails (~> 4.0.3)
+  shoulda-matchers
   sidekiq
   simple_form
   simplecov
