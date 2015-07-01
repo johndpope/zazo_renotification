@@ -1,7 +1,6 @@
 class SequencesController < ApplicationController
-  before_action :set_sequence, only: [:sms, :email, :ios, :android]
-
   def index
+
   end
 
   def create
@@ -15,7 +14,12 @@ class SequencesController < ApplicationController
   end
 
   def destroy
-    
+    Sequence.find(params[:id]).destroy
+    if session[:last_type]
+      edit_by_type session[:last_type]
+    else
+      redirect_to sequences_path
+    end
   end
 
   def sms
@@ -36,13 +40,12 @@ class SequencesController < ApplicationController
 
   private
 
-  def set_sequence
-    @sequence = Sequence.new
-  end
-
   def edit_by_type(type)
-    @templates = Template.by_type type
-    @sequences = Sequence.by_template_type type
+    session[:last_type] = type
+    @templates  = Template.by_type type
+    @sequences  = Sequence.by_template_type(type)
+                          .order_by_delay
+    @sequence ||= Sequence.new
     @sequence.type = type
     render 'edit'
   end

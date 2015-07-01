@@ -1,13 +1,15 @@
-h2.page-title = "#{@sequence.type.capitalize} sequences"
+h2.page-title = "#{@sequence.type.capitalize} sequences [#{@sequences.size}]"
 
 .row
   .col-sm-6
     - if @sequences.empty?
       p There are no created sequences
+    - else
+      .sequences == concept 'sequence/cell', collection: @sequences
 
   .col-sm-6
     == concept('sequence/cell', @sequence).new
 
     - unless @templates.empty?
       h3 Available templates
-      .templates == concept('template/cell', collection: @templates)
+      .templates == concept 'template/cell', collection: @templates
