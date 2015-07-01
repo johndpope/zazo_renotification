@@ -4,6 +4,7 @@ class Template < ActiveRecord::Base
   has_many :sequences
 
   scope :by_type, -> (type) { where kind: type }
+  scope :order_by_updated_at, -> { order updated_at: :desc }
 
   validates :kind, presence: true, inclusion: { in: ALLOW_TYPES, message: "%{value} is not a valid type" }
   validates :name, presence: true, uniqueness: true, length: { minimum: 3 }

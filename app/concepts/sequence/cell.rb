@@ -28,6 +28,8 @@ class Sequence::Cell < Cell::Concept
   end
 
   def remove_button
-    link_to fa_icon('trash-o'), model, data: { confirm: 'Are you sure?' }, method: :delete, class: 'pull-right'
+    link_to fa_icon('trash-o'), model,
+            data: { confirm: 'Are you sure?' },
+            method: :delete, class: 'pull-right'
   end
 end
