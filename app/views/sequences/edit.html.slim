@@ -2,10 +2,7 @@ h2.page-title = "#{@sequence.type.capitalize} sequences [#{@sequences.size}]"
 
 .row
   .col-sm-6
-    - if @sequences.empty?
-      p There are no created sequences
-    - else
-      .sequences == concept 'sequence/cell', collection: @sequences
+    .sequences == concept 'sequence/cell/grid', :show, collection: @sequences
 
   .col-sm-6
     == concept('sequence/cell', @sequence).new

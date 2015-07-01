@@ -1,6 +1,9 @@
 class SequencesController < ApplicationController
   def index
-
+    @sequences = {}
+    (Template::ALLOW_TYPES - ['ios', 'android']).each do |type|
+      @sequences[type] = Sequence.by_template_type(type).order_by_delay
+    end
   end
 
   def create
@@ -43,8 +46,7 @@ class SequencesController < ApplicationController
   def edit_by_type(type)
     session[:last_type] = type
     @templates  = Template.by_type type
-    @sequences  = Sequence.by_template_type(type)
-                          .order_by_delay
+    @sequences  = Sequence.by_template_type(type).order_by_delay
     @sequence ||= Sequence.new
     @sequence.type = type
     render 'edit'

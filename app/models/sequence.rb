@@ -6,6 +6,6 @@ class Sequence < ActiveRecord::Base
   scope :by_template_type, -> (type) { joins(:template).where 'templates.kind' => type }
   scope :order_by_delay, -> { order :delay_hours }
 
-  validates :delay_hours, presence: true
+  validates :delay_hours, presence: true, numericality: true
   validates :template, presence: true
 end
