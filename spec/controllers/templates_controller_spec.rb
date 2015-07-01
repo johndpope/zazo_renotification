@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe TemplatesController, type: :controller do
-  let!(:template) { FactoryGirl.create :template }
+  let!(:template) { FactoryGirl.create :sms_template }
 
   render_views
 
