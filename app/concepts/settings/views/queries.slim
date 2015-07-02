@@ -1,0 +1,6 @@
+h3 Choose queries
+
+= simple_form_for :queries, url: queries_settings_path, method: :patch do |f|
+  = f.input :type, as: :hidden, input_html: { value: @type }
+  = f.input :query, as: :check_boxes, collection: model, label: false, checked: @active
+  = f.submit 'Update Queries', class: 'btn btn-sm btn-primary'

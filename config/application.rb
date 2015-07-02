@@ -21,6 +21,7 @@ module ZazoRenotification
     # config.i18n.default_locale = :de
 
     config.sass.preferred_syntax = :sass
+    config.autoload_paths << Rails.root.join('lib')
     config.autoload_paths += %W(#{config.root}/app/entities)
   end
 end

@@ -12,6 +12,10 @@ class SettingsController < ApplicationController
     end
   end
 
+  def queries
+    render text: params
+  end
+
   private
 
   def setting_params
