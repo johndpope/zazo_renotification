@@ -28,7 +28,9 @@ class Settings::Cell < Cell::Concept
     end
 
     def render_conditions(type)
-      concept('settings/cell', []).conditions type: type
+      conditions = Classifier.new([type, :condition]).klass::CONDITIONS.map { |q| q.to_s.classify }
+      active = Condition.by_type(type.to_s.classify).pluck(:type).map { |q| q.split('::').last }
+      concept('settings/cell', conditions).conditions type: type, active: active
     end
   end
 
@@ -47,6 +49,8 @@ class Settings::Cell < Cell::Concept
   end
 
   def conditions(options)
+    @type   = options[:type]
+    @active = options[:active]
     render :conditions
   end
 end

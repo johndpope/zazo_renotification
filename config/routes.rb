@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get :sms, :email, :ios, :andriod, on: :collection
   end
   resources :settings, only: [:index, :update] do
-    patch :queries, on: :collection
+    patch :queries, :conditions, on: :collection
   end
 
   root to: 'sequences#index'

@@ -18,7 +18,8 @@ class SettingsController < ApplicationController
   end
 
   def conditions
-    render text: params
+    Manage::Conditions.new(conditions_params).update
+    redirect_to settings_path
   end
 
   private
@@ -33,6 +34,13 @@ class SettingsController < ApplicationController
     {
       type: params[:queries]['type'],
       queries: params[:queries]['query'].delete_if(&:empty?)
+    }
+  end
+
+  def conditions_params
+    {
+      type: params[:conditions]['type'],
+      conditions: params[:conditions]['condition'].delete_if(&:empty?)
     }
   end
 end
