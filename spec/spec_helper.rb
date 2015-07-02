@@ -17,6 +17,7 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
+require 'database_cleaner'
 require 'simplecov'
 SimpleCov.coverage_dir File.join(File.expand_path('../../tmp', __FILE__), 'coverage')
 SimpleCov.start :rails
@@ -46,6 +47,12 @@ RSpec.configure do |config|
   end
 
   Dir["./spec/support/**/*.rb"].sort.each { |f| require f}
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+    Rails.application.load_seed # loading seeds
+  end
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
