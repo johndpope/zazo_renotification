@@ -1,6 +1,6 @@
 .row
-  .col-sm-6
-    h2.page-title Invite settings
-    hr
-    .settings
-      == concept('settings/cell/entity').edit :invite
+  - [:invite, :notification].each do |category|
+    .col-sm-6
+      h2.page-title = "#{category.to_s.capitalize} settings"
+      hr
+      .settings == concept('settings/cell/entity').edit category
