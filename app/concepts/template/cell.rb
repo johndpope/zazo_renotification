@@ -3,6 +3,11 @@ class Template::Cell < Cell::Concept
 
   property :id, :kind, :name
 
+  def initialize(*)
+    super
+    @options[:allow_destroy] = true if @options[:allow_destroy].nil?
+  end
+
   def show
     render :show
   end

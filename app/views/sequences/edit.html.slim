@@ -9,4 +9,4 @@ h2.page-title = "#{@sequence.type.capitalize} sequences [#{@sequences.size}]"
 
     - unless @templates.empty?
       h3 Available templates
-      .templates == concept 'template/cell', collection: @templates
+      .templates == concept 'template/cell', collection: @templates, allow_destroy: false
