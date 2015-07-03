@@ -1,7 +1,0 @@
-.row
-  - @sequences.keys.each do |type|
-    .col-sm-6
-      h2
-        == type.capitalize
-        == link_to 'Edit', sequences_path + "/#{type}", class: 'btn btn-sm btn-primary pull-right'
-      .sequences == concept 'sequence/cell/grid', :show, collection: @sequences[type], allow_destroy: false

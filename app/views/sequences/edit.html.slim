@@ -1,12 +1,1 @@
-h2.page-title = "#{@sequence.type.capitalize} sequences [#{@sequences.size}]"
-
-.row
-  .col-sm-6
-    .sequences == concept 'sequence/cell/grid', :show, collection: @sequences
-
-  .col-sm-6
-    == concept('sequence/cell', @sequence).new
-
-    - unless @templates.empty?
-      h3 Available templates
-      .templates == concept 'template/cell', collection: @templates, allow_destroy: false
+== (concept 'sequence/cell/program', @program).edit sequence: @sequence

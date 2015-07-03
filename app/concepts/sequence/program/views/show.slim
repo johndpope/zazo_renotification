@@ -1,0 +1,11 @@
+.row
+  - sequences.keys.each do |key|
+    .col-sm-3
+      h3
+        == key.capitalize
+        == link_to 'Edit', program_sequences_path(model) + "/#{key}", class: 'btn btn-sm btn-primary pull-right'
+      .sequences
+        - if sequences[key].empty?
+          | There are no created sequences
+        - else
+          == concept 'sequence/cell', collection: sequences[key], allow_destroy: false

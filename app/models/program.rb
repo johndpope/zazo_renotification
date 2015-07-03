@@ -8,6 +8,12 @@ class Program < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
 
+  def grouped_sequences
+    (Template::ALLOW_TYPES).each_with_object({}) do |type, memo|
+      memo[type] = self.sequences.by_template_type(type).order_by_delay
+    end
+  end
+
   private
 
   def set_setting

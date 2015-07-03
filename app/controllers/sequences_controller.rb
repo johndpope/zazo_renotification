@@ -1,16 +1,12 @@
 class SequencesController < ApplicationController
-  def index
-    @sequences = {}
-    (Template::ALLOW_TYPES - ['ios', 'android']).each do |type|
-      @sequences[type] = Sequence.by_template_type(type).order_by_delay
-    end
-  end
+  before_action :set_program
 
   def create
     @sequence = Sequence.new sequence_params
+    @sequence.program = @program
 
     if @sequence.save
-      redirect_to sequences_path + "/#{@sequence.type}"
+      redirect_to program_sequences_path(@program) + "/#{@sequence.type}"
     else
       edit_by_type @sequence.type
     end
@@ -21,7 +17,7 @@ class SequencesController < ApplicationController
     if session[:last_type]
       edit_by_type session[:last_type]
     else
-      redirect_to sequences_path
+      redirect_to program_sequences_path @program
     end
   end
 
@@ -43,12 +39,15 @@ class SequencesController < ApplicationController
 
   private
 
+  def set_program
+    @program = Program.find params[:program_id]
+  end
+
   def edit_by_type(type)
     session[:last_type] = type
-    @templates  = Template.by_type type
-    @sequences  = Sequence.by_template_type(type).order_by_delay
     @sequence ||= Sequence.new
-    @sequence.type = type
+    @sequence.type    = type
+    @sequence.program = @program
     render 'edit'
   end
 

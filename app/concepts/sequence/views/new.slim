@@ -1,4 +1,4 @@
-= simple_form_for model do |f|
+= simple_form_for [model.program, model] do |f|
   = f.input :type, as: :hidden
   = f.association :template, collection: templates, include_blank: false
   = f.input :delay_hours

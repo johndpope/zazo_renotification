@@ -5,15 +5,24 @@ class Sequence::Cell < Cell::Concept
   include SimpleForm::ActionViewExtensions::FormHelper
   include FontAwesome::Rails::IconHelper
 
-  class Grid < Cell::Concept
+  class Program < Cell::Concept
+    property :name
+
     def show
-      if @options[:collection].empty?
-        'There are no created sequences'
-      else
-        concept 'sequence/cell',
-                collection:    @options[:collection],
-                allow_destroy: @options[:allow_destroy]
-      end
+      render :show
+    end
+
+    def edit(options)
+      @sequence  = options[:sequence]
+      @sequences = model.sequences.by_template_type @sequence.type
+      @templates = Template.by_type @sequence.type
+      render :edit
+    end
+
+    private
+
+    def sequences
+      model.grouped_sequences
     end
   end
 
@@ -46,7 +55,7 @@ class Sequence::Cell < Cell::Concept
 
   def remove_button
     return '' unless @options[:allow_destroy]
-    link_to fa_icon('trash-o'), model,
+    link_to fa_icon('trash-o'), [model.program, model],
             data: { confirm: 'Are you sure?' },
             method: :delete, class: 'pull-right'
   end
