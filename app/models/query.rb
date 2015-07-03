@@ -1,5 +1,10 @@
 class Query < ActiveRecord::Base
-  validates :type, presence: true, uniqueness: true
+  QUERIES = %i(not_verified).freeze
+
+  belongs_to :program
+
+  validates :type, presence: true
+  validates :program, presence: true
 
   scope :by_type, -> (type) { where 'type LIKE ?', type + '%' }
 

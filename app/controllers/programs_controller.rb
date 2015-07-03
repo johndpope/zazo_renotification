@@ -14,6 +14,7 @@ class ProgramsController < ApplicationController
 
   def create
     @program = Program.new program_params
+    @program.setting
 
     if @program.save
       redirect_to programs_url
@@ -31,7 +32,11 @@ class ProgramsController < ApplicationController
   end
 
   def destroy
-
+    @program.destroy
+    redirect_to programs_url
+  rescue ActiveRecord::InvalidForeignKey
+    flash[:alert] = 'Program has dependencies'
+    redirect_to programs_url
   end
 
   private

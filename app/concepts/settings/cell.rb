@@ -4,33 +4,32 @@ class Settings::Cell < Cell::Concept
   include ActionView::Helpers::FormOptionsHelper
   include SimpleForm::ActionViewExtensions::FormHelper
 
-  class Entity < Cell::Concept
-    def edit(type)
+  class Program < Cell::Concept
+    def edit
       components = {
-        main: render_main(type),
-        queries: render_queries(type),
-        conditions: render_conditions(type)
+        main: render_main,
+        queries: render_queries,
+        conditions: render_conditions
       }
       concept('settings/cell', components).edit
     end
 
     private
 
-    def render_main(type)
-      klass = Classifier.new([type, :setting]).klass
-      concept('settings/cell', klass.first).main
+    def render_main
+      concept('settings/cell', model.setting).main
     end
 
-    def render_queries(type)
-      queries = Classifier.new([type, :query]).klass::QUERIES.map { |q| q.to_s.classify }
-      active = Query.by_type(type.to_s.classify).pluck(:type).map { |q| q.split('::').last }
-      concept('settings/cell', queries).queries type: type, active: active
+    def render_queries
+      queries = Query::QUERIES.map { |q| q.to_s.classify }
+      active = model.queries.pluck(:type).map { |q| q.split('::').last }
+      concept('settings/cell', queries).queries program: model, active: active
     end
 
-    def render_conditions(type)
-      conditions = Classifier.new([type, :condition]).klass::CONDITIONS.map { |q| q.to_s.classify }
-      active = Condition.by_type(type.to_s.classify).pluck(:type).map { |q| q.split('::').last }
-      concept('settings/cell', conditions).conditions type: type, active: active
+    def render_conditions
+      conditions = Condition::CONDITIONS.map { |q| q.to_s.classify }
+      active = model.conditions.pluck(:type).map { |q| q.split('::').last }
+      concept('settings/cell', conditions).conditions program: model, active: active
     end
   end
 
@@ -43,14 +42,17 @@ class Settings::Cell < Cell::Concept
   end
 
   def queries(options)
-    @type   = options[:type]
-    @active = options[:active]
+    set_options options
     render :queries
   end
 
   def conditions(options)
-    @type   = options[:type]
-    @active = options[:active]
+    set_options options
     render :conditions
+  end
+
+  def set_options(options)
+    @active  = options[:active]
+    @program = options[:program]
   end
 end

@@ -2,6 +2,6 @@
   p There are no conditions
 - else
   = simple_form_for :conditions, url: conditions_settings_path, method: :patch do |f|
-    = f.input :type, as: :hidden, input_html: { value: @type }
+    = f.input :program_id, as: :hidden, input_html: { value: @program.id }
     = f.input :condition, as: :check_boxes, collection: model, label: false, checked: @active
     = f.submit 'Update Conditions', class: 'btn btn-sm btn-primary'

@@ -1,4 +1,6 @@
 class Setting < ActiveRecord::Base
+  belongs_to :program
+
   validates :started, inclusion: [true, false]
-  validates :type, presence: true, uniqueness: true
+  validates :program, presence: true, uniqueness: true
 end

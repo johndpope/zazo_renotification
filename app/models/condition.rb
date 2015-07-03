@@ -1,7 +1,10 @@
 class Condition < ActiveRecord::Base
-  validates :type, presence: true, uniqueness: true
+  CONDITIONS = %i(not_verified).freeze
 
-  scope :by_type, -> (type) { where 'type LIKE ?', type + '%' }
+  belongs_to :program
+
+  validates :type, presence: true
+  validates :program, presence: true
 
   def check
     # Redefine this method in the inherited class

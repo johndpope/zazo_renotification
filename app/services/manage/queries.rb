@@ -1,21 +1,22 @@
 class Manage::Queries
-  attr_accessor :type, :queries
+  attr_accessor :program, :queries
 
   def initialize(params)
     @queries = params[:queries]
-    @type    = params[:type].classify
+    @program = params[:program]
   end
 
   def update
     remove_existing
     queries.each do |query|
-      Classifier.new([type, :query, query]).klass.new.save
+      program.queries << Classifier.new([:query, query]).klass.new
     end
+    program.save!
   end
 
   private
 
   def remove_existing
-    Query.by_type(type).each(&:destroy)
+    program.queries.each(&:destroy)
   end
 end

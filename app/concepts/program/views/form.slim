@@ -1,9 +1,12 @@
-- if defined? title
-  .row
-    .col-sm-6
-      h2.col-sm-offset-3.form-action-title= title
+.row
+  .col-sm-6
+    h2.col-sm-offset-3.form-action-title
+      - if model.new_record?
+        | New program
+      - else
+        | Edit program
 
-= simple_form_for @program, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
+= simple_form_for model, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
   .row = f.input :name,  wrapper_html: { class: 'col-sm-6' }
   .row
     .col-sm-6

@@ -1,21 +1,22 @@
 class Manage::Conditions
-  attr_accessor :type, :conditions
+  attr_accessor :program, :conditions
 
   def initialize(params)
     @conditions = params[:conditions]
-    @type       = params[:type].classify
+    @program    = params[:program]
   end
 
   def update
     remove_existing
     conditions.each do |condition|
-      Classifier.new([type, :condition, condition]).klass.new.save
+      program.conditions << Classifier.new([:condition, condition]).klass.new
     end
+    program.save!
   end
 
   private
 
   def remove_existing
-    Condition.by_type(type).each(&:destroy)
+    program.conditions.each(&:destroy)
   end
 end

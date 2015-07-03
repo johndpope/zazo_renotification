@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150703094654) do
+ActiveRecord::Schema.define(version: 20150703100927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,10 @@ ActiveRecord::Schema.define(version: 20150703094654) do
     t.string   "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "program_id"
   end
+
+  add_index "conditions", ["program_id"], name: "index_conditions_on_program_id", using: :btree
 
   create_table "programs", force: :cascade do |t|
     t.string   "name"
@@ -32,23 +35,30 @@ ActiveRecord::Schema.define(version: 20150703094654) do
     t.string   "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "program_id"
   end
+
+  add_index "queries", ["program_id"], name: "index_queries_on_program_id", using: :btree
 
   create_table "sequences", force: :cascade do |t|
     t.integer  "template_id"
     t.float    "delay_hours"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "program_id"
   end
 
+  add_index "sequences", ["program_id"], name: "index_sequences_on_program_id", using: :btree
   add_index "sequences", ["template_id"], name: "index_sequences_on_template_id", using: :btree
 
   create_table "settings", force: :cascade do |t|
     t.boolean  "started"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "type"
+    t.integer  "program_id"
   end
+
+  add_index "settings", ["program_id"], name: "index_settings_on_program_id", using: :btree
 
   create_table "templates", force: :cascade do |t|
     t.string   "kind"
@@ -61,5 +71,9 @@ ActiveRecord::Schema.define(version: 20150703094654) do
 
   add_index "templates", ["name"], name: "index_templates_on_name", unique: true, using: :btree
 
+  add_foreign_key "conditions", "programs"
+  add_foreign_key "queries", "programs"
+  add_foreign_key "sequences", "programs"
   add_foreign_key "sequences", "templates"
+  add_foreign_key "settings", "programs"
 end
