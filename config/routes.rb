@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :settings, only: [:index, :update] do
     patch :queries, :conditions, on: :collection
   end
+  resources :programs
 
   root to: 'sequences#index'
 end
