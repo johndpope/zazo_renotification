@@ -2,8 +2,4 @@ h2.page-title
   | Listing programs
   = link_to 'New Program', new_program_path, class: 'btn btn-sm btn-primary pull-right'
 
-- @programs.each do |program|
-  = program.name
-  = link_to 'Edit', edit_program_path(program)
-  = link_to 'Destroy', program, data: { confirm: 'Are you sure?' }, method: :delete
-
+.programs == concept 'program/cell', collection: @programs

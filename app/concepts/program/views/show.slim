@@ -1,0 +1,16 @@
+.program
+  ul.nav.nav-tabs
+    li.active
+      a href='#' data-toggle='tab' = "#{name} #{status}"
+    li.dropdown
+      a.dropdown-toggle data-toggle='dropdown' href='#'
+        | actions
+        span.caret
+      ul.dropdown-menu
+        li = link_to 'edit', edit_program_path(model)
+        li = link_to 'destroy', model, data: {confirm: 'Are you sure?'}, method: :delete
+
+  .tab-content
+    .tab-pane.active
+      p == queries
+      p == conditions
