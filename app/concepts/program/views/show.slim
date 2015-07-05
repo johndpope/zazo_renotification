@@ -1,7 +1,16 @@
 .program
   ul.nav.nav-tabs
     li.active
-      a href='#' data-toggle='tab' = "#{name} #{status}"
+      a href='#overview-#{id}' data-toggle='tab' = "#{name} #{status}"
+    li.dropdown
+      a.dropdown-toggle data-toggle='dropdown' href='#'
+        | sequences
+        span.caret
+      ul.dropdown-menu
+        li
+          a href='#sms_email-#{id}' data-toggle='tab' sms / email
+        li
+          a href='#ios_android-#{id}' data-toggle='tab' ios / android
     li.dropdown
       a.dropdown-toggle data-toggle='dropdown' href='#'
         | actions
@@ -11,7 +20,10 @@
         li = link_to 'destroy', model, data: {confirm: 'Are you sure?'}, method: :delete
 
   .tab-content
-    .tab-pane.active
+    .tab-pane.active id='overview-#{id}'
       p == queries
       p == conditions
-      == concept 'sequence/cell/program', model
+    .tab-pane id='sms_email-#{id}'
+      .sequences-wrapper == concept 'sequence/cell/program', model, types: [:sms, :email]
+    .tab-pane id='ios_android-#{id}'
+      .sequences-wrapper == concept 'sequence/cell/program', model, types: [:ios, :android]

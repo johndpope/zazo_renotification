@@ -6,7 +6,7 @@ class SequencesController < ApplicationController
     @sequence.program = @program
 
     if @sequence.save
-      redirect_to program_sequences_path(@program) + "/#{@sequence.type}"
+      redirect_to_program @sequence.type
     else
       edit_by_type @sequence.type
     end
@@ -15,9 +15,9 @@ class SequencesController < ApplicationController
   def destroy
     Sequence.find(params[:id]).destroy
     if session[:last_type]
-      edit_by_type session[:last_type]
+      redirect_to_program session[:last_type]
     else
-      redirect_to program_sequences_path @program
+      redirect_to_program
     end
   end
 
@@ -41,6 +41,14 @@ class SequencesController < ApplicationController
 
   def set_program
     @program = Program.find params[:program_id]
+  end
+
+  def redirect_to_program(type = nil)
+    if type.nil?
+      redirect_to program_sequences_path @program
+    else
+      redirect_to program_sequences_path(@program) + "/#{type}"
+    end
   end
 
   def edit_by_type(type)

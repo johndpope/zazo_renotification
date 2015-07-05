@@ -9,20 +9,18 @@ class Sequence::Cell < Cell::Concept
     property :name
 
     def show
+      @sequences = model.grouped_sequences
+      @sequences.keys.each do |type|
+        @sequences.delete(type) unless @options[:types].include? type.to_sym
+      end
       render :show
     end
 
     def edit(options)
       @sequence  = options[:sequence]
-      @sequences = model.sequences.by_template_type @sequence.type
+      @sequences = model.sequences.by_template_type(@sequence.type).order_by_delay
       @templates = Template.by_type @sequence.type
       render :edit
-    end
-
-    private
-
-    def sequences
-      model.grouped_sequences
     end
   end
 

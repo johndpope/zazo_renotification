@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :templates, except: :show
   resources :programs, except: :show do
     resources :sequences, only: [:index, :create, :destroy] do
-      get :sms, :email, :ios, :andriod, on: :collection
+      get :sms, :email, :ios, :android, on: :collection
     end
   end
   resources :settings, only: [:update] do

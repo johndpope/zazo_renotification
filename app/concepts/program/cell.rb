@@ -5,7 +5,7 @@ class Program::Cell < Cell::Concept
   include SimpleForm::ActionViewExtensions::FormHelper
   include ActionView::Helpers::CaptureHelper
 
-  property :name
+  property :id, :name
 
   def show
     render :show
