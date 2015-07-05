@@ -4,6 +4,7 @@ RSpec.describe Sequence, type: :model do
   describe 'validations' do
     it { is_expected.to validate_presence_of :delay_hours }
     it { is_expected.to validate_presence_of :template }
+    it { is_expected.to validate_presence_of :program }
     it { is_expected.to validate_numericality_of :delay_hours }
 
     it 'fails with invalid params' do
