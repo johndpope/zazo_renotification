@@ -6,18 +6,13 @@ RSpec.describe SequencesController, type: :controller do
 
   render_views
 
-  describe 'GET #index' do
-    before { get :index }
-    it_behaves_like 'response status'
-  end
-
   describe 'GET #sms' do
-    before { get 'sms' }
+    before { get :sms, program_id: sms_sequence.program.id }
     it_behaves_like 'response status'
   end
 
   describe 'GET #email' do
-    before { get 'email' }
+    before { get :email, program_id: sms_sequence.program.id }
     it_behaves_like 'response status'
   end
 end

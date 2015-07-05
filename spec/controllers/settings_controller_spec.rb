@@ -1,59 +1,56 @@
 require 'rails_helper'
 
 RSpec.describe SettingsController, type: :controller do
+  let(:program) { FactoryGirl.create :program }
+
   let(:setting_params) do
-    { id: Invite::Setting.first.id,
-      invite_setting: { started: true } }
+    { id: program.setting.id,
+      setting: { started: true } }
   end
 
   let(:queries_params) do
-    { type: 'invite', query: ['NotVerified'] }
+    { program_id: program.id, query: ['NotVerified'] }
   end
 
   let(:conditions_params) do
-    { type: 'invite', condition: ['NotVerified'] }
+    { program_id: program.id, condition: ['NotVerified'] }
   end
 
   render_views
 
-  describe 'GET #index' do
-    before { get :index }
-    it_behaves_like 'response status'
-  end
-
   describe 'PUT #update' do
     before { put :update, setting_params }
 
-    it 'redirects to #index' do
-      expect(subject).to redirect_to action: :index
+    it 'redirects to #program' do
+      expect(subject).to redirect_to edit_program_path program
     end
 
     it 'set started to true' do
-      expect(Invite::Setting.first.started).to eq true
+      expect(Setting.find(setting_params[:id]).started).to eq true
     end
   end
 
   describe 'PATCH #queries' do
     before { patch :queries, queries: queries_params }
 
-    it 'redirects to #index' do
-      expect(subject).to redirect_to action: :index
+    it 'redirects to #program' do
+      expect(subject).to redirect_to edit_program_path program
     end
 
     it 'saved into database' do
-      expect(Query.last.type.split('::').last).to eq queries_params[:query][0]
+      expect(Query.where(program: program).first.type.split('::').last).to eq queries_params[:query].first
     end
   end
 
   describe 'PATCH #conditions' do
     before { patch :conditions, conditions: conditions_params }
 
-    it 'redirects to #index' do
-      expect(subject).to redirect_to action: :index
+    it 'redirects to #program' do
+      expect(subject).to redirect_to edit_program_path program
     end
 
     it 'saved into database' do
-      expect(Condition.last.type.split('::').last).to eq conditions_params[:condition][0]
+      expect(Condition.where(program: program).first.type.split('::').last).to eq conditions_params[:condition].first
     end
   end
 end
