@@ -1,5 +1,7 @@
 class Query::NotVerified < Query
+  include Api
+
   def execute
-    [1,2,3,4]
+    events_api.filter_data :not_verified
   end
 end

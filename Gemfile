@@ -17,6 +17,7 @@ gem 'cells'
 gem 'cells-slim'
 
 gem 'sidekiq'
+gem 'faraday_middleware'
 gem 'sinatra', require: nil
 gem 'whenever', require: false
 gem 'pry-rails'
