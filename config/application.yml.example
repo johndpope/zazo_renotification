@@ -5,6 +5,7 @@ db_host: localhost
 db_port: '5432'
 
 events_api_base_url:
+statistics_api_base_url:
 
 development:
   secret_key_base:

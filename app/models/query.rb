@@ -2,10 +2,6 @@ class Query < ActiveRecord::Base
   QUERIES = %i(not_verified).freeze
 
   module Api
-    def events_api
-      EventsApi.new
-    end
-
     def execute
       # Redefine this method in the extended class
     end
