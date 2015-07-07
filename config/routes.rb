@@ -3,6 +3,7 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   mount Sidekiq::Web => '/monitoring'
 
+  resources :queries, only: [:index, :show]
   resources :templates, except: :show
   resources :programs, except: :show do
     resources :sequences, only: [:index, :create, :destroy] do

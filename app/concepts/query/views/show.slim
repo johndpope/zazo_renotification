@@ -1,0 +1,16 @@
+h2.page-title = "#{name} [#{results.size} rows]"
+
+table.table.table-striped
+  thead
+    tr
+      th Mkey
+      th Invitee
+      th Inviter
+      th Time Zero
+  tbody
+    - results.each do |row|
+      tr
+        td = row['mkey']
+        td = row['invitee']
+        td = row['inviter']
+        td = parse_time row['time_zero']

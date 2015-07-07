@@ -13,4 +13,8 @@ class Query < ActiveRecord::Base
   validates :program, presence: true
 
   scope :by_type, -> (type) { where 'type LIKE ?', type + '%' }
+
+  def self.nested
+    descendants.select { |klass| klass.name.starts_with?("#{name}::") }.sort_by(&:name)
+  end
 end
