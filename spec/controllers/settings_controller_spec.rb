@@ -21,8 +21,8 @@ RSpec.describe SettingsController, type: :controller do
   describe 'PUT #update' do
     before { put :update, setting_params }
 
-    it 'redirects to #program' do
-      expect(subject).to redirect_to edit_program_path program
+    it 'redirects to #options' do
+      expect(subject).to redirect_to options_program_path program
     end
 
     it 'set started to true' do
@@ -33,8 +33,8 @@ RSpec.describe SettingsController, type: :controller do
   describe 'PATCH #queries' do
     before { patch :queries, queries: queries_params }
 
-    it 'redirects to #program' do
-      expect(subject).to redirect_to edit_program_path program
+    it 'redirects to #options' do
+      expect(subject).to redirect_to options_program_path program
     end
 
     it 'saved into database' do
@@ -45,8 +45,8 @@ RSpec.describe SettingsController, type: :controller do
   describe 'PATCH #conditions' do
     before { patch :conditions, conditions: conditions_params }
 
-    it 'redirects to #program' do
-      expect(subject).to redirect_to edit_program_path program
+    it 'redirects to #options' do
+      expect(subject).to redirect_to options_program_path program
     end
 
     it 'saved into database' do

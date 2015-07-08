@@ -1,4 +1,4 @@
-class Query::NotVerifiedNonMarketing < Query
+class Query::NonMarketing < Query
   include Api
 
   def execute

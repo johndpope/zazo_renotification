@@ -2,19 +2,19 @@ class SettingsController < ApplicationController
   def update
     setting = Setting.find params[:id]
     setting.update! setting_params
-    redirect_to edit_program_path setting.program
+    redirect_to options_program_path setting.program
   end
 
   def queries
     manager = Manage::Queries.new queries_params
     manager.update
-    redirect_to edit_program_path manager.program
+    redirect_to options_program_path manager.program
   end
 
   def conditions
     manager = Manage::Conditions.new conditions_params
     manager.update
-    redirect_to edit_program_path manager.program
+    redirect_to options_program_path manager.program
   end
 
   private

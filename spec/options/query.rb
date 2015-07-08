@@ -5,7 +5,7 @@ RSpec.describe Query, type: :model do
     subject { described_class.nested }
     let(:nested_queries) do
       [Query::NotVerified,
-       Query::NotVerifiedNonMarketing]
+       Query::NonMarketing]
     end
     it { is_expected.to eq(nested_queries) }
   end

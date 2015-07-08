@@ -1,8 +1,11 @@
 class ProgramsController < ApplicationController
-  before_action :set_program, only: [:edit, :update, :destroy]
+  before_action :set_program, only: [:options, :edit, :update, :destroy]
 
   def index
     @programs = Program.order_by_updated_at
+  end
+
+  def options
   end
 
   def new

@@ -12,11 +12,11 @@ class Program::Cell < Cell::Concept
   end
 
   def new
-    render :new
+    render :form
   end
 
   def edit
-    render :edit
+    render :form
   end
 
   private

@@ -1,5 +1,5 @@
 class Query < ActiveRecord::Base
-  QUERIES = %i(not_verified not_verified_non_marketing).freeze
+  QUERIES = %i(not_verified non_marketing).freeze
 
   module Api
     def execute
@@ -15,6 +15,8 @@ class Query < ActiveRecord::Base
   scope :by_type, -> (type) { where 'type LIKE ?', type + '%' }
 
   def self.nested
-    descendants.select { |klass| klass.name.starts_with?("#{name}::") }.sort_by(&:name)
+    descendants.select do |klass|
+      klass.name.starts_with? "#{name}::"
+    end.sort_by(&:name)
   end
 end
