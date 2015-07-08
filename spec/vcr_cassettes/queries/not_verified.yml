@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://0.0.0.0:3000/api/v1/filters/not_verified
+    uri: http://0.0.0.0:3000/api/v1/fetch/filter/not_verified
     body:
       encoding: US-ASCII
       string: ''
@@ -29,15 +29,15 @@ http_interactions:
       Cache-Control:
       - no-store, must-revalidate, private, max-age=0
       X-Request-Id:
-      - 2a2fe0b8-2d4b-455b-8bb6-415be9470b24
+      - 6b8e9160-0d3e-4c00-8df2-1ea7b8ab217e
       X-Runtime:
-      - '0.244517'
+      - '0.191420'
       Set-Cookie:
       - __profilin=p%3Dt; path=/
       - __profilin=p%3Dt; path=/
       - __profilin=p%3Dt; path=/
       X-Miniprofiler-Ids:
-      - '["t8lduwj0z5rbod8wn371","jxquuczbiao8mdb49bnw","sjxexeqjl8twgtetqtct","87x9c6myyshlbon7psyn","i5oz71cykrma5zq79wu9","mssl8a5txhq7byxu1i5e","xiwybesezkgcfit5du92","tn0yxnkgi52yi694g1dl","nyfnczpy93bi81jo0t5","z4ug4axfqpfy7fnmxwsp"]'
+      - '["m6k4u4kzaeu3j8nu0kfb","jxquuczbiao8mdb49bnw","sjxexeqjl8twgtetqtct","87x9c6myyshlbon7psyn","i5oz71cykrma5zq79wu9","mssl8a5txhq7byxu1i5e","xiwybesezkgcfit5du92","tn0yxnkgi52yi694g1dl","nyfnczpy93bi81jo0t5","z4ug4axfqpfy7fnmxwsp"]'
       Transfer-Encoding:
       - chunked
     body:
@@ -4578,5 +4578,5 @@ http_interactions:
         bnZpdGVlIjoiTWF0dCBTYWxhbW9tZSIsImludml0ZXIiOiJEZXJlayBHbHlu
         biJ9XQ==
     http_version: 
-  recorded_at: Wed, 08 Jul 2015 09:14:05 GMT
+  recorded_at: Wed, 08 Jul 2015 17:02:40 GMT
 recorded_with: VCR 2.9.3
