@@ -17,8 +17,11 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
+require 'vcr'
 require 'database_cleaner'
 require 'simplecov'
+require 'rspec/collection_matchers'
+
 SimpleCov.coverage_dir File.join(File.expand_path('../../tmp', __FILE__), 'coverage')
 SimpleCov.start :rails
 
