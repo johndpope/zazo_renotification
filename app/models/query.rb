@@ -1,5 +1,5 @@
 class Query < ActiveRecord::Base
-  QUERIES = %i(not_verified).freeze
+  QUERIES = %i(not_verified not_verified_non_marketing).freeze
 
   module Api
     def execute

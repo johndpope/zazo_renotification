@@ -1,2 +1,4 @@
-- @queries.each do |query|
-  .well.col-sm-4.text-center = link_to query, query_path(query)
+.row
+  - @queries.each do |query|
+    .col-sm-4
+      .well.text-center = link_to query, query_path(query)
