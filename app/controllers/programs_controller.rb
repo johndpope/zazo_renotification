@@ -2,7 +2,7 @@ class ProgramsController < ApplicationController
   before_action :set_program, only: [:edit, :update, :destroy]
 
   def index
-    @programs = Program.all
+    @programs = Program.order_by_updated_at
   end
 
   def new

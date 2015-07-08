@@ -1,1 +1,12 @@
-= render 'form'
+.row
+  .col-sm-6
+    h2.col-sm-offset-3.form-action-title New program
+
+= simple_form_for model, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
+  .row = f.input :name,  wrapper_html: { class: 'col-sm-6' }
+  .row
+    .col-sm-6
+      .col-sm-offset-3
+        = f.submit class: 'btn btn-sm btn-primary'
+        '&nbsp;
+        = link_to 'Back', programs_path, class: 'btn btn-sm btn-default'
