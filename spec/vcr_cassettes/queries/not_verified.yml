@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://0.0.0.0:3000/api/v1/fetch/filter/not_verified
+    uri: <%= statistics_api_base_url %>/api/v1/fetch/filter/not_verified
     body:
       encoding: US-ASCII
       string: ''
