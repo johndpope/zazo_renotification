@@ -5,7 +5,6 @@ VCR.configure do |c|
   c.default_cassette_options = { record: :once }
 end
 
-
 def api_base_urls
   { erb: {
     events_api_base_url: Figaro.env.events_api_base_url,

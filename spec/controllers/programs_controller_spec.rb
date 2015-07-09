@@ -24,4 +24,9 @@ RSpec.describe ProgramsController, type: :controller do
     before { get :options, id: program }
     it_behaves_like 'response status'
   end
+
+  describe 'GET #users' do
+    before { get :users, id: program }
+    it_behaves_like 'response status'
+  end
 end

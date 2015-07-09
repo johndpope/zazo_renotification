@@ -106,4 +106,12 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+  module VCR::RSpec::Macros
+    def self.extended(base)
+    end
+  end
+
+  # right above the existing:
+  config.extend(VCR::RSpec::Macros)
 end

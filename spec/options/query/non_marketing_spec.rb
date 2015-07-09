@@ -4,7 +4,7 @@ RSpec.describe Query::NonMarketing, type: :model do
   subject { described_class.new.execute }
 
   around do |example|
-    VCR.use_cassette('queries/not_marketing', api_base_urls) { example.run }
+    VCR.use_cassette('queries/non_marketing', api_base_urls) { example.run }
   end
 
   it 'has specific row counts' do
