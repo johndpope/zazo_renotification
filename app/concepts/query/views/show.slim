@@ -1,5 +1,3 @@
-h2.page-title = "#{name} [#{results.size} rows]"
-
 table.table.table-striped
   thead
     tr
@@ -8,7 +6,7 @@ table.table.table-striped
       th Friend Name
       th Time Zero
   tbody
-    - results.each do |row|
+    - model.each do |row|
       tr
         td = row['mkey']
         td = row['user']

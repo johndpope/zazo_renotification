@@ -4,6 +4,7 @@ class QueriesController < ApplicationController
   end
 
   def show
-    @query = params[:id].constantize
+    @query   = params[:id].constantize
+    @results = @query.new.execute
   end
 end

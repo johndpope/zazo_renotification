@@ -1,8 +1,12 @@
 class ProgramsController < ApplicationController
-  before_action :set_program, only: [:options, :edit, :update, :destroy]
+  before_action :set_program, only: [:users, :options, :edit, :update, :destroy]
 
   def index
     @programs = Program.order_by_updated_at
+  end
+
+  def users
+    @users = Query::Intersection.new(@program.queries).results
   end
 
   def options
