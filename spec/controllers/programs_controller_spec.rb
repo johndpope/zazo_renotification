@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ProgramsController, type: :controller do
-  let!(:program) { FactoryGirl.create :program }
+  let!(:program) { FactoryGirl.create :program_with_queries }
 
   render_views
 
@@ -26,6 +26,8 @@ RSpec.describe ProgramsController, type: :controller do
   end
 
   describe 'GET #users' do
+    use_vcr_cassette 'queries/not_verified', api_base_urls
+    use_vcr_cassette 'queries/non_marketing', api_base_urls
     before { get :users, id: program }
     it_behaves_like 'response status'
   end
