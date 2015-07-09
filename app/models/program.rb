@@ -1,8 +1,8 @@
 class Program < ActiveRecord::Base
-  has_one  :setting
-  has_many :queries
-  has_many :conditions
-  has_many :sequences
+  has_one  :setting,    dependent: :destroy
+  has_many :queries,    dependent: :destroy
+  has_many :conditions, dependent: :destroy
+  has_many :sequences,  dependent: :destroy
 
   after_create :set_setting
 
