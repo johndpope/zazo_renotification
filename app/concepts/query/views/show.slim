@@ -3,14 +3,14 @@ h2.page-title = "#{name} [#{results.size} rows]"
 table.table.table-striped
   thead
     tr
-      th Mkey
-      th Invitee
-      th Inviter
+      th User's Mkey
+      th User Name
+      th Friend Name
       th Time Zero
   tbody
     - results.each do |row|
       tr
         td = row['mkey']
-        td = row['invitee']
-        td = row['inviter']
+        td = row['user']
+        td = row['friend']
         td = parse_time row['time_zero']
