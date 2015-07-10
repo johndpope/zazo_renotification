@@ -1,5 +1,5 @@
 class Renotification
   def self.execute
-    MessageWorker.perform_in 20.seconds, 'zazo'
+    Program.active.each { |p| Program::Execute.new(p).do }
   end
 end

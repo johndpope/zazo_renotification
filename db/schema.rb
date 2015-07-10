@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150703100927) do
+ActiveRecord::Schema.define(version: 20150710130514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,20 @@ ActiveRecord::Schema.define(version: 20150703100927) do
   end
 
   add_index "conditions", ["program_id"], name: "index_conditions_on_program_id", using: :btree
+
+  create_table "messages", force: :cascade do |t|
+    t.string   "target"
+    t.text     "title"
+    t.text     "body"
+    t.datetime "send_at"
+    t.integer  "program_id"
+    t.integer  "sequence_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "messages", ["program_id"], name: "index_messages_on_program_id", using: :btree
+  add_index "messages", ["sequence_id"], name: "index_messages_on_sequence_id", using: :btree
 
   create_table "programs", force: :cascade do |t|
     t.string   "name"
@@ -72,6 +86,8 @@ ActiveRecord::Schema.define(version: 20150703100927) do
   add_index "templates", ["name"], name: "index_templates_on_name", unique: true, using: :btree
 
   add_foreign_key "conditions", "programs"
+  add_foreign_key "messages", "programs"
+  add_foreign_key "messages", "sequences"
   add_foreign_key "queries", "programs"
   add_foreign_key "sequences", "programs"
   add_foreign_key "sequences", "templates"

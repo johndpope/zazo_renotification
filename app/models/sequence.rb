@@ -9,5 +9,5 @@ class Sequence < ActiveRecord::Base
 
   validates :delay_hours, presence: true, numericality: true
   validates :template, presence: true
-  validates :program, presence: true
+  validates :program,  presence: true
 end
