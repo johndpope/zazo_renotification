@@ -2,7 +2,7 @@ class Message::Send
   attr_reader :message
 
   def initialize(message)
-    @message = message.kind_of?(Message) ? message : Message.find message
+    @message = message.kind_of?(Message) ? message : Message.find(message)
   end
 
   def now
