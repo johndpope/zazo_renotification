@@ -8,8 +8,9 @@ class Program::Execute
   end
 
   def do
-    users.each { |user_data| create_messages user_data }
-    # TODO: reduce users already in messages queue
+    users.each do |data|
+      create_messages data if Message.in_progress_by_target(data['mkey']).empty?
+    end
   end
 
   private

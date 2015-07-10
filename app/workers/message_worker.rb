@@ -1,7 +1,8 @@
 class MessageWorker
   include Sidekiq::Worker
+  sidekiq_options queue: 'messages'
 
-  def perform(message)
-    Message::Send.new(message.id).now
+  def perform(message_id)
+    Message::Send.new(message_id).now
   end
 end

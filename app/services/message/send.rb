@@ -11,6 +11,6 @@ class Message::Send
   end
 
   def later
-    MessageWorker.perform_at message.send_at, message
+    MessageWorker.perform_at message.send_at, message.id
   end
 end
