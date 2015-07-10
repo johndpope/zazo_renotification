@@ -9,6 +9,7 @@ class Program::Execute
 
   def do
     users.each { |user_data| create_messages user_data }
+    # TODO: reduce users already in messages queue
   end
 
   private
@@ -17,10 +18,10 @@ class Program::Execute
     sequences.keys.each do |type|
       real_time_zero = nil
       sequences[type].each do |seq|
-        message = Manage::Message.new data: data, time_zero: real_time_zero,
+        manager = Manage::Message.new data: data, time_zero: real_time_zero,
                                       program: program, sequence: seq
-        message.create
-        real_time_zero = message.time_zero
+        message = manager.create
+        real_time_zero = manager.time_zero
         Message::Send.new(message).later
       end
     end

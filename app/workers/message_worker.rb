@@ -1,7 +1,7 @@
 class MessageWorker
   include Sidekiq::Worker
 
-  def perform(text)
-    puts "Message sent: #{text}"
+  def perform(message)
+    Message::Send.new(message).now
   end
 end

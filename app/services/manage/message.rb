@@ -25,10 +25,6 @@ class Manage::Message
     return from_params unless from_params.nil?
     from_data = Time.parse data['time_zero']
     next_time = from_data + sequence.delay_hours.hours
-    if Time.now < next_time
-      from_data
-    else
-      Time.now
-    end
+    Time.now < next_time ? from_data : Time.now
   end
 end
