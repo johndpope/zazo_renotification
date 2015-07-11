@@ -19,7 +19,7 @@
         li = link_to 'edit', edit_program_path(model)
         li = link_to 'users', users_program_path(model)
         li = link_to 'options', options_program_path(model)
-        li = link_to 'destroy', model, data: {confirm: 'Are you sure? It also destroy all dependencies.'}, method: :delete
+        li = link_to 'destroy', model, data: {confirm: 'Are you sure?'}, method: :delete
 
   .tab-content
     .tab-pane.active id='overview-#{id}'

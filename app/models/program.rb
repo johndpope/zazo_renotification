@@ -6,7 +6,8 @@ class Program < ActiveRecord::Base
   has_many :conditions
   has_many :sequences
 
-  after_create :set_setting
+  after_create  :set_setting
+  after_destroy :set_name_prefix
 
   validates :name, presence: true
 
@@ -20,6 +21,10 @@ class Program < ActiveRecord::Base
   end
 
   private
+
+  def set_name_prefix
+    update_attributes name: "#{self.name} [deleted]"
+  end
 
   def set_setting
     Setting.create started: false, program: self

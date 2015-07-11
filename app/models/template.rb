@@ -5,6 +5,8 @@ class Template < ActiveRecord::Base
 
   has_many :sequences
 
+  after_destroy :set_name_prefix
+
   scope :by_type, -> (type) { where kind: type }
   scope :order_by_updated_at, -> { order updated_at: :desc }
 
@@ -13,10 +15,16 @@ class Template < ActiveRecord::Base
   validates :body, presence: true
   validate  :template_syntax
 
+  private
+
   def template_syntax
     [:title, :body].each do |key|
       status, error = Compiler.new(self).validate key
       errors.add(key, error) unless status
     end
+  end
+
+  def set_name_prefix
+    update_attributes name: "#{self.name} [deleted]"
   end
 end
