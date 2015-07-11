@@ -6,13 +6,15 @@ class Manage::Message
     @sequence  = options[:sequence]
     @program   = options[:program]
     @time_zero = init_time_zero options[:time_zero]
+    @compiler  = Template::Compiler.new @sequence.template
+    @compiler.compile data
   end
 
   def create
     Message.create(
       target:   data['mkey'],
-      title:    'title',
-      body:     'body',
+      title:    @compiler.title,
+      body:     @compiler.body,
       send_at:  time_zero + sequence.delay_hours.hours,
       program:  program,
       sequence: sequence
