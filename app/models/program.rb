@@ -1,18 +1,20 @@
 class Program < ActiveRecord::Base
-  has_one  :setting,    dependent: :destroy
-  has_many :queries,    dependent: :destroy
-  has_many :conditions, dependent: :destroy
-  has_many :sequences,  dependent: :destroy
+  acts_as_paranoid
+
+  has_one  :setting
+  has_many :queries
+  has_many :conditions
+  has_many :sequences
 
   after_create :set_setting
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
 
   scope :order_by_updated_at, -> { order updated_at: :desc }
   scope :active, -> { joins(:setting).where settings: { started: true } }
 
   def grouped_sequences
-    Template::ALLOW_TYPES.each_with_object({}) do |type, memo|
+    Template::ALLOWED_TYPES.each_with_object({}) do |type, memo|
       memo[type] = self.sequences.by_template_type(type).order_by_delay
     end
   end

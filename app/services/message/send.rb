@@ -6,8 +6,8 @@ class Message::Send
   end
 
   def now
-    puts '!!!MESSAGE!!!'
-    p message
+    puts 'MESSAGE: ', message.id, message.target
+    message.update_attributes is_sent: true
   end
 
   def later

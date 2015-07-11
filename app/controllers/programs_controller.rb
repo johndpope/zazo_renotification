@@ -41,9 +41,6 @@ class ProgramsController < ApplicationController
   def destroy
     @program.destroy
     redirect_to programs_url
-  rescue ActiveRecord::InvalidForeignKey
-    flash[:alert] = 'Program has dependencies'
-    redirect_to programs_url
   end
 
   private

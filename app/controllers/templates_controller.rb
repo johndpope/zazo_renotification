@@ -33,9 +33,6 @@ class TemplatesController < ApplicationController
   def destroy
     @template.destroy
     redirect_to templates_url
-  rescue ActiveRecord::InvalidForeignKey
-    flash[:alert] = 'Template depends on sequence'
-    redirect_to templates_url
   end
 
   private

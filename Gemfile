@@ -15,6 +15,7 @@ gem 'slim-rails'
 gem 'draper'
 gem 'cells'
 gem 'cells-slim'
+gem 'paranoia'
 
 gem 'sidekiq'
 gem 'faraday_middleware'
