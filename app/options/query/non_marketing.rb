@@ -2,13 +2,13 @@ class Query::NonMarketing < Query
   include Api
 
   def execute
-    @data  = EventsApiFilter.new.data :non_marketing
-    set_names StatisticsApiFetch.new.data :mkey, users: collect_mkeys
+    @data = EventsApi.new.fetch :non_marketing
+    set_names StatisticsApi.new(users: collect_users).fetch :names
   end
 
   private
 
-  def collect_mkeys
+  def collect_users
     @data.each_with_object([]) do |row, memo|
       memo << row['invitee']
       memo << row['inviter']

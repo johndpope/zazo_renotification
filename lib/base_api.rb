@@ -1,11 +1,8 @@
 class BaseApi
-  attr_reader :connection
-
   class << self
     attr_reader :api_version,
                 :api_base_uri,
-                :api_prefix,
-                :api_action
+                :api_map
 
     def version(version)
       @api_version = version
@@ -15,16 +12,15 @@ class BaseApi
       @api_base_uri = uri
     end
 
-    def prefix(prefix)
-      @api_prefix = prefix.to_s
-    end
-
-    def action(verb)
-      @api_action = verb
+    def mapper(map)
+      @api_map = map
     end
   end
 
-  def initialize
+  attr_reader :connection, :options
+
+  def initialize(options = {})
+    @options = options
     @connection = Faraday.new(self.class.api_base_uri) do |c|
       c.request  :json
       c.response :json, content_type: /\bjson$/
@@ -33,17 +29,31 @@ class BaseApi
     end
   end
 
-  def data(id, options = {})
-    connection.send(self.class.api_action, path(id), options).body
+  def fetch(name)
+    if map.key? name
+      connection.send(*params(name), options).body
+    else
+      connection.send(*params(:default, name), options).body
+    end
   end
 
   protected
+
+  def map
+    self.class.api_map
+  end
+
+  def params(key, method = nil)
+    method = key if method.nil?
+    method = map[key][:name] if map[key].key? :name
+    [map[key][:action], path(map[key][:prefix], method)]
+  end
 
   def namespace
     "api/v#{self.class.api_version}"
   end
 
-  def path(id)
-    File.join namespace, self.class.api_prefix, id.to_s
+  def path(prefix, name)
+    File.join namespace, prefix, name.to_s
   end
 end

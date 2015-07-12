@@ -2,7 +2,7 @@ class Query::NotVerified < Query
   include Api
 
   def execute
-    normalize StatisticsApiFilter.new.data :not_verified
+    normalize StatisticsApi.new.fetch :not_verified
   end
 
   private
