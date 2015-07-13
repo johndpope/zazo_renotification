@@ -6,8 +6,12 @@ class Message::Send
   end
 
   def now
-    puts 'MESSAGE: ', message.id, message.target
-    message.update_attributes is_sent: true
+    if Condition::Check.new(message.target, message.program).do
+      message.update_attributes is_sent: true
+    else
+      message.update_attributes is_sent: false
+    end
+    Rails.logger.tagged('Message::Send') { Rails.logger.debug message }
   end
 
   def later

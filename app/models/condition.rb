@@ -1,7 +1,7 @@
 class Condition < ActiveRecord::Base
   module Api
-    def check
-      # Redefine this method in the extended class
+    def check(user)
+      false # Redefine this method in the extended class
     end
   end
 
