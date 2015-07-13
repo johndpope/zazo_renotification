@@ -1,11 +1,11 @@
 class Query < ActiveRecord::Base
-  QUERIES = %i(not_verified non_marketing).freeze
-
   module Api
     def execute
       # Redefine this method in the extended class
     end
   end
+
+  QUERIES = %i(not_verified non_marketing).freeze
 
   belongs_to :program
 
