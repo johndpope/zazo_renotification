@@ -30,11 +30,11 @@ ActiveRecord::Schema.define(version: 20150711085725) do
     t.text     "title"
     t.text     "body"
     t.datetime "send_at"
+    t.string   "status"
     t.integer  "program_id"
     t.integer  "sequence_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.boolean  "is_sent"
   end
 
   add_index "messages", ["program_id"], name: "index_messages_on_program_id", using: :btree

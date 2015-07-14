@@ -7,9 +7,10 @@ class Message::Send
 
   def now
     if Condition::Check.new(message.target, message.program).do
-      message.update_attributes is_sent: true
+      # send message with another service
+      message.update_attributes status: :sent
     else
-      message.update_attributes is_sent: false
+      message.update_attributes status: :canceled
     end
     Rails.logger.tagged('Message::Send') { Rails.logger.debug message }
   end

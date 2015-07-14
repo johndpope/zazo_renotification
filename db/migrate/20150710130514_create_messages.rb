@@ -5,6 +5,7 @@ class CreateMessages < ActiveRecord::Migration
       t.text :title
       t.text :body
       t.timestamp :send_at
+      t.string :status
       t.references :program, index: true, foreign_key: true
       t.references :sequence, index: true, foreign_key: true
 
