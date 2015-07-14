@@ -1,0 +1,11 @@
+.row
+  - @delayed_templates.keys.each do |key|
+    .col-sm-6
+      h3
+        == key.capitalize
+        == link_to 'Edit', program_delayed_templates_path(model) + "/#{key}", class: 'btn btn-sm btn-primary pull-right'
+      .delayed_templates
+        - if @delayed_templates[key].empty?
+          | There are no created delayed templates
+        - else
+          == concept 'delayed_template/cell', collection: @delayed_templates[key], allow_destroy: false

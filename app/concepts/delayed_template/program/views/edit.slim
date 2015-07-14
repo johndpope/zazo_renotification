@@ -1,0 +1,12 @@
+h2.page-title = "#{name} #{@delayed_template.type} delayed templates [#{@delayed_templates.size}]"
+
+.row
+  .col-sm-6
+    .delayed_templates == concept 'delayed_template/cell', collection: @delayed_templates
+
+  .col-sm-6
+    == concept('delayed_template/cell', @delayed_template).new
+
+    - unless @templates.empty?
+      h3 Available templates
+      .templates == concept 'template/cell', collection: @templates, allow_destroy: false

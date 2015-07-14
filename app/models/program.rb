@@ -4,7 +4,7 @@ class Program < ActiveRecord::Base
   has_one  :setting
   has_many :queries
   has_many :conditions
-  has_many :sequences
+  has_many :delayed_templates
 
   after_create  :set_setting
   after_destroy :set_name_prefix
@@ -14,9 +14,9 @@ class Program < ActiveRecord::Base
   scope :order_by_updated_at, -> { order updated_at: :desc }
   scope :active, -> { joins(:setting).where settings: { started: true } }
 
-  def grouped_sequences
+  def grouped_delayed_templates
     Template::ALLOWED_TYPES.each_with_object({}) do |type, memo|
-      memo[type] = self.sequences.by_template_type(type).order_by_delay
+      memo[type] = self.delayed_templates.by_template_type(type).order_by_delay
     end
   end
 

@@ -1,10 +1,10 @@
 class Program::Execute
-  attr_reader :program, :users, :sequences
+  attr_reader :program, :users, :delayed_templates
 
   def initialize(program)
     @program   = program
-    @sequences = program.grouped_sequences
     @users     = Query::Intersection.new(program.queries).results
+    @delayed_templates = program.grouped_delayed_templates
   end
 
   def do
@@ -16,11 +16,11 @@ class Program::Execute
   private
 
   def create_messages(data)
-    sequences.keys.each do |type|
+    delayed_templates.keys.each do |type|
       real_time_zero = nil
-      sequences[type].each do |seq|
+      delayed_templates[type].each do |dt|
         manager = Manage::Message.new data: data, time_zero: real_time_zero,
-                                      program: program, sequence: seq
+                                      program: program, delayed_template: dt
         message = manager.create
         real_time_zero = manager.time_zero
         Message::Send.new(message).later

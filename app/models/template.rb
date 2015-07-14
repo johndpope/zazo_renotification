@@ -3,7 +3,7 @@ class Template < ActiveRecord::Base
 
   acts_as_paranoid
 
-  has_many :sequences
+  has_many :delayed_templates
 
   after_destroy :set_name_prefix
 

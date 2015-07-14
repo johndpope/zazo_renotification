@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 20150711085725) do
 
   add_index "conditions", ["program_id"], name: "index_conditions_on_program_id", using: :btree
 
+  create_table "delayed_templates", force: :cascade do |t|
+    t.integer  "template_id"
+    t.float    "delay_hours"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "program_id"
+  end
+
+  add_index "delayed_templates", ["program_id"], name: "index_delayed_templates_on_program_id", using: :btree
+  add_index "delayed_templates", ["template_id"], name: "index_delayed_templates_on_template_id", using: :btree
+
   create_table "messages", force: :cascade do |t|
     t.string   "target"
     t.text     "title"
@@ -32,13 +43,13 @@ ActiveRecord::Schema.define(version: 20150711085725) do
     t.datetime "send_at"
     t.string   "status"
     t.integer  "program_id"
-    t.integer  "sequence_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "delayed_template_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
+  add_index "messages", ["delayed_template_id"], name: "index_messages_on_delayed_template_id", using: :btree
   add_index "messages", ["program_id"], name: "index_messages_on_program_id", using: :btree
-  add_index "messages", ["sequence_id"], name: "index_messages_on_sequence_id", using: :btree
 
   create_table "programs", force: :cascade do |t|
     t.string   "name"
@@ -57,17 +68,6 @@ ActiveRecord::Schema.define(version: 20150711085725) do
   end
 
   add_index "queries", ["program_id"], name: "index_queries_on_program_id", using: :btree
-
-  create_table "sequences", force: :cascade do |t|
-    t.integer  "template_id"
-    t.float    "delay_hours"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "program_id"
-  end
-
-  add_index "sequences", ["program_id"], name: "index_sequences_on_program_id", using: :btree
-  add_index "sequences", ["template_id"], name: "index_sequences_on_template_id", using: :btree
 
   create_table "settings", force: :cascade do |t|
     t.boolean  "started"
@@ -92,10 +92,10 @@ ActiveRecord::Schema.define(version: 20150711085725) do
   add_index "templates", ["name"], name: "index_templates_on_name", unique: true, using: :btree
 
   add_foreign_key "conditions", "programs"
+  add_foreign_key "delayed_templates", "programs"
+  add_foreign_key "delayed_templates", "templates"
+  add_foreign_key "messages", "delayed_templates"
   add_foreign_key "messages", "programs"
-  add_foreign_key "messages", "sequences"
   add_foreign_key "queries", "programs"
-  add_foreign_key "sequences", "programs"
-  add_foreign_key "sequences", "templates"
   add_foreign_key "settings", "programs"
 end

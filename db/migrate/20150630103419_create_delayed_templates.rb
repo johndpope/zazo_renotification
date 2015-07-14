@@ -1,6 +1,6 @@
-class CreateSequences < ActiveRecord::Migration
+class CreateDelayedTemplates < ActiveRecord::Migration
   def change
-    create_table :sequences do |t|
+    create_table :delayed_templates do |t|
       t.references :template, index: true, foreign_key: true
       t.float :delay_hours
 

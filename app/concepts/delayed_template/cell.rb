@@ -1,4 +1,4 @@
-class Sequence::Cell < Cell::Concept
+class DelayedTemplate::Cell < Cell::Concept
   include ActionView::RecordIdentifier
   include ActionView::Helpers::FormHelper
   include ActionView::Helpers::FormOptionsHelper
@@ -9,17 +9,17 @@ class Sequence::Cell < Cell::Concept
     property :name
 
     def show
-      @sequences = model.grouped_sequences
-      @sequences.keys.each do |type|
-        @sequences.delete(type) unless @options[:types].include? type.to_sym
+      @delayed_templates = model.grouped_delayed_templates
+      @delayed_templates.keys.each do |type|
+        @delayed_templates.delete(type) unless @options[:types].include? type.to_sym
       end
       render :show
     end
 
     def edit(options)
-      @sequence  = options[:sequence]
-      @sequences = model.sequences.by_template_type(@sequence.type).order_by_delay
-      @templates = Template.by_type @sequence.type
+      @delayed_template  = options[:delayed_template]
+      @delayed_templates = model.delayed_templates.by_template_type(@delayed_template.type).order_by_delay
+      @templates = Template.by_type @delayed_template.type
       render :edit
     end
   end

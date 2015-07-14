@@ -1,4 +1,4 @@
-class Sequence < ActiveRecord::Base
+class DelayedTemplate < ActiveRecord::Base
   attr_accessor :type
 
   belongs_to :template

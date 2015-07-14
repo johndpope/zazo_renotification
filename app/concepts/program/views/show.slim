@@ -4,7 +4,7 @@
       a href='#overview-#{id}' data-toggle='tab' = "#{name} #{status}"
     li.dropdown
       a.dropdown-toggle data-toggle='dropdown' href='#'
-        | sequences
+        | delayed templates
         span.caret
       ul.dropdown-menu
         li
@@ -19,13 +19,13 @@
         li = link_to 'edit', edit_program_path(model)
         li = link_to 'users', users_program_path(model)
         li = link_to 'options', options_program_path(model)
-        li = link_to 'destroy', model, data: {confirm: 'Are you sure?'}, method: :delete
+        li = link_to 'destroy', model, data: { confirm: 'Are you sure?' }, method: :delete
 
   .tab-content
     .tab-pane.active id='overview-#{id}'
       p == queries
       p == conditions
     .tab-pane id='sms_email-#{id}'
-      .sequences-wrapper == concept 'sequence/cell/program', model, types: [:sms, :email]
+      .delayed_templates-wrapper == concept 'delayed_template/cell/program', model, types: [:sms, :email]
     .tab-pane id='ios_android-#{id}'
-      .sequences-wrapper == concept 'sequence/cell/program', model, types: [:ios, :android]
+      .delayed_templates-wrapper == concept 'delayed_template/cell/program', model, types: [:ios, :android]

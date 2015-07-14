@@ -7,7 +7,7 @@ class CreateMessages < ActiveRecord::Migration
       t.timestamp :send_at
       t.string :status
       t.references :program, index: true, foreign_key: true
-      t.references :sequence, index: true, foreign_key: true
+      t.references :delayed_template, index: true, foreign_key: true
 
       t.timestamps null: false
     end
