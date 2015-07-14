@@ -1,8 +1,4 @@
-require 'sidekiq/web'
-
 Rails.application.routes.draw do
-  mount Sidekiq::Web => '/monitoring'
-
   resources :queries, only: [:index, :show]
   resources :templates, except: :show
   resources :programs, except: :show do
@@ -14,6 +10,5 @@ Rails.application.routes.draw do
   resources :settings, only: [:update] do
     patch :queries, :conditions, on: :collection
   end
-
   root to: 'programs#index'
 end

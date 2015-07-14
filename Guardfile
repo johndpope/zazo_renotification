@@ -40,17 +40,6 @@ guard :bundler do
   files.each { |file| watch(helper.real_path(file)) }
 end
 
-### Guard::Sidekiq
-#  available options:
-#  - :verbose
-#  - :queue (defaults to "default") can be an array
-#  - :concurrency (defaults to 1)
-#  - :timeout
-#  - :environment (corresponds to RAILS_ENV for the Sidekiq worker)
-guard 'sidekiq', :environment => 'development' do
-  watch(%r{^workers/(.+)\.rb$})
-end
-
 guard 'migrate' do
   watch(%r{^db/migrate/(\d+).+\.rb})
   watch('db/seeds.rb')

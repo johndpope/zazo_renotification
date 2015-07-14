@@ -23,7 +23,6 @@ class Program::Execute
                                       program: program, delayed_template: dt
         message = manager.create
         real_time_zero = manager.time_zero
-        Message::Send.new(message).later
       end
     end
   end

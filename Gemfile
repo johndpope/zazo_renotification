@@ -17,9 +17,7 @@ gem 'cells'
 gem 'cells-slim'
 gem 'paranoia'
 
-gem 'sidekiq'
 gem 'faraday_middleware'
-gem 'sinatra', require: nil
 gem 'whenever', require: false
 gem 'pry-rails'
 gem 'figaro'
@@ -31,7 +29,6 @@ group :development do
   gem 'guard-bundler', require: false
   gem 'guard-pow', require: false
   gem 'guard-migrate'
-  gem 'guard-sidekiq'
   gem 'guard-rspec'
   gem 'guard-rubocop'
   gem 'terminal-notifier-guard'
