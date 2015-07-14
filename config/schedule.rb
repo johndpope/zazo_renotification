@@ -21,8 +21,5 @@
 
 every 1.minutes do
   runner 'Renotification.execute'
-end
-
-every 1.minites do
   runner 'Message::Worker.execute'
 end
