@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: <%= statistics_api_base_url %>/api/v1/fetch/attributes?attrs%5B%5D=status&user=01GGDDAAaWtDUZvPMTHx
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - no-store, must-revalidate, private, max-age=0
+      X-Request-Id:
+      - 0fcd27f3-9978-4aab-b257-c6573de54b20
+      X-Runtime:
+      - '0.012749'
+      Set-Cookie:
+      - __profilin=p%3Dt; path=/
+      - __profilin=p%3Dt; path=/
+      - __profilin=p%3Dt; path=/
+      X-Miniprofiler-Ids:
+      - '["gwuqrso4bzh6icvr096v","jxquuczbiao8mdb49bnw","sjxexeqjl8twgtetqtct","87x9c6myyshlbon7psyn","i5oz71cykrma5zq79wu9","mssl8a5txhq7byxu1i5e","xiwybesezkgcfit5du92","tn0yxnkgi52yi694g1dl","nyfnczpy93bi81jo0t5","z4ug4axfqpfy7fnmxwsp"]'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"status":"initialized"}'
+    http_version: 
+  recorded_at: Tue, 14 Jul 2015 13:42:12 GMT
+recorded_with: VCR 2.9.3

@@ -5,4 +5,13 @@ RSpec.describe Query, type: :model do
     it { is_expected.to validate_presence_of :type }
     it { is_expected.to validate_presence_of :program }
   end
+
+  describe '.nested' do
+    subject { described_class.nested }
+    let(:nested_queries) do
+      [Query::NotVerified,
+       Query::NonMarketing]
+    end
+    it { is_expected.to contain_exactly(*nested_queries) }
+  end
 end
