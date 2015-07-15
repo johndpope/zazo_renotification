@@ -6,4 +6,8 @@ class Message < ActiveRecord::Base
 
   scope :in_progress_by_target, -> (target) { where(target: target).where(status: nil) }
   scope :time_passed, -> { where(status: nil).where('send_at < ?', Time.now) }
+
+  scope :in_queue, -> { where status: nil }
+  scope :sent,     -> { where status: :sent }
+  scope :canceled, -> { where status: :canceled }
 end

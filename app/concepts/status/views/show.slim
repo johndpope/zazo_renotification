@@ -1,7 +1,8 @@
-.status-wrapper
-  .panel.panel-default
-    .panel-body.row.text-center
-      .col-sm-2
-        | 6
-        br
-        | in queue
+.status-wrapper.panel.panel-default
+  .panel-body.row
+    - status_items.each do |item|
+      .status-item.col-sm-2
+        span.count
+          = item[:count]
+          span.unit = item[:unit]
+        span.text = item[:title]
