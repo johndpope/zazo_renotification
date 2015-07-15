@@ -8,6 +8,6 @@ class Condition::Check
 
   def do
     program.conditions.each { |c| return false unless c.check user }
-    true
+    program.setting.started
   end
 end

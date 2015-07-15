@@ -9,7 +9,7 @@ class Program::Execute
 
   def do
     users.each do |data|
-      create_messages data if Message.in_progress_by_target(data['mkey']).empty?
+      create_messages data if messages_not_persisted? data['mkey']
     end
   end
 
@@ -21,9 +21,14 @@ class Program::Execute
       delayed_templates[type].each do |dt|
         manager = Manage::Message.new data: data, time_zero: real_time_zero,
                                       program: program, delayed_template: dt
-        message = manager.create
+        manager.create
         real_time_zero = manager.time_zero
       end
     end
+  end
+
+  def messages_not_persisted?(user)
+    Message.in_progress_by_target(user).empty? &&
+    Message.by_target_program(user, program).empty?
   end
 end
