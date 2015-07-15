@@ -28,6 +28,7 @@ group :development do
   gem 'guard'
   gem 'guard-bundler', require: false
   gem 'guard-pow', require: false
+  gem 'guard-rspec', require: false
   gem 'guard-migrate'
   gem 'guard-rspec'
   gem 'guard-rubocop'
