@@ -50,6 +50,7 @@ group :test do
   gem 'rspec-collection_matchers'
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'timecop'
   gem 'webmock'
   gem 'vcr'
   gem 'simplecov', require: false

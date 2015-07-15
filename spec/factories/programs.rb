@@ -2,6 +2,12 @@ FactoryGirl.define do
   factory :program do
     name { SecureRandom.hex }
 
+    after :create do |program|
+      setting = program.setting
+      setting.started = true
+      setting.save!
+    end
+
     trait :with_queries do
       after :create do |program|
         program.queries << Query::NotVerified.new

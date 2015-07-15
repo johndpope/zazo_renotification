@@ -5,7 +5,7 @@ RSpec.describe Program::Execute do
   subject { described_class.new program }
 
   describe '.do' do
-    use_vcr_cassette 'queries/not_verified', api_base_urls
+    use_vcr_cassette 'queries/not_verified',  api_base_urls
     use_vcr_cassette 'queries/non_marketing', api_base_urls
     before { subject.do }
     let(:messages) { Message.where program_id: program.id }
