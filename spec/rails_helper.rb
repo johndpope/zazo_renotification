@@ -1,8 +1,17 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV['RAILS_ENV'] ||= 'test'
+
+reports_dir = ENV['WERCKER_REPORT_ARTIFACTS_DIR'] || File.expand_path('../../tmp', __FILE__)
+
+if ENV.key?('coverage') || ENV.key?('CI')
+  require 'simplecov'
+  SimpleCov.coverage_dir File.join(reports_dir, 'coverage')
+  SimpleCov.start :rails
+end
+
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
@@ -51,4 +60,8 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
+
+  if ENV.key?('CI')
+    config.add_formatter :html, File.join(reports_dir, 'rspec', 'rspec.html')
+  end
 end
