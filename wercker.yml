@@ -53,3 +53,4 @@ deploy:
         app_name: $app_name ($WERCKER_DEPLOYTARGET_NAME)
     - wantedly/pretty-slack-notify:
         webhook_url: $slack_url
+        channel: devops
