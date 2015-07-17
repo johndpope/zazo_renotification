@@ -37,6 +37,7 @@ build:
   after-steps:
     - wantedly/pretty-slack-notify:
         webhook_url: $slack_url
+        channel: devops
 deploy:
   steps:
     - asux/elastic-beanstalk-deploy:
