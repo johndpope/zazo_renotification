@@ -20,7 +20,7 @@ gem 'paranoia'
 gem 'faraday_middleware'
 gem 'whenever', require: false
 gem 'pry-rails'
-gem 'figaro'
+gem 'figaro', github: 'asux/figaro', branch: 'feature/eb-set-command'
 gem 'puma'
 gem 'rollbar'
 gem 'newrelic_rpm'

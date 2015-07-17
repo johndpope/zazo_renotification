@@ -48,3 +48,8 @@ _builds
 _projects
 _steps
 repository.tar
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
