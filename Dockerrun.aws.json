@@ -1,9 +1,5 @@
 {
   "AWSEBDockerrunVersion": 1,
-  "Image": {
-    "Name": "asux/rails-base",
-    "Update": "true"
-  },
   "Ports": [
     {
       "ContainerPort": "3000"
