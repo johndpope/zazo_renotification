@@ -3,7 +3,7 @@ class Condition::NotVerified < Condition
 
   def check(user)
     super do
-      response = StatisticsApi.new(user: user, attrs: [:status]).fetch :attributes
+      response = StatisticsApi.new(user: user, attrs: [:status]).attributes
       response['status'] != 'verified'
     end
   end

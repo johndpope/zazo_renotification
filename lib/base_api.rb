@@ -29,11 +29,11 @@ class BaseApi
     end
   end
 
-  def fetch(name)
-    if map.key? name
-      connection.send(*params(name), options).body
+  def method_missing(method, *args)
+    if map.key? method
+      connection.send(*params(method, args[0]), options).body
     else
-      connection.send(*params(:default, name), options).body
+      connection.send(*params(:default, args[0]), options).body
     end
   end
 
@@ -43,10 +43,8 @@ class BaseApi
     self.class.api_map
   end
 
-  def params(key, method = nil)
-    method = key if method.nil?
-    method = map[key][:name] if map[key].key? :name
-    [map[key][:action], path(map[key][:prefix], method)]
+  def params(method, name)
+    [map[method][:action], path(map[method][:prefix], name)]
   end
 
   def namespace
@@ -54,6 +52,6 @@ class BaseApi
   end
 
   def path(prefix, name)
-    File.join namespace, prefix, name.to_s
+    File.join [namespace, prefix, name].compact.map &:to_s
   end
 end

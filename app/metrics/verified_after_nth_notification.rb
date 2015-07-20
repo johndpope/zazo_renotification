@@ -4,7 +4,7 @@ class Metric::VerifiedAfterNthNotification < Metric::Base
   end
 
   def execute
-    EventsApi.new(users_data: users_data).fetch :verified_after_nth_notification
+    EventsApi.new(users_data: users_data).metric :verified_after_nth_notification
   end
 
   private
