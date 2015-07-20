@@ -2,10 +2,18 @@
   "AWSEBDockerrunVersion": 1,
   "Ports": [
     {
-      "ContainerPort": "3000"
+      "ContainerPort": "8000"
     }
   ],
   "Volumes": [
+    {
+      "HostDirectory": "/var/app/bundle",
+      "ContainerDirectory": "/usr/local/bundle"
+    },
+    {
+      "HostDirectory": "/var/app/tmp",
+      "ContainerDirectory": "/usr/src/app/tmp"
+    }
   ],
   "Logging": "/usr/src/app/log"
 }
