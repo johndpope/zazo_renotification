@@ -1,0 +1,61 @@
+source 'https://rubygems.org'
+
+gem 'rails'
+gem 'pg'
+
+gem 'sass-rails', '~> 4.0.3'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'jquery-rails'
+gem 'bootstrap-sass', '~> 3.3.4'
+gem 'bootswatch-rails'
+gem 'font-awesome-rails'
+gem 'simple_form'
+gem 'slim-rails'
+gem 'draper'
+gem 'cells'
+gem 'cells-slim'
+gem 'paranoia'
+
+gem 'faraday_middleware'
+gem 'whenever', require: false
+gem 'pry-rails'
+gem 'figaro', github: 'asux/figaro', branch: 'feature/eb-set-command'
+gem 'puma'
+gem 'rollbar'
+gem 'newrelic_rpm'
+gem 'foreman'
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'guard'
+  gem 'guard-bundler', require: false
+  gem 'guard-pow', require: false
+  gem 'guard-rspec', require: false
+  gem 'guard-migrate'
+  gem 'guard-rubocop'
+  gem 'terminal-notifier-guard'
+  gem 'quiet_assets'
+  gem 'bullet'
+  gem 'rack-mini-profiler'
+end
+
+group :development, :test do
+  gem 'pry-rescue'
+  gem 'pry-remote'
+  gem 'pry-byebug'
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'database_cleaner'
+  gem 'shoulda-matchers'
+  gem 'rspec-collection_matchers'
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'timecop'
+  gem 'webmock'
+  gem 'vcr'
+  gem 'simplecov', require: false
+end
