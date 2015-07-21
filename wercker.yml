@@ -27,13 +27,13 @@ build:
     - rails-database-yml
     - script:
         name: set up db
-        code: rake db:schema:load RAILS_ENV=test
+        code: bin/rake db:schema:load RAILS_ENV=test
     - script:
         name: create rspec and coverage dir
         code: mkdir -p $WERCKER_REPORT_ARTIFACTS_DIR/rspec $WERCKER_REPORT_ARTIFACTS_DIR/coverage
     - script:
         name: rspec
-        code: rspec
+        code: bin/rake spec
   after-steps:
     - wantedly/pretty-slack-notify:
         webhook_url: $slack_url
