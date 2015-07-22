@@ -43,6 +43,7 @@ bower.json
 # Ignore application configuration
 /config/application.yml
 
+# Ignore `wercker build` artifacts
 _builds
 _projects
 _steps
