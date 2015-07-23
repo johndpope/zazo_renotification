@@ -25,7 +25,7 @@ build:
         without: development production
     - script:
         name: db setup
-        code: rake db:create db:schema:load RAILS_ENV=test
+        code: bin/rake db:create db:migrate RAILS_ENV=test
     - script:
         name: create rspec and coverage dir
         code: mkdir -p $WERCKER_REPORT_ARTIFACTS_DIR/rspec $WERCKER_REPORT_ARTIFACTS_DIR/coverage
