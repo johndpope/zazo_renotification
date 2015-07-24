@@ -9,7 +9,8 @@ class Program::Execute
 
   def do
     users.each do |data|
-      create_messages data if messages_not_persisted? data['mkey']
+      user_data = UserData.new data
+      create_messages user_data if messages_not_persisted? user_data.mkey
     end
   end
 

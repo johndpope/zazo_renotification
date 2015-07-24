@@ -7,7 +7,7 @@ RSpec.describe Template::Compiler do
     FactoryGirl.build :template, title: title, body: body
   end
   let(:compiler) { described_class.new template }
-  let(:user) { FactoryGirl.build :user_data}
+  let(:user) { UserData.new FactoryGirl.build :user_data }
 
   describe 'preview' do
     subject { compiler.preview }
@@ -16,7 +16,7 @@ RSpec.describe Template::Compiler do
 
   describe 'compile' do
     before { compiler.compile user }
-    it { expect(compiler.title).to eq "Hello, #{user['user']}!" }
-    it { expect(compiler.body).to  eq "#{user['friend']} invites you to join Zazo." }
+    it { expect(compiler.title).to eq "Hello, #{user.user}!" }
+    it { expect(compiler.body).to  eq "#{user.friend} invites you to join Zazo." }
   end
 end

@@ -12,7 +12,7 @@ class Manage::Message
 
   def create
     Message.create(
-      target:   data['mkey'],
+      target:   data.mkey,
       title:    @compiler.title,
       body:     @compiler.body,
       send_at:  time_zero + delayed_template.delay_hours.hours,
@@ -25,7 +25,7 @@ class Manage::Message
 
   def init_time_zero(from_params)
     return from_params unless from_params.nil?
-    from_data = Time.parse data['time_zero']
+    from_data = data.time_zero
     next_time = from_data + delayed_template.delay_hours.hours
     Time.now < next_time ? from_data : Time.now
   end
