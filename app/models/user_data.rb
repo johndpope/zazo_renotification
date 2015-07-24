@@ -1,4 +1,6 @@
 class UserData
+  APP_NAME = 'Zazo'
+
   attr_reader :user, :friend
 
   class Friend

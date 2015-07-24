@@ -3,7 +3,7 @@ class Query::NonMarketing < Query
 
   def execute
     @data = EventsApi.new.filter :non_marketing
-    set_names StatisticsApi.new(users: collect_users).fetch :names
+    set_names StatisticsApi.new(users: collect_users).fetch :ids_and_names
   end
 
   private
@@ -18,9 +18,10 @@ class Query::NonMarketing < Query
   def set_names(names)
     @data.each_with_object([]) do |row, memo|
       memo << {
+        id:        names[row['invitee']] && names[row['invitee']]['id'],
         mkey:      row['invitee'],
-        user:      names[row['invitee']],
-        friend:    names[row['inviter']],
+        user:      names[row['invitee']] && names[row['invitee']]['name'],
+        friend:    names[row['inviter']] && names[row['inviter']]['name'],
         time_zero: row['time_zero']
       }
     end.as_json
