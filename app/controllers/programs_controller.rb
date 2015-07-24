@@ -24,7 +24,7 @@ class ProgramsController < ApplicationController
     @program.setting
 
     if @program.save
-      redirect_to programs_url
+      redirect_to programs_url, notice: "Program #{@program.name} was successfully created"
     else
       render :new
     end
@@ -32,7 +32,7 @@ class ProgramsController < ApplicationController
 
   def update
     if @program.update program_params
-      redirect_to programs_url
+      redirect_to programs_url, notice: "Program #{@program.name} was successfully updated"
     else
       render :edit
     end

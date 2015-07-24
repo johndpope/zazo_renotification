@@ -1,6 +1,7 @@
 table.table.table-striped
   thead
     tr
+      th User's Id
       th User's Mkey
       th User Name
       th Friend Name
@@ -8,6 +9,7 @@ table.table.table-striped
   tbody
     - model.each do |row|
       tr
+        td = row['id']
         td = row['mkey']
         td = row['user']
         td = row['friend']

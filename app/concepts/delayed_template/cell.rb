@@ -51,10 +51,13 @@ class DelayedTemplate::Cell < Cell::Concept
     "Send after [#{delay}] with [#{name}] template"
   end
 
+  def preview_template
+    Template::Compiler.new(template).preview
+  end
+
   def remove_button
     return '' unless @options[:allow_destroy]
     link_to fa_icon('trash-o'), [model.program, model],
-            data: { confirm: 'Are you sure?' },
-            method: :delete, class: 'pull-right'
+            data: { confirm: 'Are you sure?' }, method: :delete
   end
 end

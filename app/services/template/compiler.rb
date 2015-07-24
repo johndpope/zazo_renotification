@@ -5,43 +5,40 @@ class Template::Compiler
     @template = template
   end
 
-  def title(data = nil)
-    data = @data if data.nil?
-    ERB.new(template.title).result data
+  def title
+    ERB.new(template.title).result @data
   end
 
-  def body(data = nil)
-    data = @data if data.nil?
-    ERB.new(template.body).result data
+  def body
+    ERB.new(template.body).result @data
   end
 
   def preview
-    data = preview_data
-    "#{title data} #{body data}"
+    compile_preview_data
+    "#{title} #{body}"
   end
 
   def validate(key)
-    send key, preview_data
+    compile_preview_data
+    send key
     return true
   rescue => e
     return false, e.message
   end
 
-  def compile(params)
-    mkey      = params['mkey']
-    user      = params['user']
-    friend    = params['friend']
-    time_zero = params['time_zero']
-    @data     = binding
+  def compile(user_data)
+    @data = user_data.bind
   end
 
   private
 
-  def preview_data
-    mkey      = SecureRandom.hex
-    user      = 'David Gilmour'
-    friend    = 'Syd Barrett'
-    time_zero = '1967-12-22 15:00:00 UTC'
-    binding
+  def compile_preview_data
+    compile UserData.new({
+      id: 1967,
+      mkey: SecureRandom.hex,
+      user: 'David Gilmour',
+      friend: 'Syd Barrett',
+      time_zero: '1967-12-22 15:00:00 UTC'
+    })
   end
 end

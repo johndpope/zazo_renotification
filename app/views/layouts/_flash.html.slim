@@ -1,6 +1,6 @@
-- [:alert, :notice].each do |flash_type|
-  - if flash[flash_type]
-    .alert.alert-danger.alert-dismissible
+- [:alert, :notice].each do |type|
+  - if flash[type]
+    .alert.alert-dismissible class=('alert-danger' if type == :alert) class=('alert-success' if type == :notice)
       button.close data-dismiss='alert' aria-label='Close'
         span aria-hidden=true &times;
-      = flash[flash_type]
+      = flash[type]

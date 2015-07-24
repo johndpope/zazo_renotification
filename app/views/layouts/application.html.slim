@@ -4,8 +4,8 @@ html
     meta charset='utf-8'
     meta name='viewport' content='width=device-width, initial-scale=1.0'
     title
-      = content_for?(:title) ? "#{yield(:title)} - #{t 'title'}": "#{t 'title'}"
-    meta name='description' content='#{content_for?(:description) ? yield(:description) : t('title')}'
+      = content_for?(:title) ? "#{yield(:title)} - #{APP_INFO['app_name']}": APP_INFO['app_name']
+    meta name='description' content='#{content_for?(:description) ? yield(:description) : APP_INFO['app_name']}'
     == stylesheet_link_tag 'application', media: 'all'
     == javascript_include_tag '//www.google.com/jsapi', 'chartkick'
     == csrf_meta_tags

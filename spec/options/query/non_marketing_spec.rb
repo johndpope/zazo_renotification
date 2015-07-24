@@ -8,7 +8,7 @@ RSpec.describe Query::NonMarketing, type: :model do
   end
 
   it 'has specific row counts' do
-    is_expected.to have_exactly(197).items
+    is_expected.to have_exactly(507).items
   end
 
   it_behaves_like 'query fields'
