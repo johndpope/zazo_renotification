@@ -1,0 +1,15 @@
+defaults: &settings
+  version: 0.2.2
+  app_name: Zazo Renotification Service
+
+development:
+  <<: *settings
+
+test:
+  <<: *settings
+
+staging:
+  <<: *settings
+
+production:
+  <<: *settings

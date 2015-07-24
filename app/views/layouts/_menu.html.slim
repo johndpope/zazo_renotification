@@ -1,7 +1,7 @@
 nav.navbar.navbar-default
   .container-fluid
     .navbar-header
-      a.navbar-brand href='/' == t 'title'
+      a.navbar-brand href='/' == "#{APP_INFO['app_name']} v.#{APP_INFO['version']}"
     ul.nav.navbar-nav
       li = link_to 'Programs', programs_path
       li = link_to 'Templates', templates_path

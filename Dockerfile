@@ -1,3 +1,7 @@
 FROM zazo/rails
 
-EXPOSE 8000
+RUN rake assets:precompile
+RUN chown www-data:www-data -R /usr/src/app
+
+EXPOSE 80
+CMD rake db:migrate && foreman start
