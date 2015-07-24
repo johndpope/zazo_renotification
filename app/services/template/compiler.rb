@@ -34,9 +34,10 @@ class Template::Compiler
 
   def compile_preview_data
     compile UserData.new({
-      mkey:     SecureRandom.hex,
-      user:     'David Gilmour',
-      friend:   'Syd Barrett',
+      id: 1967,
+      mkey: SecureRandom.hex,
+      user: 'David Gilmour',
+      friend: 'Syd Barrett',
       time_zero: '1967-12-22 15:00:00 UTC'
     })
   end

@@ -12,7 +12,7 @@ class Manage::Message
 
   def create
     Message.create(
-      target:   data.mkey,
+      target:   data.user.mkey,
       title:    @compiler.title,
       body:     @compiler.body,
       send_at:  time_zero + delayed_template.delay_hours.hours,

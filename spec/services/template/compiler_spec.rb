@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Template::Compiler do
   let(:template) do
-    title = 'Hello, <%= user %>!'
-    body  = '<%= friend %> invites you to join Zazo.'
+    title = 'Hello, <%= user.name %>!'
+    body  = '<%= friend.name %> invites you to join Zazo.'
     FactoryGirl.build :template, title: title, body: body
   end
   let(:compiler) { described_class.new template }
-  let(:user) { UserData.new FactoryGirl.build :user_data }
+  let(:user_data) { UserData.new FactoryGirl.build :user_data }
 
   describe 'preview' do
     subject { compiler.preview }
@@ -15,8 +15,8 @@ RSpec.describe Template::Compiler do
   end
 
   describe 'compile' do
-    before { compiler.compile user }
-    it { expect(compiler.title).to eq "Hello, #{user.user}!" }
-    it { expect(compiler.body).to  eq "#{user.friend} invites you to join Zazo." }
+    before { compiler.compile user_data }
+    it { expect(compiler.title).to eq "Hello, #{user_data.user.name}!" }
+    it { expect(compiler.body).to  eq "#{user_data.friend.name} invites you to join Zazo." }
   end
 end

@@ -1,12 +1,28 @@
 class UserData
-  attr_reader :id, :mkey, :user, :friend
+  attr_reader :user, :friend
+
+  class Friend
+    attr_reader :name
+
+    def initialize(params)
+      @name = params['friend']
+    end
+  end
+
+  class User
+    attr_reader :id, :mkey, :name
+
+    def initialize(params)
+      @id   = params['id']
+      @mkey = params['mkey']
+      @name = params['user']
+    end
+  end
 
   def initialize(params)
     params.stringify_keys!
-    @id        = params['id']
-    @mkey      = params['mkey']
-    @user      = params['user']
-    @friend    = params['friend']
+    @user      = User.new params
+    @friend    = Friend.new params
     @time_zero = params['time_zero']
   end
 
