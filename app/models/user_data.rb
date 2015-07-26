@@ -32,6 +32,10 @@ class UserData
     @time_zero.kind_of?(Time) ? @time_zero : Time.parse(@time_zero)
   end
 
+  def app_link
+    "zazoapp.com/l/#{user.id}"
+  end
+
   def bind
     binding
   end
