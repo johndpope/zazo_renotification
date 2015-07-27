@@ -1,3 +1,33 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+'use strict'
+
+class Zazo.Templates.CharactersUsed
+
+  # private
+
+  container = '.characters_used'
+  feedback  = '.characters_count'
+  textarea  = '[name="template[body]"]'
+
+  updateFeedback = ->
+    setFeedback getLength $(textarea).val()
+
+  setFeedback = (value) ->
+    $(feedback).html value
+
+  getLength = (text) ->
+    text.replace(/<%=.*?%>/g, '')
+        .replace(/\s+(?=\s)/g, '')
+        .replace(/\s+$/, '')
+        .length
+
+  # public
+
+  constructor: ->
+    feedback = "#{container} #{feedback}"
+
+  init: ->
+    updateFeedback()
+    $(textarea).keyup -> updateFeedback()
+
+$ ->
+  (new Zazo.Templates.CharactersUsed()).init()
