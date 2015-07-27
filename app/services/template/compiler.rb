@@ -6,11 +6,11 @@ class Template::Compiler
   end
 
   def title
-    ERB.new(template.title).result @data
+    ERB.new(template.title).result(@data).squish
   end
 
   def body
-    ERB.new(template.body).result @data
+    ERB.new(template.body).result(@data).squish
   end
 
   def preview

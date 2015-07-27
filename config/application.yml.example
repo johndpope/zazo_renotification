@@ -4,6 +4,9 @@ db_password:
 db_host: localhost
 db_port: '5432'
 
+http_basic_password:
+http_basic_username:
+
 events_api_base_url:
 statistics_api_base_url:
 
