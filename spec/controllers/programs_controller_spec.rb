@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ProgramsController, type: :controller do
+RSpec.describe ProgramsController, type: :controller, authenticate_with_http_basic: true do
   let!(:program) { FactoryGirl.create :program_with_queries }
 
   render_views

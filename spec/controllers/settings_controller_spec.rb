@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe SettingsController, type: :controller do
+RSpec.describe SettingsController, type: :controller, authenticate_with_http_basic: true do
   let(:program) { FactoryGirl.create :program }
 
   let(:setting_params) do
