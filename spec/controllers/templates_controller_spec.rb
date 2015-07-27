@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe TemplatesController, type: :controller do
+RSpec.describe TemplatesController, type: :controller, authenticate_with_http_basic: true do
   let!(:template) { FactoryGirl.create :sms_template }
 
   render_views
