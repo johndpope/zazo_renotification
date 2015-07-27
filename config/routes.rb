@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   end
 
   root to: 'dashboard#index'
+
+  get 'status', to: Proc.new { [200, {}, ['']] }
 end
