@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe DelayedTemplatesController, type: :controller do
+RSpec.describe DelayedTemplatesController, type: :controller, authenticate_with_http_basic: true do
   let!(:sms_delayed_template)   { FactoryGirl.create :sms_delayed_template }
   let!(:email_delayed_template) { FactoryGirl.create :email_delayed_template }
 
