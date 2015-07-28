@@ -9,7 +9,7 @@ table.table.table-striped
   tbody
     - model.each do |row|
       tr
-        td = link_to row['id'], "#{Figaro.env.statistics_api_base_url}/users/#{row['id']}"
+        td = user_link row['id']
         td = row['mkey']
         td = row['user']
         td = row['friend']

@@ -2,6 +2,7 @@ class BaseApi
   class << self
     attr_reader :api_version,
                 :api_base_uri,
+                :api_auth_token,
                 :api_map
 
     def version(version)
@@ -15,6 +16,10 @@ class BaseApi
     def mapper(map)
       @api_map = map
     end
+
+    def auth_token(token)
+      @api_auth_token = token
+    end
   end
 
   attr_reader :connection, :options
@@ -25,6 +30,7 @@ class BaseApi
       c.request  :json
       c.response :json, content_type: /\bjson$/
       c.response :raise_error
+      c.request(:digest, 'renotification', auth_token) if auth_token
       c.adapter Faraday.default_adapter
     end
   end
@@ -41,6 +47,11 @@ class BaseApi
 
   def map
     self.class.api_map
+  end
+
+  def auth_token
+    token = self.class.api_auth_token
+    token ? URI::encode(token) : nil
   end
 
   def params(method, name)
