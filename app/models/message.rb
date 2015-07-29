@@ -1,5 +1,5 @@
 class Message < ActiveRecord::Base
-  ALLOWED_STATUSES = %w{sent canceled}
+  ALLOWED_STATUSES = %w{sent canceled error}
 
   belongs_to :program
   belongs_to :delayed_template
@@ -14,4 +14,8 @@ class Message < ActiveRecord::Base
   scope :in_queue, -> { where status: nil }
   scope :sent,     -> { where status: :sent }
   scope :canceled, -> { where status: :canceled }
+
+  def kind
+    delayed_template.template.kind
+  end
 end
