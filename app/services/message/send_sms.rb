@@ -1,13 +1,13 @@
 class Message::SendSms
   attr_reader :message, :mobile
 
-  def initialize(message)
+  def initialize(message, mobile = nil)
     @message = message
-    @mobile  = mobile_number
+    @mobile  = mobile || mobile_number
   end
 
-  def do(force = false)
-    return true unless force || Rails.env.production?
+  def do(options = {})
+    return true unless options[:force] || Rails.env.production?
     NotificationApi.new(mobile_number: '+79109767407', body: message.body).sms
     true
   rescue Faraday::ClientError

@@ -11,7 +11,11 @@ class Manage::Message
   end
 
   def create
-    Message.create(
+    build.save
+  end
+
+  def build
+    Message.new(
       target:   data.user.mkey,
       title:    @compiler.title,
       body:     @compiler.body,

@@ -2,8 +2,8 @@ class Program::Execute
   attr_reader :program, :users, :delayed_templates
 
   def initialize(program)
-    @program   = program
-    @users     = Query::Intersection.new(program.queries).results
+    @program = program
+    @users   = Query::Intersection.new(program.queries).results
     @delayed_templates = program.grouped_delayed_templates
   end
 
