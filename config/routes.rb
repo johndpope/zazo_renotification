@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :templates, except: :show
 
   resources :programs, except: :show do
-    get :options, :users, :test, on: :member
+    get :options, :users, on: :member
     resources :delayed_templates, only: [:index, :create, :destroy] do
       get :sms, :email, :ios, :android, on: :collection
     end
