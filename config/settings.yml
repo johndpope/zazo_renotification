@@ -2,6 +2,9 @@ defaults: &settings
   version: 0.2.7
   app_name: Zazo Renotification Service
 
+  test_phone: '+16502453537'
+  test_email: 'elfishawy.sani@gmail.com'
+
 development:
   <<: *settings
 

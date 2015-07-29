@@ -1,0 +1,9 @@
+= simple_form_for :session, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
+  .row = f.input :test_phone, wrapper_html: { class: 'col-sm-6' }, input_html: { value: @test_data[:phone] }
+  .row = f.input :test_email, wrapper_html: { class: 'col-sm-6' }, input_html: { value: @test_data[:email] }
+  .row
+    .col-sm-6
+      .col-sm-offset-3
+        = f.submit class: 'btn btn-sm btn-primary'
+        '&nbsp;
+        = link_to 'Reset', reset_sessions_path, class: 'btn btn-sm btn-danger'
