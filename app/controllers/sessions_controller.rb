@@ -1,9 +1,7 @@
 class SessionsController < ApplicationController
+  before_action :set_test_data, only: :index
+
   def index
-    @test_data = {
-      phone: session[:test_phone] || APP_INFO['test_phone'],
-      email: session[:test_email] || APP_INFO['test_email']
-    }
   end
 
   def create
