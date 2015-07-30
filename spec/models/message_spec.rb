@@ -12,7 +12,7 @@ RSpec.describe Message, type: :model do
   describe 'methods' do
     let(:message) { FactoryGirl.create :message }
 
-    context '#kind' do
+    context '.kind' do
       it { expect(message.kind).to eq 'sms' }
     end
   end
