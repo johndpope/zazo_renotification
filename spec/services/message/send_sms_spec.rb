@@ -22,7 +22,7 @@ RSpec.describe Message::SendSms do
       let(:params) { [message] }
 
       it { is_expected.to eq(true) }
-      it { expect(instance.mobile).to eq('+380919614028') }
+      it { expect(instance.mobile).to eq(:none) } #eq('+380919614028') }
     end
 
     context 'with custom mobile in production' do
