@@ -33,7 +33,11 @@ class Template::Compiler
   private
 
   def compile_preview_data
-    compile UserData.new({
+    compile preview_data
+  end
+
+  def preview_data
+    UserData.new({
       id: 1967,
       mkey: SecureRandom.hex,
       user: 'David Gilmour',

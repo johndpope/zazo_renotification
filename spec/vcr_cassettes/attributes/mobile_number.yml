@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: <%= statistics_api_base_url %>/api/v1/fetch/attributes?attrs%5B%5D=mobile_number&user=01GGDDAAaWtDUZvPMTHx
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - no-store, must-revalidate, private, max-age=0
+      X-Request-Id:
+      - 3d4d0966-9668-45be-a542-4c1ebc1c2f0e
+      X-Runtime:
+      - '0.013601'
+      Set-Cookie:
+      - __profilin=p%3Dt; path=/
+      - __profilin=p%3Dt; path=/
+      - __profilin=p%3Dt; path=/
+      X-Miniprofiler-Ids:
+      - '["c8dvy3x7b5dp7lqk63l4","ur0iexw0au90qtbfnsyr","pwsbvext9gg9t38n0aee","tevunmiv1zylk0mawmzy","zc19mcha9pjn9z93ej27","ngve8mht6rd1v63hhgmq","5xx0ojh2n1hr2d90qo4y","wvntw8eos2akjhiazmmh","ov5iam7xyvxrirzi2nr1","vq67fe47wvj8jn8jx2hh"]'
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"mobile_number":"+380919614028"}'
+    http_version: 
+  recorded_at: Thu, 30 Jul 2015 10:33:19 GMT
+recorded_with: VCR 2.9.3

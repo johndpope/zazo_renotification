@@ -2,6 +2,8 @@ class BaseApi
   class << self
     attr_reader :api_version,
                 :api_base_uri,
+                :api_auth_token,
+                :api_raise_errors,
                 :api_map
 
     def version(version)
@@ -15,6 +17,14 @@ class BaseApi
     def mapper(map)
       @api_map = map
     end
+
+    def auth_token(token)
+      @api_auth_token = token
+    end
+
+    def raise_errors(value)
+      @api_raise_errors = value
+    end
   end
 
   attr_reader :connection, :options
@@ -24,8 +34,10 @@ class BaseApi
     @connection = Faraday.new(self.class.api_base_uri) do |c|
       c.request  :json
       c.response :json, content_type: /\bjson$/
-      c.response :raise_error
+      c.response(:raise_error) if raise_errors?
+      c.request(:digest, 'renotification', auth_token) if auth_token
       c.adapter Faraday.default_adapter
+      c.use Faraday::Response::Logger, Logger.new('log/faraday.log')
     end
   end
 
@@ -41,6 +53,16 @@ class BaseApi
 
   def map
     self.class.api_map
+  end
+
+  def auth_token
+    token = self.class.api_auth_token
+    token ? URI::encode(token) : nil
+  end
+
+  def raise_errors?
+    val = self.class.api_raise_errors
+    val.nil? ? true : val
   end
 
   def params(method, name)
