@@ -30,7 +30,6 @@ RSpec.describe Message::SendSms do
 
       context 'with production env' do
         use_vcr_cassette 'services/message/send_sms_custom_mobile', api_base_urls
-
         it do
           allow(Rails).to receive(:env).and_return ActiveSupport::StringInquirer.new('production')
           is_expected.to eq(true)
@@ -50,14 +49,12 @@ RSpec.describe Message::SendSms do
     context 'with incorrect mobile' do
       use_vcr_cassette 'services/message/send_sms_incorrect_mobile', api_base_urls
       let(:params) { [message, 'xxxxxxxxxxx'] }
-
       it { is_expected.to eq(false) }
     end
 
     context 'with correct custom mobile' do
       use_vcr_cassette 'services/message/send_sms_custom_mobile', api_base_urls
       let(:params) { [message, '+79109767407'] }
-
       it { is_expected.to eq(true) }
     end
   end
