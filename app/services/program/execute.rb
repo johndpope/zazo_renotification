@@ -8,6 +8,7 @@ class Program::Execute
   end
 
   def do
+    Rails.logger.tagged('Program::Execute') { Rails.logger.debug "Was started at #{Time.now} for #{users.size} users. Program: #{program.inspect}" }
     users.each do |data|
       user_data = UserData.new data
       create_messages user_data if messages_not_persisted? user_data.user.mkey
