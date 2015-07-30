@@ -11,7 +11,7 @@ class Message::SendSms
     NotificationApi.new(mobile_number: mobile, body: message.body).sms
     Rails.logger.tagged('Message::SendSms') { Rails.logger.debug "Message was sent to #{mobile} at #{Time.now}. Message: #{message.inspect}" }
     true
-  rescue Faraday::ClientError
+  rescue Faraday::ClientError # todo: log errors
     false
   end
 

@@ -25,7 +25,7 @@ RSpec.describe Message::SendSms do
       it { expect(instance.mobile).to eq(:none) } #eq('+380919614028') }
     end
 
-    context 'with custom mobile in production' do
+    context 'with custom mobile' do
       let(:params) { [FactoryGirl.build(:message), '+79109767407'] }
 
       context 'with production env' do
