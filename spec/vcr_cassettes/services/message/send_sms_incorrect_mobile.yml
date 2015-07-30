@@ -54,7 +54,7 @@ http_interactions:
   recorded_at: Thu, 30 Jul 2015 10:02:55 GMT
 - request:
     method: post
-    uri: http://notification.zazoapp.com/api/v1/notifications/sms
+    uri: <%= notification_api_base_url %>/api/v1/notifications/sms
     body:
       encoding: UTF-8
       string: '{"mobile_number":"xxxxxxxxxxx","body":"quantifying the port won''t

@@ -7,8 +7,8 @@ RSpec.describe Program::Execute do
   describe '.do' do
     use_vcr_cassette 'queries/not_verified',  api_base_urls
     use_vcr_cassette 'queries/non_marketing', api_base_urls
-    before { subject.do }
     let(:messages) { Message.where program_id: program.id }
+    before { subject.do }
 
     it 'creates two messages for each user' do
       expect(messages).to have_exactly(120).items

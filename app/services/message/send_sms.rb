@@ -9,7 +9,7 @@ class Message::SendSms
   def do(options = {})
     return true unless options[:force] || Rails.env.production?
     NotificationApi.new(mobile_number: mobile, body: message.body).sms
-    Rails.logger.tagged('Message::SendSms') { Rails.logger.debug "#{message} was sent to #{mobile} at #{Time.now}" }
+    Rails.logger.tagged('Message::SendSms') { Rails.logger.debug "Message was sent to #{mobile} at #{Time.now}. Message: #{message.inspect}" }
     true
   rescue Faraday::ClientError
     false
@@ -18,8 +18,8 @@ class Message::SendSms
   private
 
   def mobile_number
-    #response = StatisticsApi.new(user: message.target, attrs: [:mobile_number]).attributes
-    #response['mobile_number']
+    response = StatisticsApi.new(user: message.target, attrs: [:mobile_number]).attributes
+    response['mobile_number']
     :none
   end
 end
