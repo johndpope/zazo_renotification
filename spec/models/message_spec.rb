@@ -8,4 +8,12 @@ RSpec.describe Message, type: :model do
     it { is_expected.to validate_presence_of :program }
     it { is_expected.to validate_presence_of :delayed_template }
   end
+
+  describe 'methods' do
+    let(:message) { FactoryGirl.create :message }
+
+    context '.kind' do
+      it { expect(message.kind).to eq 'sms' }
+    end
+  end
 end

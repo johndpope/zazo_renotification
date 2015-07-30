@@ -2,12 +2,13 @@ class Program::Execute
   attr_reader :program, :users, :delayed_templates
 
   def initialize(program)
-    @program   = program
-    @users     = Query::Intersection.new(program.queries).results
+    @program = program
+    @users   = Query::Intersection.new(program.queries).results
     @delayed_templates = program.grouped_delayed_templates
   end
 
   def do
+    Rails.logger.tagged('Program::Execute') { Rails.logger.debug "Was started at #{Time.now} for #{users.size} users. Program: #{program.inspect}" }
     users.each do |data|
       user_data = UserData.new data
       create_messages user_data if messages_not_persisted? user_data.user.mkey

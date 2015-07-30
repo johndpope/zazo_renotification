@@ -1,12 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe Message::Worker do
-  use_vcr_cassette 'queries/not_verified',  api_base_urls
-  use_vcr_cassette 'queries/non_marketing', api_base_urls
+  use_vcr_cassette 'queries/not_verified',     api_base_urls
+  use_vcr_cassette 'queries/non_marketing',    api_base_urls
+  use_vcr_cassette 'attributes/mobile_number', api_base_urls
 
   let(:program)  { FactoryGirl.create :program_with_dependencies }
   let(:sent_messages) { Message.where(program: program).where(status: :sent) }
-  before { Program::Execute.new(program).do }
+
+  before do
+    Program::Execute.new(program).do
+    allow_any_instance_of(Message::SendSms).to receive(:mobile_number).and_return 'xxxxxxxxxxx'
+  end
 
   describe '.execute after 1 hour' do
     before { Timecop.travel(Time.now + 1.hours) { described_class.execute } }

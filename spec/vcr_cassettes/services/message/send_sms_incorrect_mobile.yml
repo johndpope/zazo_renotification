@@ -1,0 +1,112 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: <%= notification_api_base_url %>/api/v1/notifications/sms
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '0'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Type:
+      - text/html; charset=utf-8
+      Date:
+      - Thu, 30 Jul 2015 10:02:55 GMT
+      Server:
+      - nginx/1.6.2
+      Www-Authenticate:
+      - Digest realm="Zazo Notification", qop="auth", algorithm=MD5, nonce="MTQzODI1MDU3NTphZTRlMWE0NDhjMGViM2Y4YzFkYTNlMDMwM2I3ODAzMQ==",
+        opaque="a650a4f7dcaa5fc01903b2b94613230f"
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - dd6a23d5-028c-4359-b4ee-d3b6d41d08ec
+      X-Runtime:
+      - '0.002408'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '25'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"status":"unauthorized"}'
+    http_version: 
+  recorded_at: Thu, 30 Jul 2015 10:02:55 GMT
+- request:
+    method: post
+    uri: <%= notification_api_base_url %>/api/v1/notifications/sms
+    body:
+      encoding: UTF-8
+      string: '{"mobile_number":"xxxxxxxxxxx","body":"quantifying the port won''t
+        do anything, we need to index the wireless ADP matrix!"}'
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '0'
+      Authorization:
+      - Digest username="renotification", realm="Zazo Notification", algorithm=MD5,
+        qop=auth, uri="/api/v1/notifications/sms", nonce="MTQzODI1MDU3NTphZTRlMWE0NDhjMGViM2Y4YzFkYTNlMDMwM2I3ODAzMQ==",
+        nc=00000000, cnonce="a907ebaf91de23825fb1f0e9c71bf1b0", response="94afd2a67ca1a663aee70a436bd78689",
+        opaque="a650a4f7dcaa5fc01903b2b94613230f"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 30 Jul 2015 10:02:56 GMT
+      Server:
+      - nginx/1.6.2
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - 40f4bd08-291c-4783-8dae-268d670e5c2a
+      X-Runtime:
+      - '0.473269'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '273'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"status":"failure","errors":{"twilio":["The ''To'' number xxxxxxxxxxx
+        is not a valid phone number."]},"original_response":{"code":21211,"message":"The
+        ''To'' number xxxxxxxxxxx is not a valid phone number.","more_info":"https://www.twilio.com/docs/errors/21211","status":400}}'
+    http_version: 
+  recorded_at: Thu, 30 Jul 2015 10:02:56 GMT
+recorded_with: VCR 2.9.3

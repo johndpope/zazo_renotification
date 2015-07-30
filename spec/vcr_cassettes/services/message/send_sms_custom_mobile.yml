@@ -1,0 +1,114 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: <%= notification_api_base_url %>/api/v1/notifications/sms
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '0'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Cache-Control:
+      - no-cache
+      Content-Type:
+      - text/html; charset=utf-8
+      Date:
+      - Thu, 30 Jul 2015 10:03:35 GMT
+      Server:
+      - nginx/1.6.2
+      Www-Authenticate:
+      - Digest realm="Zazo Notification", qop="auth", algorithm=MD5, nonce="MTQzODI1MDYxNToyZTk4NjBjYWEyYjFkZDg3NjQ2YWM5ZDhlMGRjNDEyYQ==",
+        opaque="a650a4f7dcaa5fc01903b2b94613230f"
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - 658ba0f7-7d34-42da-9ff5-84a33270dccc
+      X-Runtime:
+      - '0.002108'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '25'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"status":"unauthorized"}'
+    http_version: 
+  recorded_at: Thu, 30 Jul 2015 10:03:35 GMT
+- request:
+    method: post
+    uri: <%= notification_api_base_url %>/api/v1/notifications/sms
+    body:
+      encoding: UTF-8
+      string: '{"mobile_number":"+79109767407","body":"Try to navigate the EXE sensor,
+        maybe it will calculate the auxiliary system!"}'
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '0'
+      Authorization:
+      - Digest username="renotification", realm="Zazo Notification", algorithm=MD5,
+        qop=auth, uri="/api/v1/notifications/sms", nonce="MTQzODI1MDYxNToyZTk4NjBjYWEyYjFkZDg3NjQ2YWM5ZDhlMGRjNDEyYQ==",
+        nc=00000000, cnonce="9a67629992ab05501e1136605aadeb4d", response="c4f24f129a3a63f22060129e8f2e5063",
+        opaque="a650a4f7dcaa5fc01903b2b94613230f"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 30 Jul 2015 10:03:36 GMT
+      Etag:
+      - W/"3aca087756efde0196c683630dc09aa0"
+      Server:
+      - nginx/1.6.2
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - d7c0a965-a426-42f9-8c67-f33793b820de
+      X-Runtime:
+      - '0.605277'
+      X-Xss-Protection:
+      - 1; mode=block
+      Content-Length:
+      - '813'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"status":"success","original_response":{"sid":"SM6132dd015f644f0e80c5ba4ff6f10895","date_created":"Thu,
+        30 Jul 2015 10:03:36 +0000","date_updated":"Thu, 30 Jul 2015 10:03:36 +0000","date_sent":null,"account_sid":"ACe5e5ec0578491107044c959f906b3f09","to":"+79109767407","from":"+16503766005","body":"Try
+        to navigate the EXE sensor, maybe it will calculate the auxiliary system!","status":"queued","num_segments":"1","num_media":"0","direction":"outbound-api","api_version":"2010-04-01","price":null,"price_unit":"USD","error_code":null,"error_message":null,"uri":"/2010-04-01/Accounts/ACe5e5ec0578491107044c959f906b3f09/Messages/SM6132dd015f644f0e80c5ba4ff6f10895.json","subresource_uris":{"media":"/2010-04-01/Accounts/ACe5e5ec0578491107044c959f906b3f09/Messages/SM6132dd015f644f0e80c5ba4ff6f10895/Media.json"}}}'
+    http_version: 
+  recorded_at: Thu, 30 Jul 2015 10:03:36 GMT
+recorded_with: VCR 2.9.3

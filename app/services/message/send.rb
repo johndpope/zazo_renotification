@@ -7,11 +7,17 @@ class Message::Send
 
   def do
     if Condition::Check.new(message.target, message.program).do
-      # send message with another service
-      message.update_attributes status: :sent
+      klass = Classifier.new([:message, "send_#{message.kind}"]).klass
+      set_status klass.new(message).do ? :sent : :error
     else
-      message.update_attributes status: :canceled
+      set_status :canceled
     end
-    Rails.logger.tagged('Message::Send') { Rails.logger.debug message }
+    Rails.logger.tagged('Message::Send') { Rails.logger.debug "At #{Time.now} was trying to send: #{message.inspect}" }
+  end
+
+  private
+
+  def set_status(status)
+    message.update_attributes status: status
   end
 end
