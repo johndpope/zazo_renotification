@@ -19,7 +19,7 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.minutes do
+every 30.minutes do
   runner 'Renotification.execute'
   runner 'Message::Worker.execute'
 end

@@ -11,6 +11,7 @@ class Message::Send
       set_status klass.new(message).do ? :sent : :error
     else
       set_status :canceled
+      # todo: log this with time.now
     end
     Rails.logger.tagged('Message::Send') { Rails.logger.debug message }
   end

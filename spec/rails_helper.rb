@@ -3,11 +3,11 @@ ENV['RAILS_ENV'] ||= 'test'
 
 reports_dir = ENV['WERCKER_REPORT_ARTIFACTS_DIR'] || File.expand_path('../../tmp', __FILE__)
 
-if ENV.key?('coverage') || ENV.key?('CI')
-  require 'simplecov'
-  SimpleCov.coverage_dir File.join(reports_dir, 'coverage')
-  SimpleCov.start :rails
-end
+#if ENV.key?('coverage') || ENV.key?('CI')
+require 'simplecov'
+SimpleCov.coverage_dir File.join(reports_dir, 'coverage')
+SimpleCov.start :rails
+#end
 
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production

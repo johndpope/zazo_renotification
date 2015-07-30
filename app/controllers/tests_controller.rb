@@ -4,7 +4,7 @@ class TestsController < ApplicationController
 
   def run
     Program::Test.new(@program, @test_data).send params[:id]
-    redirect_to programs_path
+    redirect_to programs_path, notice: 'Success! Check your phone or email client.'
   end
 
   private
