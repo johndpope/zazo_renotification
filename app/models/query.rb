@@ -1,4 +1,6 @@
 class Query < ActiveRecord::Base
+  class ArgumentError < StandardError; end
+
   QUERIES = %i(not_verified non_marketing).freeze
 
   belongs_to :program

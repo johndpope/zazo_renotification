@@ -6,6 +6,7 @@ class Query::NotVerified < Query
   ]
 
   def execute
+    init_params
     normalize_and_reduce StatisticsApi.new.filter :not_verified
   end
 

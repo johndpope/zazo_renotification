@@ -5,5 +5,5 @@
     = f.input :program_id, as: :hidden, input_html: { value: @program.id }
     = f.input :query, as: :check_boxes, collection: model, label: false, checked: @active
     - model.each do |query|
-      = f.input query, label: "#{query} params", required: false
+      = f.input query, label: "#{query} params", required: false, input_html: { value: @params[query] || '' }
     = f.submit 'Update Queries', class: 'btn btn-sm btn-primary'
