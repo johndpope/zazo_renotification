@@ -24,8 +24,11 @@ class SettingsController < ApplicationController
   end
 
   def queries_params
-    { program: Program.find(params[:queries]['program_id']),
-      queries: params[:queries]['query'].delete_if(&:empty?) }
+    res = { program: Program.find(params[:queries]['program_id']),
+            queries: params[:queries]['query'].delete_if(&:empty?),
+            params: {} }
+    res[:queries].each { |q| res[:params][q] = params[:queries][q] }
+    res
   end
 
   def conditions_params

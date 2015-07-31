@@ -1,6 +1,10 @@
 class Query::NotVerified < Query
   include Api
 
+  params [
+    { instance: :started_at, proc: -> (value) { Time.parse value }, default: Time.now - 10.years }
+  ]
+
   def execute
     normalize StatisticsApi.new.filter :not_verified
   end
