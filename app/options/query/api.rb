@@ -17,8 +17,8 @@ module Query::Api
     end
 
     def init_params
-      attrs = params.split(',')
-      if attrs.size != self.class.params_map.size
+      attrs = params.nil? ? [] : params.split(',')
+      if attrs.size > self.class.params_map.size
         fail Query::ArgumentError, "wrong number of arguments (#{attrs.size} for #{self.class.params_map.size})"
       end
       self.class.params_map.each_with_index do |row, index|
