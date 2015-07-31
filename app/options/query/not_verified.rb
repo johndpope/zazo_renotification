@@ -6,12 +6,12 @@ class Query::NotVerified < Query
   ]
 
   def execute
-    normalize StatisticsApi.new.filter :not_verified
+    normalize_and_reduce StatisticsApi.new.filter :not_verified
   end
 
   private
 
-  def normalize(data)
+  def normalize_and_reduce(data)
     data.each_with_object([]) do |row, memo|
       memo << {
         id:        row['id'],
@@ -19,7 +19,7 @@ class Query::NotVerified < Query
         user:      row['invitee'],
         friend:    row['inviter'],
         time_zero: row['time_zero']
-      }
+      } if Time.parse(row['time_zero']) >= @started_at
     end.as_json
   end
 end

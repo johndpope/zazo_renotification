@@ -3,10 +3,12 @@ module Query::Api
 
   included do
     class << self
-      attr_reader :params_map
-
       def params(map)
         @params_map = map
+      end
+
+      def params_map
+        @params_map || []
       end
     end
 
@@ -17,6 +19,8 @@ module Query::Api
     def execute
       []
     end
+
+    private
 
     def set_params(params)
       self.class.params_map.each_with_index do |row, index|
