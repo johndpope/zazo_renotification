@@ -9,7 +9,7 @@ RSpec.describe SettingsController, type: :controller, authenticate_with_http_bas
   end
 
   let(:queries_params) do
-    { program_id: program.id, query: ['NotVerified'] }
+    { program_id: program.id, query: ['NotVerified'], 'NotVerified' => '2015-05-15 00:00' }
   end
 
   let(:conditions_params) do
@@ -31,6 +31,7 @@ RSpec.describe SettingsController, type: :controller, authenticate_with_http_bas
   end
 
   describe 'PATCH #queries' do
+    let(:query) { Query.where(program: program).first }
     before { patch :queries, queries: queries_params }
 
     it 'redirects to #options' do
@@ -38,7 +39,8 @@ RSpec.describe SettingsController, type: :controller, authenticate_with_http_bas
     end
 
     it 'saved into database' do
-      expect(Query.where(program: program).first.type.split('::').last).to eq queries_params[:query].first
+      expect(query.type.split('::').last).to eq queries_params[:query].first
+      expect(query.params).to eq queries_params['NotVerified']
     end
   end
 

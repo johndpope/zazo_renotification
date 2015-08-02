@@ -1,15 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe Query::NonMarketing, type: :model do
-  subject { described_class.new.execute }
+  use_vcr_cassette 'queries/non_marketing', api_base_urls
+  subject { described_class.new(params: params).execute }
 
-  around do |example|
-    VCR.use_cassette('queries/non_marketing', api_base_urls) { example.run }
+  describe 'without arguments' do
+    let(:params) { nil }
+    it { is_expected.to have_exactly(507).items }
   end
 
-  it 'has specific row counts' do
-    is_expected.to have_exactly(507).items
+  describe 'validations' do
+    context 'too many arguments' do
+      let(:params) { 'too_many_arguments' }
+      it { expect { subject }.to raise_error(Query::ArgumentError) }
+    end
   end
 
-  it_behaves_like 'query fields'
+  describe 'query fields' do
+    let(:params) { nil }
+    it_behaves_like 'query fields'
+  end
 end
