@@ -26,18 +26,19 @@ class Program::Cell < Cell::Concept
   end
 
   def queries
-    join_relations :queries
+    with_prefix :queries, (model.queries.map do |query|
+      "#{query.type.split('::').last} => \"#{query.params}\""
+    end.join(', '))
   end
 
   def conditions
-    join_relations :conditions
+    with_prefix :conditions, (model.conditions.pluck(:type).map do |type|
+      type.split('::').last
+    end.join(', '))
   end
 
-  def join_relations(key)
-    joined = model.send(key).pluck(:type).map do |type|
-      type.split('::').last
-    end.join(', ')
-    prefix = content_tag :b, key.to_s.capitalize
-    "#{prefix}: [#{joined}]"
+  def with_prefix(prefix, data)
+    prefix = content_tag :b, prefix.to_s.capitalize
+    "#{prefix}: [#{data}]"
   end
 end
