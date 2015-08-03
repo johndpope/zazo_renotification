@@ -2,6 +2,7 @@ class Query::NonMarketing < Query
   include Api
 
   def execute
+    init_params
     @data = EventsApi.new.filter :non_marketing
     set_names StatisticsApi.new(users: collect_users).fetch :ids_and_names
   end

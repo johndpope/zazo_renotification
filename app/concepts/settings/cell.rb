@@ -21,13 +21,15 @@ class Settings::Cell < Cell::Concept
     end
 
     def render_queries
-      queries = Query::QUERIES.map { |q| q.to_s.classify }
-      active = model.queries.pluck(:type).map { |q| q.split('::').last }
-      concept('settings/cell', queries).queries program: model, active: active
+      queries = Query::QUERIES.map { |q| q.to_s.camelize }
+      by_program = model.queries.pluck(:type, :params).map { |q| [q[0].split('::').last, q[1]] }
+      active = by_program.map &:first
+      params = by_program.each_with_object({}) { |query, memo| memo[query[0]] = query[1] }
+      concept('settings/cell', queries).queries program: model, active: active, params: params
     end
 
     def render_conditions
-      conditions = Condition::CONDITIONS.map { |q| q.to_s.classify }
+      conditions = Condition::CONDITIONS.map { |q| q.to_s.camelize }
       active = model.conditions.pluck(:type).map { |q| q.split('::').last }
       concept('settings/cell', conditions).conditions program: model, active: active
     end
@@ -54,5 +56,6 @@ class Settings::Cell < Cell::Concept
   def set_options(options)
     @active  = options[:active]
     @program = options[:program]
+    @params  = options[:params] || {}
   end
 end

@@ -12,7 +12,7 @@ class Message::Send
     else
       set_status :canceled
     end
-    Rails.logger.tagged('Message::Send') { Rails.logger.debug "At #{Time.now} was trying to send: #{message.inspect}" }
+    WriteLog.debug self, "At #{Time.now} was trying to send: #{message.inspect}"
   end
 
   private

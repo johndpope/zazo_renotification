@@ -4,4 +4,8 @@
   = simple_form_for :queries, url: queries_settings_path, method: :patch do |f|
     = f.input :program_id, as: :hidden, input_html: { value: @program.id }
     = f.input :query, as: :check_boxes, collection: model, label: false, checked: @active
+    - model.each do |query|
+      = f.input query, label: "#{query} params", required: false, input_html: { value: @params[query] || '' }
     = f.submit 'Update Queries', class: 'btn btn-sm btn-primary'
+    '&nbsp;
+    = link_to 'Show Users', users_program_path(@program), class: 'btn btn-sm btn-default', target: '_blank'
