@@ -28,5 +28,17 @@ module Query::Api
     rescue => e
       raise Query::ArgumentError, "Attempt to pass incorrect params to #{self.class.name}. Original error: #{e.message}."
     end
+
+    def normalize(data)
+      data.each_with_object([]) do |row, memo|
+        memo << {
+          id:        row['id'],
+          mkey:      row['mkey'],
+          user:      row['invitee'],
+          friend:    row['inviter'],
+          time_zero: row['time_zero']
+        }
+      end.as_json
+    end
   end
 end

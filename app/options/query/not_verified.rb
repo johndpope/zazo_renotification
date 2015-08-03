@@ -7,20 +7,14 @@ class Query::NotVerified < Query
 
   def execute
     init_params
-    normalize_and_reduce StatisticsApi.new.filter :not_verified
+    normalize reduce StatisticsApi.new.filter :not_verified
   end
 
   private
 
-  def normalize_and_reduce(data)
-    data.each_with_object([]) do |row, memo|
-      memo << {
-        id:        row['id'],
-        mkey:      row['mkey'],
-        user:      row['invitee'],
-        friend:    row['inviter'],
-        time_zero: row['time_zero']
-      } if Time.parse(row['time_zero']) >= @started_at
-    end.as_json
+  def reduce(data)
+    data.select do |row|
+      Time.parse(row['time_zero']) >= @started_at
+    end
   end
 end
