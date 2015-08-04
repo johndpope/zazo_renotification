@@ -8,11 +8,15 @@ class Message::SendSms
 
   def do(options = {})
     return true unless options[:force] || Rails.env.production?
-    NotificationApi.new(mobile_number: mobile, body: message.body).sms
-    Rails.logger.tagged('Message::SendSms') { Rails.logger.debug "Message was sent to #{mobile} at #{Time.now}. Message: #{message.inspect}" }
-    true
-  rescue Faraday::ClientError # todo: log errors
-    false
+    response = NotificationApi.new(mobile_number: mobile, body: message.body).sms
+
+    if response['status'] == 'success'
+      WriteLog.debug self, "Message was sent to #{mobile} at #{Time.now}. Message: #{message.inspect}."
+      true
+    else
+      WriteLog.debug self, "Error occurred while sending message to #{mobile} at #{Time.now}. Errors: #{response['errors']}. Message: #{message.inspect}."
+      false
+    end
   end
 
   private
