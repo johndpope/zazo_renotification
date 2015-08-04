@@ -23,7 +23,6 @@ class Message::SendSms
 
   def mobile_number
     response = StatisticsApi.new(user: message.target, attrs: [:mobile_number]).attributes
-    response['mobile_number']
-    :none
+    Rails.env.production? ? response['mobile_number'] : :none # it's just a paranoia
   end
 end
