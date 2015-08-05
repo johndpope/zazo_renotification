@@ -19,6 +19,11 @@
 
 # Learn more: http://github.com/javan/whenever
 
+set :output, '/usr/src/app/log/cron.log'
+
+env :PATH,     ENV['PATH']
+env :GEM_HOME, ENV['GEM_HOME']
+
 every 10.minutes do
   runner 'Renotification.execute'
   runner 'Message::Worker.execute'
