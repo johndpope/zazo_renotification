@@ -21,8 +21,13 @@
 
 set :output, '/usr/src/app/log/cron.log'
 
-env :PATH,     ENV['PATH']
-env :GEM_HOME, ENV['GEM_HOME']
+[ :PATH, :GEM_HOME, :RACK_ENV,
+  :db_name, :db_host, :db_port, :db_password,
+  :notification_api_base_url, :notification_api_token,
+  :statistics_api_base_url, :events_api_base_url,
+  :newrelic_license_key, :rollbar_access_token,
+  :rollbar_access_token, :secret_key_base
+].each { |key| env key, ENV[key.to_s] }
 
 every 10.minutes do
   runner 'Renotification.execute'
