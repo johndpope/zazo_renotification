@@ -22,7 +22,7 @@
 set :output, '/usr/src/app/log/cron.log'
 
 [ :PATH, :GEM_HOME, :RACK_ENV,
-  :db_name, :db_host, :db_port, :db_password,
+  :db_name, :db_host, :db_port, :db_username, :db_password,
   :notification_api_base_url, :notification_api_token,
   :statistics_api_base_url, :events_api_base_url,
   :newrelic_license_key, :rollbar_access_token,
