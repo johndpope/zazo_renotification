@@ -1,5 +1,5 @@
 defaults: &settings
-  version: 0.4.9
+  version: 0.4.10
   app_name: Zazo Renotification Service
 
   test_phone: '+16502453537'
