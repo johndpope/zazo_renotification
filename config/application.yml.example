@@ -16,6 +16,9 @@ rollbar_access_token:
 newrelic_license_key:
 newrelic_api_key:
 
+papertrail_host:
+papertrail_port:
+
 development:
   secret_key_base:
 
