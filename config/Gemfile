@@ -26,6 +26,7 @@ gem 'figaro', github: 'asux/figaro', branch: 'feature/eb-set-command'
 gem 'puma'
 gem 'rollbar'
 gem 'newrelic_rpm'
+gem 'remote_syslog_logger'
 gem 'foreman'
 
 group :development do
