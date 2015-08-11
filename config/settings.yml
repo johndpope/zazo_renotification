@@ -1,6 +1,9 @@
 defaults: &settings
-  version: 0.4.15
+  version: 0.4.16
   app_name: Zazo Renotification Service
+
+  app_key: zazo-renotification
+  app_env: zrn-production
 
   test_phone: '+16502453537'
   test_email: 'elfishawy.sani@gmail.com'
