@@ -26,7 +26,8 @@ set :output, '/usr/src/app/log/cron.log'
   :notification_api_base_url, :notification_api_token,
   :statistics_api_base_url, :events_api_base_url,
   :newrelic_license_key, :rollbar_access_token,
-  :rollbar_access_token, :secret_key_base
+  :rollbar_access_token, :secret_key_base,
+  :papertrail_host, :papertrail_port
 ].each { |key| env key, ENV[key.to_s] }
 
 every 10.minutes do
