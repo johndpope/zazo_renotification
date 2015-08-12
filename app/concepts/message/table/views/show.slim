@@ -1,0 +1,18 @@
+table.table.table-striped
+  thead
+    tr
+      th Id
+      th Order
+      th Target
+      th Title
+      th Body
+      th Send at
+  tbody
+    - messages.each do |msg|
+      tr
+        td = msg.id
+        td = msg.order
+        td = msg.target
+        td = msg.title
+        td = msg.body
+        td = msg.send_at

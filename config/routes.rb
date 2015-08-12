@@ -12,6 +12,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :messages, only: [] do
+    get :in_queue, :sent, :error, :canceled, on: :collection
+  end
+
   resources :settings, only: [:update] do
     patch :queries, :conditions, on: :collection
   end

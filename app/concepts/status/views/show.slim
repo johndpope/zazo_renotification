@@ -5,4 +5,7 @@
         span.count
           = item[:count]
           span.unit = item[:unit]
-        span.text = item[:title]
+        - if item[:link]
+          = link_to item[:title], item[:link], class: 'text'
+        - else
+          span.text = item[:title]
