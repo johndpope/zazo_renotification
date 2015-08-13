@@ -1,12 +1,12 @@
 .status-wrapper.panel.panel-default
   - programs.each do |status_item|
     .panel-body.row
-      - status_item.each do |item|
-        .status-item.col-sm-2
-          span.count
+      - status_item.each_with_index do |item, index|
+        .status-item.col-sm-2 class=('col-sm-3' if index == 0)
+          span.text
             = item[:text]
             span.unit = item[:unit]
           - if item[:link]
-            = link_to item[:desc], item[:link], class: 'text'
+            = link_to item[:desc], item[:link], class: 'desc'
           - else
-            span.text = item[:desc]
+            span.desc = item[:desc]
