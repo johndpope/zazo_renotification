@@ -1,5 +1,5 @@
 defaults: &settings
-  version: 0.4.16
+  version: 0.5.0
   app_name: Zazo Renotification Service
 
   app_key: zazo-renotification
