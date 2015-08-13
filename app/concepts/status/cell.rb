@@ -5,34 +5,43 @@ class Status::Cell < Cell::Concept
 
   private
 
-  def status_items
-    [ active_programs,
-      messages_in_queue,
-      messages_sent,
-      messages_canceled ]
+  def programs
+    [total] + Program.all.map do |program|
+      status_items program
+    end
   end
 
-  def active_programs
-    { count: Program.active.count,
-      title: 'active',
-      unit:  'prg.' }
+  def total
+    [ { text: Program.active.count,
+        desc: 'active',
+        unit: 'prg.' },
+      messages_by_status(:in_queue),
+      messages_by_status(:sent),
+      messages_by_status(:canceled),
+      messages_by_status(:error) ]
   end
 
-  def messages_in_queue
-    { count: Message.in_queue.count,
-      title: 'in queue',
-      unit:  'msg.' }
+  def status_items(program)
+    [ title(program),
+      messages_by_status(:in_queue, program),
+      messages_by_status(:sent,     program),
+      messages_by_status(:canceled, program),
+      messages_by_status(:error,    program) ]
   end
 
-  def messages_sent
-    { count: Message.sent.count,
-      title: 'sent',
-      unit:  'msg.' }
+  def title(program)
+    { text: program.name,
+      desc: program.setting.started ? 'active' : 'inactive' }
   end
 
-  def messages_canceled
-    { count: Message.canceled.count,
-      title: 'canceled',
-      unit:  'msg.' }
+  def messages_by_status(status, program = nil)
+    { text: messages(program).send(status).count,
+      link: program ? eval("#{status}_program_messages_path(program)") : eval("#{status}_messages_path"),
+      desc: status.to_s,
+      unit: 'msg.' }
+  end
+
+  def messages(program)
+    program ? Message.where(program: program) : Message
   end
 end

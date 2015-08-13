@@ -1,6 +1,21 @@
 Rails.application.routes.draw do
+  #
+  # concerns
+  #
+
+  concern :messages do
+    resources :messages, only: [] do
+      get :in_queue, :sent, :error, :canceled, on: :collection
+    end
+  end
+
+  #
+  # resources
+  #
+
   resources :queries, only: [:index, :show]
   resources :templates, except: :show
+  concerns  :messages
 
   resources :programs, except: :show do
     get :options, :users, on: :member
@@ -10,6 +25,7 @@ Rails.application.routes.draw do
     resources :tests, only: [] do
       post :run, on: :member
     end
+    concerns :messages
   end
 
   resources :settings, only: [:update] do
@@ -19,6 +35,10 @@ Rails.application.routes.draw do
   resources :sessions, only: [:index, :create] do
     get :reset, on: :collection
   end
+
+  #
+  # other stuff
+  #
 
   root to: 'dashboard#index'
 
