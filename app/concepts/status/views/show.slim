@@ -1,11 +1,12 @@
 .status-wrapper.panel.panel-default
-  .panel-body.row
-    - status_items.each do |item|
-      .status-item.col-sm-2
-        span.count
-          = item[:count]
-          span.unit = item[:unit]
-        - if item[:link]
-          = link_to item[:title], item[:link], class: 'text'
-        - else
-          span.text = item[:title]
+  - programs.each do |status_item|
+    .panel-body.row
+      - status_item.each do |item|
+        .status-item.col-sm-2
+          span.count
+            = item[:text]
+            span.unit = item[:unit]
+          - if item[:link]
+            = link_to item[:desc], item[:link], class: 'text'
+          - else
+            span.text = item[:desc]
