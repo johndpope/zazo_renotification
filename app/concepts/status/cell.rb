@@ -14,19 +14,19 @@ class Status::Cell < Cell::Concept
   def total
     [ { text: Program.active.count,
         desc: 'active',
-        unit: 'prg.'},
-      messages_in_queue,
-      messages_sent,
-      messages_canceled,
-      messages_error ]
+        unit: 'prg.' },
+      messages_by_status(:in_queue),
+      messages_by_status(:sent),
+      messages_by_status(:canceled),
+      messages_by_status(:error) ]
   end
 
   def status_items(program)
     [ title(program),
-      messages_in_queue(program),
-      messages_sent(program),
-      messages_canceled(program),
-      messages_error(program) ]
+      messages_by_status(:in_queue, program),
+      messages_by_status(:sent,     program),
+      messages_by_status(:canceled, program),
+      messages_by_status(:error,    program) ]
   end
 
   def title(program)
@@ -34,31 +34,10 @@ class Status::Cell < Cell::Concept
       desc: program.setting.started ? 'active' : 'inactive' }
   end
 
-  def messages_in_queue(program = nil)
-    { text: messages(program).in_queue.count,
-      link: program ? in_queue_program_messages_path(program) : in_queue_messages_path,
-      desc: 'in queue',
-      unit: 'msg.' }
-  end
-
-  def messages_sent(program = nil)
-    { text: messages(program).sent.count,
-      link: program ? sent_program_messages_path(program) : sent_messages_path,
-      desc: 'sent',
-      unit: 'msg.' }
-  end
-
-  def messages_canceled(program = nil)
-    { text: messages(program).canceled.count,
-      link: program ? canceled_program_messages_path(program) : canceled_messages_path,
-      desc: 'canceled',
-      unit: 'msg.' }
-  end
-
-  def messages_error(program = nil)
-    { text: messages(program).error.count,
-      link: program ? error_program_messages_path(program) : error_messages_path,
-      desc: 'error',
+  def messages_by_status(status, program = nil)
+    { text: messages(program).send(status).count,
+      link: program ? eval("#{status}_program_messages_path(program)") : eval("#{status}_messages_path"),
+      desc: status.to_s,
       unit: 'msg.' }
   end
 

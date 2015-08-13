@@ -4,8 +4,7 @@ table.table.table-striped
       th Id
       th Order
       th Target
-      th Title
-      th Body
+      th Title / Body
       th Send at
   tbody
     - messages.each do |msg|
@@ -13,6 +12,5 @@ table.table.table-striped
         td = msg.id
         td = msg.order
         td = msg.target
-        td = msg.title
-        td = msg.body
+        td = "#{msg.title} / #{msg.body}"
         td = msg.send_at
