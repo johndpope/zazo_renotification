@@ -1,8 +1,8 @@
 - content_for(:title) { "#{@status.capitalize} messages" }
 
 h2.page-title
-  = "#{@status} messages"
-  = " by #{@program.name} program " if @program
+  = "#{@status} messages "
+  = "by #{@program.name} program " if @program
   = "[#{@messages.size} rows]"
 
 == concept 'message/cell/table', @messages
