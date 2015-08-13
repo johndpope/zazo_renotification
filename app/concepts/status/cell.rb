@@ -6,9 +6,19 @@ class Status::Cell < Cell::Concept
   private
 
   def programs
-    Program.all.map do |program|
+    [total] + Program.all.map do |program|
       status_items program
     end
+  end
+
+  def total
+    [ { text: Program.active.count,
+        desc: 'active',
+        unit: 'prg.'},
+      messages_in_queue,
+      messages_sent,
+      messages_canceled,
+      messages_error ]
   end
 
   def status_items(program)
@@ -24,35 +34,35 @@ class Status::Cell < Cell::Concept
       desc: program.setting.started ? 'active' : 'inactive' }
   end
 
-  def messages_in_queue(program)
+  def messages_in_queue(program = nil)
     { text: messages(program).in_queue.count,
-      link: in_queue_program_messages_path(program),
+      link: program ? in_queue_program_messages_path(program) : in_queue_messages_path,
       desc: 'in queue',
       unit: 'msg.' }
   end
 
-  def messages_sent(program)
+  def messages_sent(program = nil)
     { text: messages(program).sent.count,
-      link: sent_program_messages_path(program),
+      link: program ? sent_program_messages_path(program) : sent_messages_path,
       desc: 'sent',
       unit: 'msg.' }
   end
 
-  def messages_canceled(program)
+  def messages_canceled(program = nil)
     { text: messages(program).canceled.count,
-      link: canceled_program_messages_path(program),
+      link: program ? canceled_program_messages_path(program) : canceled_messages_path,
       desc: 'canceled',
       unit: 'msg.' }
   end
 
-  def messages_error(program)
+  def messages_error(program = nil)
     { text: messages(program).error.count,
-      link: error_program_messages_path(program),
+      link: program ? error_program_messages_path(program) : error_messages_path,
       desc: 'error',
       unit: 'msg.' }
   end
 
   def messages(program)
-    Message.where program: program
+    program ? Message.where(program: program) : Message
   end
 end
