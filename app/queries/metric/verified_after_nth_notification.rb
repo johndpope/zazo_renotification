@@ -14,7 +14,9 @@ class Metric::VerifiedAfterNthNotification < Metric::Base
   private
 
   def messages_per_user
-    messages = Message.order(:send_at).pluck(:target, :send_at)
+    messages = Message
+    messages = messages.where(program_id: options[:program_id].to_i) if options[:program_id]
+    messages = messages.order(:send_at).pluck(:target, :send_at)
     messages.each_with_object({}) do |message, memo|
       memo[message[0]] ||= []
       memo[message[0]] << message[1]
