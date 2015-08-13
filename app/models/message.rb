@@ -14,8 +14,16 @@ class Message < ActiveRecord::Base
   scope :in_queue, -> { where status: nil }
   scope :sent,     -> { where status: :sent }
   scope :canceled, -> { where status: :canceled }
+  scope :error,    -> { where status: :error }
 
   def kind
     delayed_template.template.kind
+  end
+
+  def order
+    current_dt_id = delayed_template.id
+    program.delayed_templates.order_by_delay.index do |dt|
+      dt.id == current_dt_id
+    end + 1
   end
 end

@@ -5,6 +5,12 @@ class Metric::Base
     :default
   end
 
+  attr_reader :options
+
+  def initialize(options = {})
+    @options = options
+  end
+
   def execute
     {}
   end

@@ -1,5 +1,6 @@
-.panel.panel-default
+.metric.panel.panel-default
   .panel-heading
-    h3.panel-title = title
+    h3.panel-title
+      == "#{title} [ #{program_links} ]"
   .panel-body
     div role="tabpanel" = yield
