@@ -11,6 +11,6 @@ table.table.table-striped
       tr
         td = msg.id
         td = msg.order
-        td = msg.target
+        td = link_to msg.target, user_path(msg.target)
         td = "#{msg.title} / #{msg.body}"
         td = msg.send_at
