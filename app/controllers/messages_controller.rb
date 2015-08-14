@@ -23,7 +23,7 @@ class MessagesController < ApplicationController
     @status   = status
     @messages = Message
     @messages = @messages.where(program: @program) if @program
-    @messages = @messages.send status
+    @messages = @messages.send(status).order(:id)
     render 'by_status'
   end
 

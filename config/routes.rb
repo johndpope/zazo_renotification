@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :queries, only: [:index, :show]
   resources :templates, except: :show
+  resources :users, only: [:show]
   concerns  :messages
 
   resources :programs, except: :show do

@@ -10,7 +10,7 @@ table.table.table-striped
     - model.each do |row|
       tr
         td = user_link row['id']
-        td = row['mkey']
+        td = link_to row['mkey'], user_path(row['mkey'])
         td = row['user']
         td = row['friend']
         td = parse_time row['time_zero']
