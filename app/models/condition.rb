@@ -5,4 +5,10 @@ class Condition < ActiveRecord::Base
 
   validates :type, presence: true
   validates :program, presence: true
+
+  def self.nested
+    CONDITIONS.map do |key|
+      Classifier.new([:condition, key]).klass
+    end
+  end
 end

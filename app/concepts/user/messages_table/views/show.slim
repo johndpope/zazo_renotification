@@ -1,16 +1,18 @@
-table.table.table-striped
+table.messages.table.table-striped
   thead
     tr
       th Id
       th Order
-      th Target
+      th Program
       th Title / Body
+      th Status
       th Send at
   tbody
     - messages.each do |msg|
-      tr
+      tr.message class=msg.status
         td = msg.id
         td = msg.order
-        td = link_to msg.target, user_path(msg.target)
+        td = msg.program.name
         td = "#{msg.title} / #{msg.body}"
+        td.status = msg.status
         td = msg.send_at
