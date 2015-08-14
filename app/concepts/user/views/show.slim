@@ -26,7 +26,7 @@
             td = cond[:result]
 
 h2.page-title Messages
-table.table.table-striped
+table.messages.table.table-striped
   thead
     tr
       th Id
@@ -36,9 +36,9 @@ table.table.table-striped
       th Send at
   tbody
     - messages.each do |msg|
-      tr
+      tr.message class=msg.status
         td = msg.id
         td = msg.order
         td = "#{msg.title} / #{msg.body}"
-        td = msg.status
+        td.status = msg.status
         td = msg.send_at
