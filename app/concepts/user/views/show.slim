@@ -31,6 +31,7 @@ table.messages.table.table-striped
     tr
       th Id
       th Order
+      th Program
       th Title / Body
       th Status
       th Send at
@@ -39,6 +40,7 @@ table.messages.table.table-striped
       tr.message class=msg.status
         td = msg.id
         td = msg.order
+        td = msg.program.name
         td = "#{msg.title} / #{msg.body}"
         td.status = msg.status
         td = msg.send_at
