@@ -1,0 +1,44 @@
+.row
+  .col-sm-6
+    h2.page-title Attributes
+    table.table.table-striped
+      thead
+        tr
+          th Attr
+          th Value
+      tbody
+        - attributes.each do |attr|
+          tr
+            td = attr
+            td = send attr
+
+  .col-sm-6
+    h2.page-title Conditions
+    table.table.table-striped
+      thead
+        tr
+          th Name
+          th Result
+      tbody
+        - conditions.each do |cond|
+          tr
+            td = cond[:name]
+            td = cond[:result]
+
+h2.page-title Messages
+table.table.table-striped
+  thead
+    tr
+      th Id
+      th Order
+      th Title / Body
+      th Status
+      th Send at
+  tbody
+    - messages.each do |msg|
+      tr
+        td = msg.id
+        td = msg.order
+        td = "#{msg.title} / #{msg.body}"
+        td = msg.status
+        td = msg.send_at

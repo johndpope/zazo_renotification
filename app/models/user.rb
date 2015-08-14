@@ -24,7 +24,6 @@ class User
   def set_attrs
     attrs  = %i{id status first_name last_name email mobile_number device_platform}
     values = StatisticsApi.new(user: mkey, attrs: attrs).attributes
-    binding.remote_pry
     attrs.each do |attr|
       instance_variable_set "@#{attr}".to_sym, values[attr.to_s]
     end
