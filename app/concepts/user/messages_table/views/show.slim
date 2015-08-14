@@ -1,0 +1,18 @@
+table.messages.table.table-striped
+  thead
+    tr
+      th Id
+      th Order
+      th Program
+      th Title / Body
+      th Status
+      th Send at
+  tbody
+    - messages.each do |msg|
+      tr.message class=msg.status
+        td = msg.id
+        td = msg.order
+        td = msg.program.name
+        td = "#{msg.title} / #{msg.body}"
+        td.status = msg.status
+        td = msg.send_at
