@@ -1,9 +1,8 @@
 class User
   class NotFound < StandardError; end
 
-  attr_reader :id, :mkey, :status, :first_name, :last_name,
-              :email, :mobile_number, :device_platform,
-              :inviter, :invited_at, :messages, :conditions
+  attr_reader :id, :mkey, :status, :first_name, :last_name, :mobile_number,
+              :device_platform, :inviter, :invited_at, :messages, :conditions
 
   def self.find(mkey)
     self.new mkey
@@ -22,7 +21,7 @@ class User
   private
 
   def set_attrs
-    attrs  = %i{id status first_name last_name email mobile_number device_platform}
+    attrs  = %i{id status first_name last_name mobile_number device_platform}
     values = StatisticsApi.new(user: mkey, attrs: attrs).attributes
     attrs.each do |attr|
       instance_variable_set "@#{attr}".to_sym, values[attr.to_s]
