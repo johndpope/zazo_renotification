@@ -12,7 +12,7 @@ class Metric::VerifiedAfterNthNotification < Metric::Base
       percent = data[key].to_f / @total_users * 100
       total  += percent
       memo[vx_title(key)] = percent.round(2)
-    end.merge({total: total.round(2)})
+    end.merge({'total' => total.round(2)}).sort.to_h
   end
 
   private
