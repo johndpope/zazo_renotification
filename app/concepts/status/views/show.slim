@@ -2,7 +2,7 @@
   - programs.each do |status_item|
     .panel-body.row
       - status_item.each_with_index do |item, index|
-        .status-item.col-sm-2 class=('col-sm-3' if index == 0)
+        .status-item.col-sm-2
           span.text
             = item[:text]
             span.unit = item[:unit]

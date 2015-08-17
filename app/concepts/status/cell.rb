@@ -15,6 +15,7 @@ class Status::Cell < Cell::Concept
     [ { text: Program.active.count,
         desc: 'active',
         unit: 'prg.' },
+      total_users,
       messages_by_status(:in_queue),
       messages_by_status(:sent),
       messages_by_status(:canceled),
@@ -23,6 +24,7 @@ class Status::Cell < Cell::Concept
 
   def status_items(program)
     [ title(program),
+      total_users(program),
       messages_by_status(:in_queue, program),
       messages_by_status(:sent,     program),
       messages_by_status(:canceled, program),
@@ -32,6 +34,11 @@ class Status::Cell < Cell::Concept
   def title(program)
     { text: program.name,
       desc: program.setting.started ? 'active' : 'inactive' }
+  end
+
+  def total_users(program = nil)
+    { text: messages(program).distinct.count(:target),
+      desc: 'users' }
   end
 
   def messages_by_status(status, program = nil)
