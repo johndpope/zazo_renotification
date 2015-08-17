@@ -28,12 +28,23 @@ class Metric::VerifiedAfterNthNotification < Metric::Base
     data = messages_per_user
     @total_users = data.size
     data.keys.each_with_object([]) do |user, memo|
-      data[user].each_with_index do |message, index|
+      data[user].each_with_index do |sent_at, index|
+        if index == 0
+          memo << user_data_row(user, 0, boundary_date(:-), sent_at)
+        end
         next_sent_at = data[user][index + 1]
-        next_sent_at = Time.now + 10.years if next_sent_at.nil?
-        memo << { user_id: user,    msg_order: index + 1,
-                  sent_at: message, next_sent_at: next_sent_at }
+        next_sent_at = boundary_date(:+) if next_sent_at.nil?
+        memo << user_data_row(user, index + 1, sent_at, next_sent_at)
       end
     end
+  end
+
+  def user_data_row(user, order, sent_at, next_sent_at)
+    { user_id: user,    msg_order: order,
+      sent_at: sent_at, next_sent_at: next_sent_at }
+  end
+
+  def boundary_date(sign)
+    Time.now.send sign, 10.years
   end
 end
