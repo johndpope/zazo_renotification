@@ -8,7 +8,7 @@ class Metric::VerifiedAfterNthNotification < Metric::Base
     return {} if data.empty?
     data = EventsApi.new(users_data: data).metric :verified_after_nth_notification
     data.keys.each_with_object({}) do |key, memo|
-      memo[key.to_i] = data[key].to_f / @total_users * 100
+      memo[vx_title(key)] = (data[key].to_f / @total_users * 100).round 2
     end
   end
 
@@ -46,5 +46,9 @@ class Metric::VerifiedAfterNthNotification < Metric::Base
 
   def boundary_date(sign)
     Time.now.send sign, 10.years
+  end
+
+  def vx_title(key)
+    key.to_i == 0 ? 'before 1st' : "after #{key.to_i.ordinalize}"
   end
 end
