@@ -38,8 +38,7 @@ class Status::Cell < Cell::Concept
 
   def total_users(program = nil)
     { text: messages(program).distinct.count(:target),
-      desc: 'total',
-      unit: 'usr.' }
+      desc: 'users' }
   end
 
   def messages_by_status(status, program = nil)
