@@ -7,12 +7,15 @@ class Metric::VerifiedAfterNthNotification < Metric::Base
     data = users_data
     return {} if data.empty?
     data = EventsApi.new(users_data: data).metric :verified_after_nth_notification
-    total = 0.0
+    total = { verified: 0, percent: 0.0 }
     data.keys.each_with_object({}) do |key, memo|
       percent = data[key].to_f / @total_users * 100
-      total  += percent
-      memo[vx_title(key)] = percent.round(2)
-    end.merge({'total' => total.round(2)}).sort.to_h
+      total[:verified] += data[key].to_i
+      total[:percent]  += percent
+      memo["#{vx_title(key)} [#{data[key]}]"] = percent.round(2)
+    end.merge({
+      "total [#{total[:verified]}]" => total[:percent].round(2)
+    }).sort.to_h
   end
 
   private
