@@ -1,0 +1,3 @@
+class Manage::LocalizedTemplates
+
+end

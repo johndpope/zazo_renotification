@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150731145930) do
+ActiveRecord::Schema.define(version: 20150820174413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,16 @@ ActiveRecord::Schema.define(version: 20150731145930) do
 
   add_index "delayed_templates", ["program_id"], name: "index_delayed_templates_on_program_id", using: :btree
   add_index "delayed_templates", ["template_id"], name: "index_delayed_templates_on_template_id", using: :btree
+
+  create_table "localized_templates", force: :cascade do |t|
+    t.text     "title"
+    t.text     "body"
+    t.integer  "template_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "localized_templates", ["template_id"], name: "index_localized_templates_on_template_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
     t.string   "target"
@@ -95,6 +105,7 @@ ActiveRecord::Schema.define(version: 20150731145930) do
   add_foreign_key "conditions", "programs"
   add_foreign_key "delayed_templates", "programs"
   add_foreign_key "delayed_templates", "templates"
+  add_foreign_key "localized_templates", "templates"
   add_foreign_key "messages", "delayed_templates"
   add_foreign_key "messages", "programs"
   add_foreign_key "queries", "programs"
