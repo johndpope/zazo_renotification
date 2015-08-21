@@ -12,6 +12,7 @@
         span.caret
       ul.dropdown-menu
         li = link_to 'edit', edit_template_path(model)
+        li = link_to 'add localized', new_template_localized_template_path(model)
         - if @options[:allow_destroy]
           li = link_to 'destroy', model, data: { confirm: 'Are you sure?' }, method: :delete
 

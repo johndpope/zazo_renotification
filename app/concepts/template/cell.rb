@@ -2,8 +2,22 @@ class Template::Cell < Cell::Concept
   include ActionView::Helpers::CaptureHelper
 
   class Localized < Cell::Concept
+    property :locale, :title, :body
+
     def show
       render
+    end
+
+    private
+
+    def field(method)
+      prefix = content_tag :b, method.capitalize
+      content_tag :p, "#{prefix}: #{send method}"
+    end
+
+    def preview
+      template = Template.new title: title, body: body
+      ::Template::Compiler.new(template).preview
     end
   end
 
