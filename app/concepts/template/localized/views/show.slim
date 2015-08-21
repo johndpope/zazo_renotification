@@ -6,5 +6,5 @@
   .actions
     b Actions:&nbsp;
     = link_to 'Edit', edit_template_localized_template_path(model.template, model)
-    |&nbsp;|&nbsp;
+    | &nbsp;|&nbsp;
     = link_to 'Destroy', [model.template, model], data: { confirm: 'Are you sure?' }, method: :delete

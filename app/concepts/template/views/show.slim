@@ -23,4 +23,10 @@
     .tab-pane id='preview-#{id}'
       p == preview
     .tab-pane id='localized-#{id}'
-      p == concept('template/cell/localized', collection: localized)
+      - if localized.empty?
+        p
+          | There are no localized templates.&nbsp;
+          = link_to 'Create one', new_template_localized_template_path(model)
+          | .
+      - else
+        p == concept('template/cell/localized', collection: localized)
