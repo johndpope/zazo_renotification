@@ -18,7 +18,9 @@ Rails.application.routes.draw do
   concerns  :messages
 
   resources :templates, except: :show do
-    resources :localized, only: [:new, :create, :edit, :update, :destroy], module: 'templates'
+    resources :localized_templates,
+      only: [:new, :create, :edit, :update, :destroy],
+      module: 'templates', path: 'localized'
   end
 
   resources :programs, except: :show do

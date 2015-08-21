@@ -4,6 +4,7 @@ class Template < ActiveRecord::Base
   acts_as_paranoid
 
   has_many :delayed_templates
+  has_many :localized_templates
 
   after_destroy :set_name_prefix
 
@@ -13,16 +14,9 @@ class Template < ActiveRecord::Base
   validates :kind, presence: true, inclusion: { in: ALLOWED_TYPES, message: "%{value} is not a valid type" }
   validates :name, presence: true, uniqueness: true, length: { minimum: 3 }
   validates :body, presence: true
-  validate  :template_syntax
+  validates_with SyntaxValidator
 
   private
-
-  def template_syntax
-    [:title, :body].each do |key|
-      status, error = Compiler.new(self).validate key
-      errors.add(key, error) unless status
-    end
-  end
 
   def set_name_prefix
     update_attributes name: "#{self.name} [deleted]"

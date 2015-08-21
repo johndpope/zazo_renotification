@@ -1,8 +1,9 @@
-class Templates::LocalizedController < ApplicationController
+class Templates::LocalizedTemplatesController < ApplicationController
   before_action :set_template
-  before_action :set_localized_template
+  before_action :set_localized_template, only: [:edit, :update, :destroy]
 
   def new
+    @localized = LocalizedTemplate.new
   end
 
   def edit
@@ -12,6 +13,7 @@ class Templates::LocalizedController < ApplicationController
     if service.create
       redirect_to templates_url, notice: "Localized template for #{@template.name} was successfully created"
     else
+      @localized = service.model
       render :new
     end
   end
@@ -20,6 +22,7 @@ class Templates::LocalizedController < ApplicationController
     if service.update
       redirect_to templates_url, notice: "Localized template for #{@template.name} was successfully updated"
     else
+      @localized = service.model
       render :edit
     end
   end
@@ -32,7 +35,11 @@ class Templates::LocalizedController < ApplicationController
   private
 
   def service
-    Manage::LocalizedTemplate.new @localized, localized_template_params
+    @service ||= Manage::LocalizedTemplates.new({
+      parent: @template,
+      model:  @localized,
+      params: localized_template_params
+    })
   end
 
   def set_template
@@ -40,11 +47,7 @@ class Templates::LocalizedController < ApplicationController
   end
 
   def set_localized_template
-    @localized = if params[:id]
-      LocalizedTemplate.find params[:id]
-    else
-      LocalizedTemplate.new
-    end
+    @localized = LocalizedTemplate.find params[:id]
   end
 
   def localized_template_params

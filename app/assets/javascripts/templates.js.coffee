@@ -6,7 +6,7 @@ class Zazo.Templates.CharactersUsed
 
   container = '.characters_used'
   feedback  = '.characters_count'
-  textarea  = '[name="template[body]"]'
+  textarea  = '.x-template-body >> textarea'
 
   updateFeedback = ->
     setFeedback getLength $(textarea).val()

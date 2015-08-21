@@ -1,6 +1,12 @@
 class Template::Cell < Cell::Concept
   include ActionView::Helpers::CaptureHelper
 
+  class Localized < Cell::Concept
+    def show
+      render
+    end
+  end
+
   property :id, :kind, :name
 
   def initialize(*)
@@ -26,6 +32,10 @@ class Template::Cell < Cell::Concept
   def body
     prefix = content_tag :b, 'Body'
     "#{prefix}: #{model.body}"
+  end
+
+  def localized
+    model.localized_templates
   end
 
   def preview

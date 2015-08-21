@@ -4,6 +4,8 @@
       a href='#overview-#{id}' data-toggle='tab' = "#{name} [#{kind}]"
     li
       a href='#preview-#{id}' data-toggle='tab' preview
+    li
+      a href='#localized-#{id}' data-toggle='tab' localized
     li.dropdown
       a.dropdown-toggle data-toggle='dropdown' href='#'
         | actions
@@ -19,3 +21,5 @@
       p == body
     .tab-pane id='preview-#{id}'
       p == preview
+    .tab-pane id='localized-#{id}'
+      p == concept('template/cell/localized', collection: localized)
