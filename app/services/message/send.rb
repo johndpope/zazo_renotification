@@ -7,7 +7,7 @@ class Message::Send
 
   def do
     unless check_program_exist
-      WriteLog.debug self, "At #{Time.now} program was already soft-deleted. Message: #{message.inspect}."
+      WriteLog.info self, "At #{Time.now} program was already soft-deleted. Message: #{message.inspect}."
       set_status :canceled
       return
     end
@@ -18,7 +18,7 @@ class Message::Send
     else
       set_status :canceled
     end
-    WriteLog.debug self, "At #{Time.now} was trying to send: #{message.inspect}."
+    WriteLog.info self, "At #{Time.now} was trying to send: #{message.inspect}."
   end
 
   private
