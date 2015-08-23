@@ -32,7 +32,7 @@ class Template::Localization
   def user_country
     StatisticsApi.new(user: user_mkey).country['country']
   rescue Faraday::ClientError => e
-    WriteLog.debug e, "StatisticsApi.new(user: #{user_mkey}).country => #{e.response[:body]}"
+    WriteLog.faraday_error self, e
     nil
   end
 

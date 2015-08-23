@@ -6,7 +6,8 @@ class User
 
   def self.find(mkey)
     self.new mkey
-  rescue Faraday::ClientError
+  rescue Faraday::ClientError => e
+    WriteLog.faraday_error self, e
     raise NotFound, "User with mkey '#{mkey}' not found"
   end
 
