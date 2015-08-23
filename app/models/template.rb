@@ -16,6 +16,10 @@ class Template < ActiveRecord::Base
   validates :body, presence: true
   validates_with SyntaxValidator
 
+  def locales
+    localized_templates.pluck(:locale).map(&:to_sym)
+  end
+
   private
 
   def set_name_prefix

@@ -7,6 +7,7 @@ class Manage::Message
     @program   = options[:program]
     @time_zero = init_time_zero options[:time_zero]
     @compiler  = Template::Compiler.new delayed_template.template
+    # Template::Localization.new(data.user.mkey, delayed_template.template).select => template
     @compiler.compile data
   end
 
