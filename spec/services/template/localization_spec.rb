@@ -6,6 +6,7 @@ RSpec.describe Template::Localization do
 
   describe '#select' do
     subject { instance.select }
+    before(:each) { set_production_env }
 
     context 'when user from russia' do
       use_vcr_cassette 'services/template/user_from_russia', api_base_urls

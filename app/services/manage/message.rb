@@ -6,8 +6,7 @@ class Manage::Message
     @data      = options[:data]
     @program   = options[:program]
     @time_zero = init_time_zero options[:time_zero]
-    @compiler  = Template::Compiler.new delayed_template.template
-    # Template::Localization.new(data.user.mkey, delayed_template.template).select => template
+    @compiler  = Template::Compiler.new localized
     @compiler.compile data
   end
 
@@ -33,5 +32,12 @@ class Manage::Message
     from_data = data.time_zero
     next_time = from_data + delayed_template.delay_hours.hours
     Time.now < next_time ? from_data : Time.now
+  end
+
+  def localized
+    Template::Localization.new(
+      data.user.mkey,
+      delayed_template.template
+    ).select
   end
 end
