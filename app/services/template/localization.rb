@@ -8,8 +8,7 @@ class Template::Localization
   end
 
   def select
-    country = user_country
-    @locale = user_locale(country) if country
+    @locale = user_locale
     return template if default_locale?
 
     localized = localized_by_locale
@@ -21,11 +20,12 @@ class Template::Localization
 
   private
 
-  def user_locale(country)
+  def user_locale
+    country = user_country
     template.locales.each do |loc|
       allowed = LocalizedTemplate::ALLOWED_LOCALES
       return loc if allowed[loc].find { |c| c == country }
-    end
+    end if country
     :default
   end
 
