@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: <%= statistics_api_base_url %>/api/v1/fetch/country?user=xxxxxxxxxxxxxxxxxxxx
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 422
+      message: Unprocessable Entity
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json; charset=utf-8
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - c8fc7b98-d8eb-44b6-8d20-5f8bcbd2ec8a
+      X-Runtime:
+      - '0.016363'
+      Set-Cookie:
+      - __profilin=p%3Dt; path=/
+      - __profilin=p%3Dt; path=/
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"errors":"{:user=\u003e[\"can''t be blank\"]}"}'
+    http_version: 
+  recorded_at: Sun, 23 Aug 2015 15:16:12 GMT
+recorded_with: VCR 2.9.3

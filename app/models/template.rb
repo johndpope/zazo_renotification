@@ -4,25 +4,23 @@ class Template < ActiveRecord::Base
   acts_as_paranoid
 
   has_many :delayed_templates
+  has_many :localized_templates
 
   after_destroy :set_name_prefix
 
   scope :by_type, -> (type) { where kind: type }
   scope :order_by_updated_at, -> { order updated_at: :desc }
 
-  validates :kind, presence: true, inclusion: { in: ALLOWED_TYPES, message: "%{value} is not a valid type" }
+  validates :kind, presence: true, inclusion: { in: ALLOWED_TYPES, message: '%{value} is not a valid type' }
   validates :name, presence: true, uniqueness: true, length: { minimum: 3 }
   validates :body, presence: true
-  validate  :template_syntax
+  validates_with SyntaxValidator
+
+  def locales
+    localized_templates.pluck(:locale).map(&:to_sym)
+  end
 
   private
-
-  def template_syntax
-    [:title, :body].each do |key|
-      status, error = Compiler.new(self).validate key
-      errors.add(key, error) unless status
-    end
-  end
 
   def set_name_prefix
     update_attributes name: "#{self.name} [deleted]"
