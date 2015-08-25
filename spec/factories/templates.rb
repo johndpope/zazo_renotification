@@ -4,7 +4,17 @@ FactoryGirl.define do
     title 'Hello!'
     body  '<%= friend.name %> sent you a message.'
 
-    factory(:sms_template)   { kind 'sms' }
-    factory(:email_template) { kind 'email' }
+    trait(:sms)   { kind 'sms' }
+    trait(:email) { kind 'email' }
+
+    trait :localized do
+      after :create do |template|
+        create :localized_template, template: template
+      end
+    end
+
+    factory :sms_template,       traits: [:sms]
+    factory :email_template,     traits: [:email]
+    factory :template_localized, traits: [:sms, :localized]
   end
 end

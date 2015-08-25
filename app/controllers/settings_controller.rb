@@ -23,7 +23,7 @@ class SettingsController < ApplicationController
   private
 
   def setting_params
-    params.require(:setting).permit(:started)
+    params.require(:setting).permit(:started, :use_localized)
   end
 
   def queries_params

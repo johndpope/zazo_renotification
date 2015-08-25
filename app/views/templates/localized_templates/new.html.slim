@@ -1,0 +1,4 @@
+- content_for(:title) { 'New localized template' }
+- content_for(:page_specific_scripts) { javascript_include_tag 'templates' }
+
+== render 'form', title: 'New localized template'

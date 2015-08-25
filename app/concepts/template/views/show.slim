@@ -4,12 +4,15 @@
       a href='#overview-#{id}' data-toggle='tab' = "#{name} [#{kind}]"
     li
       a href='#preview-#{id}' data-toggle='tab' preview
+    li
+      a href='#localized-#{id}' data-toggle='tab' localized
     li.dropdown
       a.dropdown-toggle data-toggle='dropdown' href='#'
         | actions
         span.caret
       ul.dropdown-menu
         li = link_to 'edit', edit_template_path(model)
+        li = link_to 'add localized', new_template_localized_template_path(model)
         - if @options[:allow_destroy]
           li = link_to 'destroy', model, data: { confirm: 'Are you sure?' }, method: :delete
 
@@ -19,3 +22,12 @@
       p == body
     .tab-pane id='preview-#{id}'
       p == preview
+
+    .tab-pane id='localized-#{id}'
+      - if localized.empty?
+        p
+          | There are no localized templates.&nbsp;
+          = link_to 'Create one', new_template_localized_template_path(model)
+          | .
+      - else
+        p == concept('template/cell/localized', collection: localized)

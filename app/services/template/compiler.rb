@@ -39,7 +39,7 @@ class Template::Compiler
   def preview_data
     UserData.new({
       id: 1967,
-      mkey: SecureRandom.hex,
+      mkey: :preview,
       user: 'David Gilmour',
       friend: 'Syd Barrett',
       time_zero: '1967-12-22 15:00:00 UTC'

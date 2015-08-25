@@ -14,9 +14,14 @@ Rails.application.routes.draw do
   #
 
   resources :queries, only: [:index, :show]
-  resources :templates, except: :show
   resources :users, only: [:show]
   concerns  :messages
+
+  resources :templates, except: :show do
+    resources :localized_templates,
+      only: [:new, :create, :edit, :update, :destroy],
+      module: 'templates', path: 'localized'
+  end
 
   resources :programs, except: :show do
     get :options, :users, on: :member

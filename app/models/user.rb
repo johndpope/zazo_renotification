@@ -1,18 +1,21 @@
 class User
   class NotFound < StandardError; end
 
-  attr_reader :id, :mkey, :status, :first_name, :last_name, :mobile_number,
-              :device_platform, :inviter, :invited_at, :messages, :conditions
+  attr_reader :id, :mkey, :status, :first_name, :last_name,
+              :mobile_number, :country, :device_platform,
+              :inviter, :invited_at, :messages, :conditions
 
   def self.find(mkey)
     self.new mkey
-  rescue Faraday::ClientError
+  rescue Faraday::ClientError => e
+    WriteLog.faraday_error self, e
     raise NotFound, "User with mkey '#{mkey}' not found"
   end
 
   def initialize(mkey)
     @mkey = mkey
     set_attrs
+    set_country
     set_inviter
     set_messages
     set_conditions
@@ -26,6 +29,10 @@ class User
     attrs.each do |attr|
       instance_variable_set "@#{attr}".to_sym, values[attr.to_s]
     end
+  end
+
+  def set_country
+    @country = StatisticsApi.new(user: mkey).country['country']
   end
 
   def set_inviter

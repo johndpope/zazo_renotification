@@ -14,6 +14,18 @@ class Program < ActiveRecord::Base
   scope :order_by_updated_at, -> { order updated_at: :desc }
   scope :active, -> { joins(:setting).where settings: { started: true } }
 
+  def execute
+    Execute.new(self).do
+  end
+
+  def use_localized?
+    setting.use_localized?
+  end
+
+  def started?
+    setting.started
+  end
+
   def grouped_delayed_templates
     Template::ALLOWED_TYPES.each_with_object({}) do |type, memo|
       memo[type] = self.delayed_templates.by_template_type(type).order_by_delay
@@ -27,6 +39,6 @@ class Program < ActiveRecord::Base
   end
 
   def set_setting
-    Setting.create started: false, program: self
+    Setting.create started: false, use_localized: false, program: self
   end
 end

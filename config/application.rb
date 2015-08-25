@@ -24,5 +24,6 @@ module ZazoRenotification
     config.autoload_paths << Rails.root.join('lib')
     config.autoload_paths += %W(#{config.root}/app/options)
     config.autoload_paths += %W(#{config.root}/app/queries)
+    config.autoload_paths += %W(#{config.root}/app/validators)
   end
 end

@@ -5,5 +5,6 @@ class StatisticsApi < BaseApi
   mapper filter:     { action: :get,  prefix: 'fetch/users' },
          fetch:      { action: :post, prefix: 'fetch/users' },
          attributes: { action: :get,  prefix: 'fetch/attributes' },
+         country:    { action: :get,  prefix: 'fetch/country' },
          default:    { action: :get,  prefix: '' }
 end

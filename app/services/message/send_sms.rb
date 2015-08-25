@@ -11,10 +11,10 @@ class Message::SendSms
     response = NotificationApi.new(mobile_number: mobile, body: message.body).sms
 
     if response['status'] == 'success'
-      WriteLog.debug self, "Message was sent to #{mobile} at #{Time.now}. Message: #{message.inspect}."
+      WriteLog.info self, "Message was sent to #{mobile} at #{Time.now}. Message: #{message.inspect}."
       true
     else
-      WriteLog.debug self, "Error occurred while sending message to #{mobile} at #{Time.now}. Errors: #{response['errors']}. Message: #{message.inspect}."
+      WriteLog.info self, "Error occurred while sending message to #{mobile} at #{Time.now}. Errors: #{response['errors']}. Message: #{message.inspect}."
       false
     end
   end
