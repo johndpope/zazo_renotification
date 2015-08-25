@@ -17,7 +17,7 @@ class User::Cell < Cell::Concept
 
   class AttributesTable < Cell::Concept
     ATTRIBUTES = [
-      :id, :mkey, :status, :first_name, :last_name,
+      :id, :mkey, :status, :first_name, :last_name, :country,
       :mobile_number, :device_platform, :inviter, :invited_at
     ]
 
