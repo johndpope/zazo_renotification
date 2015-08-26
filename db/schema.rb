@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825092042) do
+ActiveRecord::Schema.define(version: 20150826102036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,10 +83,11 @@ ActiveRecord::Schema.define(version: 20150825092042) do
 
   create_table "settings", force: :cascade do |t|
     t.boolean  "started"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.integer  "program_id"
     t.boolean  "use_localized"
+    t.boolean  "include_old_users"
   end
 
   add_index "settings", ["program_id"], name: "index_settings_on_program_id", using: :btree

@@ -7,9 +7,11 @@ class Message < ActiveRecord::Base
   validates :target, :body, :send_at, :program, :delayed_template, presence: true
   validates :status, inclusion: { in: ALLOWED_STATUSES, message: '%{value} is not a valid status' }, allow_nil: true
 
-  scope :in_progress_by_target, -> (target) { where(target: target).where(status: nil) }
-  scope :by_target_program, -> (target, program) { where(target: target).where(program: program) }
-  scope :time_passed, -> { where(status: nil).where('send_at < ?', Time.now) }
+  scope :in_progress,           -> { where status: nil }
+  scope :by_target,             -> (target) { where target: target }
+  scope :in_progress_by_target, -> (target) { in_progress.by_target(target) }
+  scope :by_target_program,     -> (target, program) { by_target(target).where(program: program) }
+  scope :time_passed,           -> { in_progress.where('send_at < ?', Time.now) }
 
   scope :in_queue, -> { where status: nil }
   scope :sent,     -> { where status: :sent }
