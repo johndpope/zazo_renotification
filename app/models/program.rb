@@ -11,20 +11,40 @@ class Program < ActiveRecord::Base
 
   validates :name, presence: true
 
+  #
+  # scopes
+  #
+
   scope :order_by_updated_at, -> { order updated_at: :desc }
   scope :active, -> { joins(:setting).where settings: { started: true } }
+
+  #
+  # services
+  #
 
   def execute
     Execute.new(self).do
   end
 
+  #
+  # settings
+  #
+
   def use_localized?
     setting.use_localized?
   end
 
-  def started?
-    setting.started
+  def allow_include_old_users?
+    setting.include_old_users?
   end
+
+  def started?
+    setting.started?
+  end
+
+  #
+  # selectors
+  #
 
   def grouped_delayed_templates
     Template::ALLOWED_TYPES.each_with_object({}) do |type, memo|
@@ -39,6 +59,11 @@ class Program < ActiveRecord::Base
   end
 
   def set_setting
-    Setting.create started: false, use_localized: false, program: self
+    Setting.create({
+      started:           false,
+      use_localized:     false,
+      include_old_users: false,
+      program: self
+    })
   end
 end

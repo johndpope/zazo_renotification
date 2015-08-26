@@ -5,7 +5,11 @@ RSpec.describe SettingsController, type: :controller, authenticate_with_http_bas
 
   let(:setting_params) do
     { id: program.setting.id,
-      setting: { started: true } }
+      setting: {
+        started: true,
+        use_localized: false,
+        include_old_users: true
+      } }
   end
 
   let(:queries_params) do
@@ -19,14 +23,24 @@ RSpec.describe SettingsController, type: :controller, authenticate_with_http_bas
   render_views
 
   describe 'PUT #update' do
+    let(:setting) { Setting.find(setting_params[:id]) }
+    let(:updated_program) { Program.find(program.id) }
     before { put :update, setting_params }
 
     it 'redirects to #options' do
       expect(subject).to redirect_to options_program_path program
     end
 
-    it 'set started to true' do
-      expect(Setting.find(setting_params[:id]).started).to eq true
+    context 'settings' do
+      it { expect(setting.started).to eq true }
+      it { expect(setting.use_localized).to eq false }
+      it { expect(setting.include_old_users).to eq true }
+    end
+
+    context 'program' do
+      it { expect(updated_program.started?).to eq true }
+      it { expect(updated_program.use_localized?).to eq false }
+      it { expect(updated_program.allow_include_old_users?).to eq true }
     end
   end
 
