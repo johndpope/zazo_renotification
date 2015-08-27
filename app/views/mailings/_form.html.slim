@@ -1,0 +1,16 @@
+- if defined? title
+  .row
+    .col-sm-6
+      h2.col-sm-offset-3.form-action-title= title
+
+= simple_form_for @form, url: run_mailings_path, html: { class: 'form-horizontal template-form' }, wrapper: :horizontal_form do |f|
+  .row = f.input :key,    wrapper_html: { class: 'col-sm-6' }
+  .row = f.input :text,   wrapper_html: { class: 'col-sm-6' }, input_html: { rows: 4 }, as: :text
+  .row = f.input :phones, wrapper_html: { class: 'col-sm-6' }, input_html: { rows: 20 }, as: :text
+
+  .row
+    .col-sm-6
+      .col-sm-offset-3
+        = f.submit 'Run Mailing', class: 'btn btn-sm btn-primary'
+        '&nbsp;
+        = link_to 'Back', mailings_path, class: 'btn btn-sm btn-default'
