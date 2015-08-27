@@ -1,1 +1,5 @@
-- content_for(:title) { 'Mailing' }
+- content_for(:title) { 'Mailings' }
+
+h2.page-title #{params[:id].capitalize} mailing [#{@entries.size}]
+
+== concept 'mailing/cell/table', @entries

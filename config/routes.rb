@@ -42,7 +42,7 @@ Rails.application.routes.draw do
     get :reset, on: :collection
   end
 
-  resources :mailings, only: [:index, :new] do
+  resources :mailings, only: [:index, :show, :new] do
     post :run, on: :collection
   end
 

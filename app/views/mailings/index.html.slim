@@ -1,5 +1,7 @@
 - content_for(:title) { 'Mailings' }
 
 h2.page-title
-  | Completed mailings
+  | Completed mailings [#{@entries.size}]
   = link_to 'New Mailing', new_mailing_path, class: 'btn btn-sm btn-primary pull-right'
+
+== concept 'mailing/cell/table', @entries

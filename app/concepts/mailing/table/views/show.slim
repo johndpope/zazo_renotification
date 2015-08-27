@@ -1,0 +1,11 @@
+table.table.table-striped
+  thead
+    tr
+      th Key
+      th Phone
+      th Message
+      th Status
+      th Created at
+  tbody
+    - entries.each do |entry|
+      = concept('mailing/cell', entry).row
