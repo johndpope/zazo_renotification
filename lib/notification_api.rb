@@ -1,7 +1,7 @@
 class NotificationApi < BaseApi
-  version    1
-  base_uri   Figaro.env.notification_api_base_url
-  auth_token Figaro.env.notification_api_token
+  version     1
+  base_uri    Figaro.env.notification_api_base_url
+  digest_auth APP_INFO['app_name_key'], Figaro.env.notification_api_token
 
   raise_errors false
 
