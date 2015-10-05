@@ -1,6 +1,7 @@
 defaults: &settings
-  version: 0.8.0
+  version: 0.9.0
   app_name: Zazo Renotification Service
+  app_name_key: renotification
 
   app_key: zazo-renotification
   app_env: zrn-production
