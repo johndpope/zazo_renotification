@@ -30,10 +30,7 @@ class Program::Execute
   end
 
   def messages_not_persisted?(user)
-    return false unless Message.in_progress_by_target(user).empty? &&
-      Message.by_target_program(user, program).empty?
-
-    program.allow_include_old_users? ||
-      Message.by_target(user).empty?
+    return false unless Message.in_progress_by_target(user).empty? && Message.by_target_program(user, program).empty?
+    program.allow_include_old_users? || Message.by_target(user).empty?
   end
 end

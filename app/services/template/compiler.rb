@@ -42,7 +42,8 @@ class Template::Compiler
       mkey: :preview,
       user: 'David Gilmour',
       friend: 'Syd Barrett',
-      time_zero: '1967-12-22 15:00:00 UTC'
+      time_zero: '1967-12-22 15:00:00 UTC',
+      connection_id: 2015
     })
   end
 end

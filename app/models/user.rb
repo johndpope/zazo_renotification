@@ -3,7 +3,8 @@ class User
 
   attr_reader :id, :mkey, :status, :first_name, :last_name,
               :mobile_number, :country, :device_platform,
-              :inviter, :invited_at, :messages, :conditions
+              :inviter, :invited_at, :messages, :conditions,
+              :connection_id
 
   def self.find(mkey)
     self.new mkey
@@ -16,9 +17,9 @@ class User
     @mkey = mkey
     set_attrs
     set_country
-    set_inviter
     set_messages
     set_conditions
+    set_inviter_and_connection
   end
 
   private
@@ -35,10 +36,11 @@ class User
     @country = StatisticsApi.new(user: mkey).country['country']
   end
 
-  def set_inviter
+  def set_inviter_and_connection
     data = StatisticsApi.new(users: [mkey]).filter(:specific_users)[0]
-    @inviter    = data['inviter']
-    @invited_at = data['time_zero']
+    @inviter       = data['inviter']
+    @invited_at    = data['time_zero']
+    @connection_id = data['connection_id']
   end
 
   def set_messages
