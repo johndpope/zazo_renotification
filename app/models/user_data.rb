@@ -1,7 +1,7 @@
 class UserData
   APP_NAME = 'Zazo'
 
-  attr_reader :user, :friend
+  attr_reader :user, :friend, :connection
 
   class Friend
     attr_reader :name
@@ -21,11 +21,20 @@ class UserData
     end
   end
 
+  class Connection
+    attr_reader :id
+
+    def initialize(params)
+      @id = params['connection_id']
+    end
+  end
+
   def initialize(params)
     params.stringify_keys!
-    @user      = User.new params
-    @friend    = Friend.new params
-    @time_zero = params['time_zero']
+    @user       = User.new params
+    @friend     = Friend.new params
+    @connection = Connection.new params
+    @time_zero  = params['time_zero']
   end
 
   def time_zero
@@ -33,7 +42,7 @@ class UserData
   end
 
   def app_link
-    "zazoapp.com/l/#{user.id}"
+    "zazoapp.com/l/#{connection.id}"
   end
 
   def bind

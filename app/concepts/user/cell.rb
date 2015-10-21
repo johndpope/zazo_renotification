@@ -18,7 +18,8 @@ class User::Cell < Cell::Concept
   class AttributesTable < Cell::Concept
     ATTRIBUTES = [
       :id, :mkey, :status, :first_name, :last_name, :country,
-      :mobile_number, :device_platform, :inviter, :invited_at
+      :mobile_number, :device_platform, :inviter, :invited_at,
+      :connection_id
     ]
 
     def show
@@ -29,6 +30,10 @@ class User::Cell < Cell::Concept
 
     def id
       link_to model.id, "#{Figaro.env.statistics_api_base_url}/users/#{model.id}"
+    end
+
+    def connection_id
+      link_to model.connection_id, "#{Figaro.env.statistics_api_base_url}/connections/#{model.connection_id}"
     end
 
     def value(attr)
