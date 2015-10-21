@@ -13,8 +13,6 @@ class Query::NotVerified < Query
   private
 
   def reduce(data)
-    data.select do |row|
-      Time.parse(row['time_zero']) >= @started_at
-    end
+    data.select { |row| Time.parse(row['time_zero']) >= @started_at }
   end
 end

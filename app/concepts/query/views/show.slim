@@ -10,6 +10,7 @@ table.table.table-striped
     - model.each do |row|
       tr
         td = user_link row['id']
+        td = connection_link row['connection_id']
         td = link_to row['mkey'], user_path(row['mkey'])
         td = row['user']
         td = row['friend']
