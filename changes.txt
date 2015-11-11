@@ -1,0 +1,2 @@
+v0.10.3
+:hammer: Fixed bug with localized templates

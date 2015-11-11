@@ -38,7 +38,7 @@ class Manage::Message
     if program.use_localized?
       Template::Localization.new(
         data.user.mkey,
-        delayed_template.template
+        delayed_template.template.reload
       ).select
     else
       delayed_template.template
