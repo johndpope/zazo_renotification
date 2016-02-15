@@ -5,7 +5,7 @@ RSpec.describe Query::NotVerified, type: :model do
   let(:instance) { described_class.new params: params }
   subject { instance.execute }
 
-  describe 'with arguments' do
+  describe '#execute' do
     context 'default' do
       let(:params) { nil }
       it { is_expected.to have_exactly(2984).items }
