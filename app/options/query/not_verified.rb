@@ -7,7 +7,9 @@ class Query::NotVerified < Query
 
   def execute
     init_params
-    normalize reduce StatisticsApi.new.filter :not_verified
+    # StatisticsApi.new.filter :not_verified
+    # todo: check specs
+    normalize reduce DataProviderApi.new.filter :non_verified
   end
 
   private

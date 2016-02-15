@@ -7,6 +7,8 @@ class Query::SpecificUsers < Query
 
   def execute
     init_params
-    normalize @users.empty? ? [] : StatisticsApi.new(users: @users).filter(:specific_users)
+    # StatisticsApi.new(users: @users).filter :specific_users
+    # todo: check specs
+    normalize @users.empty? ? [] : DataProviderApi.new(users: @users).filter(:specific_users)
   end
 end
