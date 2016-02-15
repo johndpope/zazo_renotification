@@ -25,8 +25,6 @@ class User
 
   def set_attrs
     attrs  = %i{id status first_name last_name mobile_number device_platform country}
-    # StatisticsApi.new(user: mkey, attrs: attrs).attributes
-    # todo: check specs
     values = DataProviderApi.new(user: mkey, attrs: attrs).query :attributes
     attrs.each do |attr|
       instance_variable_set "@#{attr}".to_sym, values[attr.to_s]
@@ -34,8 +32,6 @@ class User
   end
 
   def set_inviter_and_connection
-    # data = StatisticsApi.new(users: [mkey]).filter(:specific_users)
-    # todo: check specs
     data = DataProviderApi.new(users: [mkey]).filter(:specific_users)[0]
     @inviter       = data['inviter']
     @invited_at    = data['time_zero']

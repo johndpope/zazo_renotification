@@ -6,8 +6,6 @@ class Metric::VerifiedAfterNthNotification < Metric::Base
   def execute
     data = users_data
     return {} if data.empty?
-    # data = EventsApi.new(users_data: data).metric :verified_after_nth_notification
-    # todo: check specs
     data = DataProviderApi.new(users_data: data).metric :verified_after_nth_notification
     total = { verified: 0, percent: 0.0 }
     data.keys.each_with_object({}) do |key, memo|

@@ -14,8 +14,6 @@ class Query::NonMarketing < Query
       memo << row['invitee']
       memo << row['inviter']
     end.uniq
-    # StatisticsApi.new(users: users).fetch :ids_and_names
-    # todo: check specs
     DataProviderApi.new(users: users).query_post :ids_and_names
   end
 
