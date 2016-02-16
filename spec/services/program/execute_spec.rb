@@ -11,17 +11,17 @@ RSpec.describe Program::Execute do
     before { subject.do }
 
     it 'creates two messages for each user' do
-      expect(messages).to have_exactly(120).items
+      expect(messages).to have_exactly(2726).items
     end
 
     it 'creates messages need to be sent after 1 hour' do
       after_1_hours = messages.where 'send_at < ?', Time.now + 61.minutes
-      expect(after_1_hours).to have_exactly(60).items
+      expect(after_1_hours).to have_exactly(1363).items
     end
 
     it 'creates messages need to be sent after 2 hour' do
       after_2_hours = messages.where 'send_at > ?', Time.now + 119.minutes
-      expect(after_2_hours).to have_exactly(60).items
+      expect(after_2_hours).to have_exactly(1363).items
     end
   end
 end
