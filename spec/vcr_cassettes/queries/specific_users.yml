@@ -49,7 +49,7 @@ http_interactions:
   recorded_at: Mon, 15 Feb 2016 15:33:54 GMT
 - request:
     method: get
-    uri: http://zazo-dataprovider.dev/api/v1/fetch/users/filters/specific_users?users%5B%5D=0QZKM0xguRhf33PhJ5Vg&users%5B%5D=0STznMncWKqsmd5FhM3P
+    uri: <%= dataprovider_api_base_url %>/api/v1/fetch/users/filters/specific_users?users%5B%5D=0QZKM0xguRhf33PhJ5Vg&users%5B%5D=0STznMncWKqsmd5FhM3P
     body:
       encoding: US-ASCII
       string: ''

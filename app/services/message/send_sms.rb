@@ -9,7 +9,6 @@ class Message::SendSms
   def do(options = {})
     return true unless options[:force] || Rails.env.production?
     response = NotificationApi.new(mobile_number: mobile, body: message.body).sms
-
     if response['status'] == 'success'
       WriteLog.info self, "Message was sent to #{mobile} at #{Time.now}. Message: #{message.inspect}."
       true
