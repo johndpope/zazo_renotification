@@ -3,6 +3,7 @@ nav.navbar.navbar-default
     .navbar-header
       a.navbar-brand href='/' == "#{APP_INFO['app_name']} v.#{APP_INFO['version']}"
     ul.nav.navbar-nav
+      li = link_to 'Metrics',   metrics_path
       li = link_to 'Programs',  programs_path
       li = link_to 'Templates', templates_path
       li = link_to 'Queries',   queries_path
