@@ -46,6 +46,8 @@ Rails.application.routes.draw do
     post :run, on: :collection
   end
 
+  resources :metrics, only: [:index]
+
   #
   # other stuff
   #

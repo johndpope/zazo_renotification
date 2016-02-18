@@ -3,7 +3,7 @@ class Query::NonMarketing < Query
 
   def execute
     init_params
-    @data = EventsApi.new.filter :non_marketing
+    @data = DataProviderApi.new.filter :non_marketing
     set_results ids_and_names, connection_ids
   end
 
@@ -14,7 +14,7 @@ class Query::NonMarketing < Query
       memo << row['invitee']
       memo << row['inviter']
     end.uniq
-    StatisticsApi.new(users: users).fetch :ids_and_names
+    DataProviderApi.new(users: users).query_post :ids_and_names
   end
 
   def connection_ids
@@ -24,7 +24,7 @@ class Query::NonMarketing < Query
     end
     users_friends[:users].uniq!
     users_friends[:friends].uniq!
-    StatisticsApi.new(users_friends).fetch(:connection_ids).each_with_object({}) do |row, memo|
+    DataProviderApi.new(users_friends).query_post(:connection_ids).each_with_object({}) do |row, memo|
       memo[row['relation']] = row['connection_id']
     end
   end

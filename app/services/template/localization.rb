@@ -31,7 +31,7 @@ class Template::Localization
 
   def user_country
     return nil if Rails.env.test?
-    StatisticsApi.new(user: user_mkey).country['country']
+    DataProviderApi.new(user: user_mkey, attrs: :country).query(:attributes)['country']
   rescue Faraday::ClientError => e
     WriteLog.faraday_error self, e
     nil

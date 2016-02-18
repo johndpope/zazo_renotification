@@ -2,13 +2,14 @@ class Metric::Cell < Cell::Concept
   include Chartkick::Helper
 
   layout :layout
+
   property :type
   property :name
 
   def show
-    render '_' + type.to_s
+    render "_#{type}"
   rescue Cell::TemplateMissingError
-    render :show
+    render :placeholder
   end
 
   private
@@ -48,5 +49,9 @@ class Metric::Cell < Cell::Concept
       end
       ([link_to('all', '?', class: "#{options[:program_id] ? '' : 'active'}")] + links).join(' ')
     end
+  end
+
+  def show_link
+    link_to 'show', "?#{name}=true"
   end
 end
