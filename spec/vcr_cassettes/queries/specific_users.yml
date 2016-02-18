@@ -2,13 +2,66 @@
 http_interactions:
 - request:
     method: get
-    uri: <%= statistics_api_base_url %>/api/v1/fetch/users/specific_users?users%5B%5D=0QZKM0xguRhf33PhJ5Vg&users%5B%5D=0STznMncWKqsmd5FhM3P
+    uri: <%= dataprovider_api_base_url %>/api/v1/fetch/users/filters/specific_users?users%5B%5D=0QZKM0xguRhf33PhJ5Vg&users%5B%5D=0STznMncWKqsmd5FhM3P
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Faraday v0.9.1
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Www-Authenticate:
+      - Digest realm="Zazo DataProvider", qop="auth", algorithm=MD5, nonce="MTQ1NTc5MDU0MToxYjU2NzM0N2ViYzBhYjI1MGM3MGVjNTEzYjMzMTRmOQ==",
+        opaque="822778b6350cbc116426dfdce7488072"
+      Content-Type:
+      - text/html; charset=utf-8
+      Cache-Control:
+      - no-cache
+      X-Request-Id:
+      - a5a391b6-c3d7-480b-a998-a5e8601b0ee5
+      X-Runtime:
+      - '0.204881'
+      Set-Cookie:
+      - __profilin=p%3Dt; path=/
+      - __profilin=p%3Dt; path=/
+      Date:
+      - Thu, 18 Feb 2016 10:15:41 GMT
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '{"status":"unauthorized"}'
+    http_version: 
+  recorded_at: Thu, 18 Feb 2016 10:15:41 GMT
+- request:
+    method: get
+    uri: <%= dataprovider_api_base_url %>/api/v1/fetch/users/filters/specific_users?users%5B%5D=0QZKM0xguRhf33PhJ5Vg&users%5B%5D=0STznMncWKqsmd5FhM3P
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Authorization:
+      - Digest username="renotification", realm="Zazo DataProvider", algorithm=MD5,
+        qop=auth, uri="/api/v1/fetch/users/filters/specific_users?users%5B%5D=0QZKM0xguRhf33PhJ5Vg&users%5B%5D=0STznMncWKqsmd5FhM3P",
+        nonce="MTQ1NTc5MDU0MToxYjU2NzM0N2ViYzBhYjI1MGM3MGVjNTEzYjMzMTRmOQ==", nc=00000000,
+        cnonce="4e5882e0d6a53536a87778e6165654dd", response="b5284d63cb517749154752a7a03567a0",
+        opaque="822778b6350cbc116426dfdce7488072"
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -29,22 +82,24 @@ http_interactions:
       Cache-Control:
       - no-store, must-revalidate, private, max-age=0
       X-Request-Id:
-      - cb7b0422-146d-4e9f-9106-53413bd5d6ce
+      - ea7cd11c-5f52-4a6a-a6d2-ecc276e65e49
       X-Runtime:
-      - '0.011080'
+      - '0.401213'
       Set-Cookie:
       - __profilin=p%3Dt; path=/
       - __profilin=p%3Dt; path=/
       - __profilin=p%3Dt; path=/
       X-Miniprofiler-Ids:
-      - '["s4xlfrq302tsiljkbbld","5o0y4intylva8c3wi96v","cgmzcq57fnfojia2ysck","jm22x3dw9beg99qkw7gm"]'
-      Transfer-Encoding:
-      - chunked
+      - '["4p0wop0g7n9zacnud2fl","e6kxn6fwn6aq03afrkrg","jx8kdg56odt2m208giy2","d1n095pn8j2zp15abedh","5docdpjvjkp2y03xb753","wap7dgwxfdl43k0gyl2c","yk6qlfisk92847rayvfj","by2uput26kptcc75c3mw","233eqs4gm4n7sulo4sxv","qtk334iy4775r4pibmmu"]'
+      Date:
+      - Thu, 18 Feb 2016 10:15:42 GMT
+      Connection:
+      - close
     body:
       encoding: UTF-8
-      string: '[{"id":1195,"mkey":"0QZKM0xguRhf33PhJ5Vg","time_zero":"2015-04-19T05:36:17.000Z","invitee":"Colin
-        Boit","inviter":"Peter Boit"},{"id":2352,"mkey":"0STznMncWKqsmd5FhM3P","time_zero":"2015-05-01T13:58:35.000Z","invitee":"Steve
+      string: '[{"id":1195,"mkey":"0QZKM0xguRhf33PhJ5Vg","connection_id":1266,"time_zero":"2015-04-19T05:36:17.000Z","invitee":"Colin
+        Boit","inviter":"Peter Boit"},{"id":2352,"mkey":"0STznMncWKqsmd5FhM3P","connection_id":2283,"time_zero":"2015-05-01T13:58:35.000Z","invitee":"Steve
         Woodworth","inviter":"Mike Andrews"}]'
     http_version: 
-  recorded_at: Mon, 03 Aug 2015 14:08:29 GMT
+  recorded_at: Thu, 18 Feb 2016 10:15:42 GMT
 recorded_with: VCR 2.9.3

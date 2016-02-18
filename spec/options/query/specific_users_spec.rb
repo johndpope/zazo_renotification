@@ -2,10 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Query::SpecificUsers, type: :model do
   use_vcr_cassette 'queries/specific_users', api_base_urls
-  subject { described_class.new(params: params).execute }
-  let(:users) { '0QZKM0xguRhf33PhJ5Vg 0STznMncWKqsmd5FhM3P' }
 
-  describe 'with arguments' do
+  let(:instance) { described_class.new params: params }
+  let(:users) { '0QZKM0xguRhf33PhJ5Vg 0STznMncWKqsmd5FhM3P' }
+  subject { instance.execute }
+
+  describe '#execute' do
     context 'default' do
       let(:params) { nil }
       it { is_expected.to have_exactly(0).items }

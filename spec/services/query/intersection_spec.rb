@@ -4,19 +4,29 @@ RSpec.describe Query::Intersection do
   use_vcr_cassette 'queries/not_verified', api_base_urls
   use_vcr_cassette 'queries/non_marketing', api_base_urls
 
-  describe 'not_verified && non_marketing' do
-    subject { described_class.new([Query::NotVerified.new, Query::NonMarketing.new]).results }
+  let(:instance) { described_class.new queries }
 
-    it 'has specific row counts' do
-      is_expected.to have_exactly(60).items
+  describe '#results' do
+    subject { instance.results }
+
+    context 'not_verified && non_marketing' do
+      let(:queries) { [Query::NotVerified.new, Query::NonMarketing.new] }
+      it { is_expected.to have_exactly(212).items }
     end
-  end
 
-  describe 'non_marketing && not_verified' do
-    subject { described_class.new([Query::NonMarketing.new, Query::NotVerified.new]).results }
+    context 'non_marketing && not_verified' do
+      let(:queries) { [Query::NonMarketing.new, Query::NotVerified.new] }
+      it { is_expected.to have_exactly(212).items }
+    end
 
-    it 'has specific row counts' do
-      is_expected.to have_exactly(60).items
+    context 'not_verified' do
+      let(:queries) { [Query::NotVerified.new] }
+      it { is_expected.to have_exactly(1811).items }
+    end
+
+    context 'non_marketing' do
+      let(:queries) { [Query::NonMarketing.new] }
+      it { is_expected.to have_exactly(348).items }
     end
   end
 end

@@ -16,7 +16,6 @@ class User
   def initialize(mkey)
     @mkey = mkey
     set_attrs
-    set_country
     set_messages
     set_conditions
     set_inviter_and_connection
@@ -25,19 +24,15 @@ class User
   private
 
   def set_attrs
-    attrs  = %i{id status first_name last_name mobile_number device_platform}
-    values = StatisticsApi.new(user: mkey, attrs: attrs).attributes
+    attrs  = %i{id status first_name last_name mobile_number device_platform country}
+    values = DataProviderApi.new(user: mkey, attrs: attrs).query :attributes
     attrs.each do |attr|
       instance_variable_set "@#{attr}".to_sym, values[attr.to_s]
     end
   end
 
-  def set_country
-    @country = StatisticsApi.new(user: mkey).country['country']
-  end
-
   def set_inviter_and_connection
-    data = StatisticsApi.new(users: [mkey]).filter(:specific_users)[0]
+    data = DataProviderApi.new(users: [mkey]).filter(:specific_users)[0]
     @inviter       = data['inviter']
     @invited_at    = data['time_zero']
     @connection_id = data['connection_id']

@@ -2,11 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Query::NonMarketing, type: :model do
   use_vcr_cassette 'queries/non_marketing', api_base_urls
-  subject { described_class.new(params: params).execute }
+  let(:instance) { described_class.new params: params }
+  subject { instance.execute }
 
-  describe 'without arguments' do
+  describe '#execute' do
     let(:params) { nil }
-    it { is_expected.to have_exactly(507).items }
+    it { is_expected.to have_exactly(348).items }
   end
 
   describe 'validations' do
