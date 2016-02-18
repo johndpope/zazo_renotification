@@ -25,28 +25,28 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Www-Authenticate:
-      - Digest realm="Zazo DataProvider", qop="auth", algorithm=MD5, nonce="MTQ1NTU1MDQzNDo0MmM1NTk4NDIxNDI0Yzk0N2I0ZDVjOWI0YzJjNTQzNQ==",
+      - Digest realm="Zazo DataProvider", qop="auth", algorithm=MD5, nonce="MTQ1NTc5MDU0MToxYjU2NzM0N2ViYzBhYjI1MGM3MGVjNTEzYjMzMTRmOQ==",
         opaque="822778b6350cbc116426dfdce7488072"
       Content-Type:
       - text/html; charset=utf-8
       Cache-Control:
       - no-cache
       X-Request-Id:
-      - 457caede-2e90-4012-8c32-6b6afe0bdc3b
+      - a5a391b6-c3d7-480b-a998-a5e8601b0ee5
       X-Runtime:
-      - '0.190389'
+      - '0.204881'
       Set-Cookie:
       - __profilin=p%3Dt; path=/
       - __profilin=p%3Dt; path=/
       Date:
-      - Mon, 15 Feb 2016 15:33:54 GMT
+      - Thu, 18 Feb 2016 10:15:41 GMT
       Connection:
       - close
     body:
       encoding: UTF-8
       string: '{"status":"unauthorized"}'
     http_version: 
-  recorded_at: Mon, 15 Feb 2016 15:33:54 GMT
+  recorded_at: Thu, 18 Feb 2016 10:15:41 GMT
 - request:
     method: get
     uri: <%= dataprovider_api_base_url %>/api/v1/fetch/users/filters/specific_users?users%5B%5D=0QZKM0xguRhf33PhJ5Vg&users%5B%5D=0STznMncWKqsmd5FhM3P
@@ -59,8 +59,8 @@ http_interactions:
       Authorization:
       - Digest username="renotification", realm="Zazo DataProvider", algorithm=MD5,
         qop=auth, uri="/api/v1/fetch/users/filters/specific_users?users%5B%5D=0QZKM0xguRhf33PhJ5Vg&users%5B%5D=0STznMncWKqsmd5FhM3P",
-        nonce="MTQ1NTU1MDQzNDo0MmM1NTk4NDIxNDI0Yzk0N2I0ZDVjOWI0YzJjNTQzNQ==", nc=00000000,
-        cnonce="45597bafc2d389a92b5251520c5dd06c", response="5f22d965d16492cc7a3ba55737e9498f",
+        nonce="MTQ1NTc5MDU0MToxYjU2NzM0N2ViYzBhYjI1MGM3MGVjNTEzYjMzMTRmOQ==", nc=00000000,
+        cnonce="4e5882e0d6a53536a87778e6165654dd", response="b5284d63cb517749154752a7a03567a0",
         opaque="822778b6350cbc116426dfdce7488072"
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -82,17 +82,17 @@ http_interactions:
       Cache-Control:
       - no-store, must-revalidate, private, max-age=0
       X-Request-Id:
-      - b063a1f6-3fd6-4245-bdda-8b25c1f3691f
+      - ea7cd11c-5f52-4a6a-a6d2-ecc276e65e49
       X-Runtime:
-      - '0.384273'
+      - '0.401213'
       Set-Cookie:
       - __profilin=p%3Dt; path=/
       - __profilin=p%3Dt; path=/
       - __profilin=p%3Dt; path=/
       X-Miniprofiler-Ids:
-      - '["vcrhukftmf1qogegqxme","ocrpk93jquyw2jqzintw","hgcnrrbw6pnk4kgmsqu6","pycff2du1g3mq164z4r4","5kywg75x5ebydlzgw66m","o8ad8fssae4gf3gm028z","uwdfv09lghohn9ynbqo6","10ern0l21dpoxt152lec","6il0lotma27prjpn9774","2sttqgn2mweo168607ow"]'
+      - '["4p0wop0g7n9zacnud2fl","e6kxn6fwn6aq03afrkrg","jx8kdg56odt2m208giy2","d1n095pn8j2zp15abedh","5docdpjvjkp2y03xb753","wap7dgwxfdl43k0gyl2c","yk6qlfisk92847rayvfj","by2uput26kptcc75c3mw","233eqs4gm4n7sulo4sxv","qtk334iy4775r4pibmmu"]'
       Date:
-      - Mon, 15 Feb 2016 15:33:55 GMT
+      - Thu, 18 Feb 2016 10:15:42 GMT
       Connection:
       - close
     body:
@@ -101,5 +101,5 @@ http_interactions:
         Boit","inviter":"Peter Boit"},{"id":2352,"mkey":"0STznMncWKqsmd5FhM3P","connection_id":2283,"time_zero":"2015-05-01T13:58:35.000Z","invitee":"Steve
         Woodworth","inviter":"Mike Andrews"}]'
     http_version: 
-  recorded_at: Mon, 15 Feb 2016 15:33:55 GMT
+  recorded_at: Thu, 18 Feb 2016 10:15:42 GMT
 recorded_with: VCR 2.9.3

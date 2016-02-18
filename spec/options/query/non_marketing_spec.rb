@@ -7,7 +7,7 @@ RSpec.describe Query::NonMarketing, type: :model do
 
   describe '#execute' do
     let(:params) { nil }
-    it { is_expected.to have_exactly(2224).items }
+    it { is_expected.to have_exactly(348).items }
   end
 
   describe 'validations' do

@@ -11,22 +11,22 @@ RSpec.describe Query::Intersection do
 
     context 'not_verified && non_marketing' do
       let(:queries) { [Query::NotVerified.new, Query::NonMarketing.new] }
-      it { is_expected.to have_exactly(1363).items }
+      it { is_expected.to have_exactly(212).items }
     end
 
     context 'non_marketing && not_verified' do
       let(:queries) { [Query::NonMarketing.new, Query::NotVerified.new] }
-      it { is_expected.to have_exactly(1363).items }
+      it { is_expected.to have_exactly(212).items }
     end
 
     context 'not_verified' do
       let(:queries) { [Query::NotVerified.new] }
-      it { is_expected.to have_exactly(2984).items }
+      it { is_expected.to have_exactly(1811).items }
     end
 
     context 'non_marketing' do
       let(:queries) { [Query::NonMarketing.new] }
-      it { is_expected.to have_exactly(2224).items }
+      it { is_expected.to have_exactly(348).items }
     end
   end
 end

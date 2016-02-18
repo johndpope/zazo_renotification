@@ -8,25 +8,25 @@ RSpec.describe Query::NotVerified, type: :model do
   describe '#execute' do
     context 'default' do
       let(:params) { nil }
-      it { is_expected.to have_exactly(2984).items }
+      it { is_expected.to have_exactly(1811).items }
     end
 
-    context '2015-07-01 00:00 with passing' do
-      let(:params) { '2015-07-01 00:00' }
-      it { is_expected.to have_exactly(1208).items }
+    context '2015-06-01 00:00 with passing' do
+      let(:params) { '2015-06-01 00:00' }
+      it { is_expected.to have_exactly(173).items }
     end
 
-    context '2015-07-01 00:00 without passing' do
+    context '2015-06-01 00:00 without passing' do
       let(:params) { nil }
       let(:selected) do
         subject.select do |row|
           time_zero   = Time.parse row['time_zero']
-          time_reduce = Time.parse '2015-07-01 00:00'
+          time_reduce = Time.parse '2015-06-01  00:00'
           time_zero > time_reduce
         end
       end
 
-      it { expect(selected).to have_exactly(1208).items }
+      it { expect(selected).to have_exactly(173).items }
     end
   end
 

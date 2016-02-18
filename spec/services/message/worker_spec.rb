@@ -16,12 +16,12 @@ RSpec.describe Message::Worker do
 
     context 'after 1 hour' do
       before { Timecop.travel(Time.now + 1.hours) { described_class.execute } }
-      it { expect(sent_messages).to have_exactly(1363).items }
+      it { expect(sent_messages).to have_exactly(212).items }
     end
 
     context 'after 2 hours' do
       before { Timecop.travel(Time.now + 2.hours) { described_class.execute } }
-      it { expect(sent_messages).to have_exactly(2726).items }
+      it { expect(sent_messages).to have_exactly(424).items }
     end
   end
 end
