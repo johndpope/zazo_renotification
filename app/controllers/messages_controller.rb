@@ -17,13 +17,18 @@ class MessagesController < ApplicationController
     handle_status :error
   end
 
+  def set_sort_settings
+
+  end
+
   private
 
   def handle_status(status)
     @status   = status
     @messages = Message
     @messages = @messages.where(program: @program) if @program
-    @messages = @messages.send(status).order(:id)
+    @messages = @messages.send(status).order(:send_at)
+    @messages = @messages.page params[:page]
     render 'by_status'
   end
 

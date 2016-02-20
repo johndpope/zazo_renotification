@@ -59,11 +59,9 @@ class Program < ActiveRecord::Base
   end
 
   def set_setting
-    Setting.create({
-      started:           false,
-      use_localized:     false,
-      include_old_users: false,
-      program: self
-    })
+    Setting.create started: false,
+                   use_localized: false,
+                   include_old_users: false,
+                   program: self
   end
 end
