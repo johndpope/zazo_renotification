@@ -19,6 +19,7 @@ gem 'cells'
 gem 'cells-slim'
 gem 'paranoia'
 gem 'phonelib'
+gem 'kaminari'
 
 gem 'faraday_middleware'
 gem 'faraday-digestauth'
