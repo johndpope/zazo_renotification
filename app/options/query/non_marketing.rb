@@ -1,9 +1,9 @@
 class Query::NonMarketing < Query
   include Api
 
-  def execute
+  def execute(recent: true)
     init_params
-    @data = DataProviderApi.new.filter :non_marketing
+    @data = DataProviderApi.new(recent: recent).filter :non_marketing
     set_results ids_and_names, connection_ids
   end
 
