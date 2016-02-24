@@ -5,9 +5,9 @@ class Query::NotVerified < Query
     { instance: :started_at, proc: -> (value) { Time.parse value }, default: Time.now - 10.years }
   ]
 
-  def execute
+  def execute(recent: true)
     init_params
-    normalize reduce DataProviderApi.new.filter :non_verified
+    normalize reduce DataProviderApi.new(recent: recent).filter :non_verified
   end
 
   private

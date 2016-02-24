@@ -1,5 +1,4 @@
 class Message::Cell < Cell::Concept
-
   class Table < Cell::Concept
     def show
       render
