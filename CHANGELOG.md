@@ -1,5 +1,9 @@
 # Changelog
 
+### v0.12.0
+- :bulb: Added pagination for messages
+- :hammer: Fixed queries to get only recent users
+
 ### v0.11.1
 - :hammer: Added missed env vars to cron
 
