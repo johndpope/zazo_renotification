@@ -1,5 +1,8 @@
 # Changelog
 
+### v0.12.1
+- :hammer: Fixed docker image
+
 ### v0.12.0
 - :bulb: Added pagination for messages
 - :hammer: Fixed queries to get only recent users
