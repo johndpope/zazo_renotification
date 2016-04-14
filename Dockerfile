@@ -2,6 +2,7 @@ FROM zazo/rails
 
 ENV APP_HOME /usr/src/app
 
+RUN apt-get -y -q update
 RUN apt-get -y -q install rsyslog cron
 
 COPY config/Gemfile $APP_HOME/
