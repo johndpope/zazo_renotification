@@ -1,6 +1,7 @@
 # Changelog
 
 ### v0.12.2
+- :arrow_up: Updated newrelic configuration 
 
 ### v0.12.1
 - :hammer: Fixed docker image
