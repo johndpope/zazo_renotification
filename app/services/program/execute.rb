@@ -8,7 +8,7 @@ class Program::Execute
   end
 
   def do
-    WriteLog.info self, "Was started at #{Time.now} for #{users.size} users. Program: #{program.inspect}"
+    Zazo::Tools::Logger.info(self, "started for #{users.size} users; program: #{program.to_json}")
     users.each do |data|
       user_data = UserData.new data
       create_messages user_data if messages_not_persisted? user_data.user.mkey

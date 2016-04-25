@@ -1,5 +1,11 @@
 # Changelog
 
+### v0.12.2
+- :bulb: Added Zazo::Tools::Logger for logging
+- :bulb: Added newrelic TraceWrapper for cron workers
+- :arrow_up: Updated newrelic configuration 
+- :arrow_up: Updated Dockerfile to use updated base image
+
 ### v0.12.1
 - :hammer: Fixed docker image
 
