@@ -7,7 +7,7 @@ class Message::Send
 
   def do
     unless check_program_exist
-      WriteLog.info self, "At #{Time.now} program was already soft-deleted. Message: #{message.inspect}."
+      Zazo::Tools::Logger.info(self, "program was already soft-deleted; message: #{message.to_json}")
       set_status :canceled
       return
     end
@@ -18,7 +18,8 @@ class Message::Send
     else
       set_status :canceled
     end
-    WriteLog.info self, "At #{Time.now} was trying to send: #{message.inspect}."
+
+    Zazo::Tools::Logger.info(self, "was trying to send message; message: #{message.to_json}")
   end
 
   private

@@ -1,6 +1,7 @@
 # Changelog
 
 ### v0.12.2
+- :bulb: Added Zazo::Tools::Logger for logging
 - :arrow_up: Updated newrelic configuration 
 
 ### v0.12.1

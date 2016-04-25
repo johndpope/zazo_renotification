@@ -29,8 +29,9 @@ gem 'figaro', github: 'asux/figaro', branch: 'feature/eb-set-command'
 gem 'puma'
 gem 'rollbar'
 gem 'newrelic_rpm'
-gem 'remote_syslog_logger'
 gem 'foreman'
+
+gem 'zazo-tools', '~> 0.2.1',  github: 'noplanb/zazo-tools'
 
 group :development do
   gem 'better_errors'
