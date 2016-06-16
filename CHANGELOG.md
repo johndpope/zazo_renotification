@@ -1,5 +1,7 @@
 # Changelog
 
+### v0.12.3
+
 ### v0.12.2
 - :bulb: Added Zazo::Tools::Logger for logging
 - :bulb: Added newrelic TraceWrapper for cron workers
