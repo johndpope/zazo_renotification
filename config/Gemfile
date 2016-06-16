@@ -31,7 +31,7 @@ gem 'rollbar'
 gem 'newrelic_rpm'
 gem 'foreman'
 
-gem 'zazo-tools', '~> 0.2.1',  github: 'noplanb/zazo-tools'
+gem 'zazo-tools', '~> 0.3.0',  github: 'noplanb/zazo-tools'
 
 group :development do
   gem 'better_errors'
