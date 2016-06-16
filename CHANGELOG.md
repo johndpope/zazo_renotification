@@ -1,5 +1,8 @@
 # Changelog
 
+### v0.12.4
+- :hammer: Fixed environment variables cron config
+
 ### v0.12.3
 - :arrow_up: Updated `zazo_tools` library
 - :hammer: Fixed application link for sms messages
