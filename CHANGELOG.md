@@ -1,6 +1,8 @@
 # Changelog
 
 ### v0.12.3
+- :arrow_up: Updated `zazo_tools` library
+- :hammer: Fixed application link for sms messages
 
 ### v0.12.2
 - :bulb: Added Zazo::Tools::Logger for logging
