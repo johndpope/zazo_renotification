@@ -14,12 +14,12 @@ class Template::Compiler
   end
 
   def preview
-    compile_preview_data
+    compile(preview_data)
     "#{title} #{body}"
   end
 
   def validate(key)
-    compile_preview_data
+    compile(preview_data)
     send key
     return true
   rescue => e
@@ -32,18 +32,13 @@ class Template::Compiler
 
   private
 
-  def compile_preview_data
-    compile preview_data
-  end
-
   def preview_data
-    UserData.new({
+    UserData.new(
       id: 1967,
       mkey: :preview,
       user: 'David Gilmour',
       friend: 'Syd Barrett',
       time_zero: '1967-12-22 15:00:00 UTC',
-      connection_id: 2015
-    })
+      connection_id: 2015)
   end
 end

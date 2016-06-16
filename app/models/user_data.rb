@@ -42,7 +42,7 @@ class UserData
   end
 
   def app_link
-    "zazoapp.com/l/#{connection.id}"
+    "zazoapp.com/c/#{connection.id}"
   end
 
   def bind
