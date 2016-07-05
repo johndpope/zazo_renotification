@@ -1,5 +1,8 @@
 # Changelog
 
+### next release
+- :hammer: Fixed `VerifiedAfterNthNotification` metric
+
 ### v0.12.4
 - :hammer: Fixed environment variables cron config
 
