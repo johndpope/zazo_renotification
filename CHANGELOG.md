@@ -1,5 +1,7 @@
 # Changelog
 
+### v0.12.7
+
 ### v0.12.6
 - :hammer: Fixed `VerifiedAfterNthNotification` metric finally
 
