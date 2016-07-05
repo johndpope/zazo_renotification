@@ -8,7 +8,7 @@ build:
         POSTGRES_PASSWORD: secret888zazo
         POSTGRES_USER: postgres
   steps:
-    - bundle-install:
+    - asux/bundle-install@1.1.8:
         gemfile: config/Gemfile
         without: development production
     - script:
