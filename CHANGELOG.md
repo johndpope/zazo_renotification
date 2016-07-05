@@ -1,5 +1,7 @@
 # Changelog
 
+### v0.12.6
+
 ### v0.12.5
 - :up: Add gems for productive development
 - :hammer: Fixed `VerifiedAfterNthNotification` metric
