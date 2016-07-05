@@ -8,7 +8,6 @@ class Metric::VerifiedAfterNthNotification < Metric::Base
   def execute
     total = { verified: 0, percent: 0.0 }
     total_users = users_messages.size
-    binding.pry_remote
     metric_data.keys.each_with_object({}) do |key, memo|
       percent = metric_data[key].to_f / total_users * 100
       total[:verified] += metric_data[key].to_i
