@@ -1,5 +1,10 @@
 # Changelog
 
+### v0.12.5
+- :up: Add gems for productive development
+- :hammer: Fixed `VerifiedAfterNthNotification` metric
+- :hammer: Fixed wercker build configuration
+
 ### v0.12.4
 - :hammer: Fixed environment variables cron config
 

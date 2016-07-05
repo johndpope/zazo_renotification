@@ -10,7 +10,6 @@ build:
   steps:
     - asux/bundle-install@1.1.8:
         gemfile: config/Gemfile
-        path: /usr/local/bundle
         without: development production
     - script:
         name: db setup
