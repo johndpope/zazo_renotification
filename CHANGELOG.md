@@ -1,6 +1,7 @@
 # Changelog
 
 ### next release
+- :up: Add gems for productive development
 - :hammer: Fixed `VerifiedAfterNthNotification` metric
 - :hammer: Fixed wercker build configuration
 
