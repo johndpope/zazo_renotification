@@ -1,6 +1,7 @@
 # Changelog
 
 ### v0.12.7
+- :hammer: Fixed batch size for `VerifiedAfterNthNotification` metric
 
 ### v0.12.6
 - :hammer: Fixed `VerifiedAfterNthNotification` metric finally

@@ -1,5 +1,5 @@
 class Metric::VerifiedAfterNthNotification < Metric::Base
-  BATCH_SIZE = 1000
+  BATCH_SIZE = 700
 
   def self.type
     :histogram
