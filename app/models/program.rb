@@ -15,8 +15,10 @@ class Program < ActiveRecord::Base
   # scopes
   #
 
-  scope :order_by_updated_at, -> { order updated_at: :desc }
   scope :active, -> { joins(:setting).where settings: { started: true } }
+  scope :with_settings, -> { includes(:setting).includes(:queries).includes(:conditions) }
+  scope :with_delayed_templates, -> { includes(delayed_templates: :template) }
+  scope :order_by_updated_at, -> { order(updated_at: :desc) }
 
   #
   # services

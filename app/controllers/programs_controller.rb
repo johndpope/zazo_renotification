@@ -2,7 +2,7 @@ class ProgramsController < ApplicationController
   before_action :set_program, only: [:users, :options, :edit, :update, :destroy]
 
   def index
-    @programs = Program.order_by_updated_at
+    @programs = Program.with_settings.with_delayed_templates.order_by_updated_at
   end
 
   def users
