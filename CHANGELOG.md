@@ -1,5 +1,8 @@
 # Changelog
 
+### next release
+- :arrow_up: Refactored `VerifiedAfterNthNotification` metrics (by 5 times more effective)
+
 ### v0.12.7
 - :hammer: Fixed batch size for `VerifiedAfterNthNotification` metric
 

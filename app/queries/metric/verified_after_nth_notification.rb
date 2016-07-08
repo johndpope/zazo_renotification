@@ -4,18 +4,6 @@ class Metric::VerifiedAfterNthNotification < Metric::Base
   end
 
   def execute
-=begin
-    total = { verified: 0, percent: 0.0 }
-    total_users = users_messages.size
-    metric_data.keys.each_with_object({}) do |key, memo|
-      percent = metric_data[key].to_f / total_users * 100
-      total[:verified] += metric_data[key].to_i
-      total[:percent]  += percent
-      memo["#{vx_title(key)} [#{metric_data[key]}]"] = percent.round(2)
-    end.merge("total [#{total[:verified]}]" => total[:percent].round(2)).sort.to_h
-
-=end
-
     format_results(prepare_results)
   rescue Faraday::ClientError
     { 'data not presented' => 0 }
@@ -35,11 +23,13 @@ class Metric::VerifiedAfterNthNotification < Metric::Base
 
   def format_results(results)
     total_users = users_messages.size
+    total_verified = 0
     (0...results.size).each_with_object({}) do |order, memo|
       count = results[order] || 0
       percent = count.to_f / total_users * 100
+      total_verified += count
       memo["#{vx_title(order)} [#{count}]"] = percent.round(2)
-    end
+    end.merge("total [#{total_verified}]" => (total_verified.to_f / total_users * 100).round(2))
   end
 
   def users_messages
