@@ -16,8 +16,20 @@ if defined?(Hirb)
       @output_method = nil
     end
   end
+  extend Hirb::Console
 end
-extend Hirb::Console
+
+if defined?(::Rails) && Rails.env
+  unless Rails.application.config.console == ::Pry
+    Rails.application.config.console = ::Pry
+  end
+
+  unless defined? ::Rails::ConsoleMethods
+    require 'rails/console/app'
+    require 'rails/console/helpers'
+    TOPLEVEL_BINDING.eval('self').extend ::Rails::ConsoleMethods
+  end
+end
 
 class Object
   def switch_db(env = nil)
