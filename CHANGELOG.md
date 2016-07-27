@@ -2,6 +2,7 @@
 
 ### 0.12.8-wip.1
 - :arrow_up: Bumped and updated usage of zazo-tools gem
+- :arrow_up: Updated wercker build configuration
 
 ### 0.12.8
 - :arrow_up: Refactored `VerifiedAfterNthNotification` metrics (by 5 times more effective)
