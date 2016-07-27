@@ -1,4 +1,4 @@
-Zazo::Tools::Logger.configure do |config|
+Zazo::Tool::Logger.configure do |config|
   logstash_url = Figaro.env.logstash_url
   if logstash_url && !(Rails.env.test? || Rails.env.development?)
     config.logstash_enabled = true
