@@ -1,6 +1,6 @@
 # Changelog
 
-### 0.12.8-wip.1
+### 0.12.9
 - :arrow_up: Bumped and updated usage of zazo-tools gem
 - :arrow_up: Updated wercker build configuration
 
