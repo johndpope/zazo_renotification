@@ -7,6 +7,7 @@ class Query::NotVerified < Query
 
   def execute(recent: true)
     init_params
+    # TODO: recent: false is not working!
     normalize reduce DataProviderApi.new(recent: recent).filter :non_verified
   end
 

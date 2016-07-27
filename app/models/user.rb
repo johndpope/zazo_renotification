@@ -9,7 +9,7 @@ class User
   def self.find(mkey)
     self.new mkey
   rescue Faraday::ClientError => e
-    Zazo::Tools::Logger.info(self, "faraday exception; class: #{e.class}; response #{e.response[:body]}")
+    Zazo::Tool::Logger.info(self, "faraday exception; class: #{e.class}; response #{e.response[:body]}")
     raise NotFound, "User with mkey '#{mkey}' not found"
   end
 

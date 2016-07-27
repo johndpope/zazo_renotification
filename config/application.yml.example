@@ -18,6 +18,8 @@ newrelic_license_key:
 newrelic_api_key:
 
 logstash_url:
+logstash_username:
+logstash_password:
 
 development:
   secret_key_base:
