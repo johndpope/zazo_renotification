@@ -9,7 +9,7 @@ module Condition::Api
     begin
       yield
     rescue Faraday::ClientError => e
-      Zazo::Tools::Logger.info(self, "faraday exception; class: #{e.class}; response #{e.response[:body]}")
+      Zazo::Tool::Logger.info(self, "faraday exception; class: #{e.class}; response #{e.response[:body]}")
       false
     end
   end

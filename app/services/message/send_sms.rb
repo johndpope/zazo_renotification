@@ -10,10 +10,10 @@ class Message::SendSms
     return true unless options[:force] || Rails.env.production?
     response = NotificationApi.new(mobile_number: mobile, body: message.body).sms
     if response['status'] == 'success'
-      Zazo::Tools::Logger.info(self, "success; mobile: #{mobile}; message: #{message.to_json}")
+      Zazo::Tool::Logger.info(self, "success; mobile: #{mobile}; message: #{message.to_json}")
       true
     else
-      Zazo::Tools::Logger.info(self, "failure, mobile: #{mobile}; errors: #{response['errors']}; message: #{message.inspect}")
+      Zazo::Tool::Logger.info(self, "failure, mobile: #{mobile}; errors: #{response['errors']}; message: #{message.inspect}")
       false
     end
   end
